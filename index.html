@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Estratégico - SESI Goiás</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js para gráficos dinâmicos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chart.js Plugin DataLabels -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuração de cores e fontes customizadas no Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        helvetica: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        sesi: {
+                            cyan: '#00BFFF',
+                            dark: '#212529',
+                            light: '#F8F9FA',
+                            card: '#FFFFFF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #F8F9FA;
+            color: #212529;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 191, 255, 0.2), 0 8px 10px -6px rgba(0, 191, 255, 0.1);
+        }
+
+        /* Tooltip personalizado CSS */
+        .tooltip-group:hover .tooltip-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00BFFF;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-sesi-light text-sesi-dark font-helvetica antialiased selection:bg-sesi-cyan selection:text-white">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-sesi-cyan flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-cyan-500/30">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-sesi-dark leading-tight">Observatório SESI</h1>
+                    <p class="text-xs text-sesi-cyan font-semibold uppercase tracking-wider">Educação Básica • Goiás</p>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-bold text-gray-400">
+                <a href="#enem" class="hover:text-sesi-cyan transition">Performance ENEM</a>
+                <a href="#mercado" class="hover:text-sesi-cyan transition">Market Share</a>
+                <a href="#crescimento" class="hover:text-sesi-cyan transition">Evolução Histórica</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        
+        <!-- Hero Section / Title -->
+        <div class="text-center mb-16 mt-6">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">O Protagonismo de <span class="text-sesi-cyan">Goiás</span> na Educação</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+                Este painel consolida os principais indicadores de desempenho da rede SESI em Goiás. Através da análise cruzada de microdados governamentais (INEP) e sistemas internos, demonstramos nossa posição de liderança em abrangência de mercado e excelência acadêmica.
+            </p>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 card-hover relative group tooltip-group">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-sm text-gray-500 font-bold uppercase tracking-wide">Nota Média ENEM</p>
+                        <h3 class="text-4xl font-bold text-sesi-dark mt-1">571<span class="text-sesi-cyan text-2xl">,03</span></h3>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 cursor-help">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm">
+                    <span class="text-green-500 font-bold flex items-center gap-1"><i class="fa-solid fa-arrow-trend-up"></i> +2.75%</span>
+                    <span class="text-gray-400 ml-2 font-medium">vs ano anterior (2024)</span>
+                </div>
+                <!-- Tooltip -->
+                <div class="tooltip-content absolute z-20 w-64 p-3 bg-sesi-dark text-white text-xs rounded-lg shadow-xl opacity-0 invisible transition-all duration-200 bottom-full left-1/2 transform -translate-x-1/2 mb-2">
+                    <span class="font-bold text-sesi-cyan block mb-1">Metodologia Inep:</span> Média calculada por área do conhecimento da prova objetiva, considerando unicamente candidatos presentes.
+                    <div class="absolute w-3 h-3 bg-sesi-dark transform rotate-45 -bottom-1.5 left-1/2 -translate-x-1/2"></div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 card-hover relative tooltip-group">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-sm text-gray-500 font-bold uppercase tracking-wide">Ranking Privado (GO)</p>
+                        <h3 class="text-4xl font-bold text-sesi-dark mt-1">1º <span class="text-sesi-cyan text-2xl">Lugar</span></h3>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 cursor-help">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm">
+                    <span class="text-sesi-cyan font-bold text-lg">10.519</span>
+                    <span class="text-gray-400 ml-2 font-medium">Matrículas ativas</span>
+                </div>
+                <!-- Tooltip -->
+                <div class="tooltip-content absolute z-20 w-64 p-3 bg-sesi-dark text-white text-xs rounded-lg shadow-xl opacity-0 invisible transition-all duration-200 bottom-full left-1/2 transform -translate-x-1/2 mb-2">
+                    <span class="font-bold text-sesi-cyan block mb-1">Censo Escolar 2024:</span> Exclui a produção indireta (Termos de Cooperação). O SESI lidera isoladamente o quantitativo no estado.
+                    <div class="absolute w-3 h-3 bg-sesi-dark transform rotate-45 -bottom-1.5 left-1/2 -translate-x-1/2"></div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 card-hover relative tooltip-group">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-sm text-gray-500 font-bold uppercase tracking-wide">Evolução (2017-2025)</p>
+                        <h3 class="text-4xl font-bold text-sesi-dark mt-1">+9<span class="text-sesi-cyan text-2xl">,5%</span></h3>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 cursor-help">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm">
+                    <span class="text-gray-500 font-medium text-xs leading-tight">Crescimento total da <strong class="text-gray-700">Ed. Básica</strong> contra 3,2% do mercado local.</span>
+                </div>
+                <!-- Tooltip -->
+                <div class="tooltip-content absolute z-20 w-64 p-3 bg-sesi-dark text-white text-xs rounded-lg shadow-xl opacity-0 invisible transition-all duration-200 bottom-full left-1/2 transform -translate-x-1/2 mb-2">
+                    <span class="font-bold text-sesi-cyan block mb-1">Série Histórica:</span> Análise comparativa que demonstra o ganho de Market Share do SESI frente a outras redes privadas de Goiás.
+                    <div class="absolute w-3 h-3 bg-sesi-dark transform rotate-45 -bottom-1.5 left-1/2 -translate-x-1/2"></div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-sesi-dark rounded-2xl p-6 shadow-lg card-hover relative overflow-hidden tooltip-group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-sesi-cyan opacity-20 rounded-bl-full"></div>
+                <div class="flex justify-between items-start mb-4 relative z-10">
+                    <div>
+                        <p class="text-sm text-gray-300 font-bold uppercase tracking-wide">Salto Ens. Fundamental I</p>
+                        <h3 class="text-4xl font-bold text-white mt-1">+45<span class="text-sesi-cyan text-2xl">%</span></h3>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 cursor-help">
+                        <i class="fa-solid fa-rocket text-sesi-cyan"></i>
+                    </div>
+                </div>
+                <div class="flex items-center text-sm relative z-10">
+                    <span class="text-gray-300 font-medium text-xs">De 1.967 (24) para <span class="text-sesi-cyan font-bold text-sm">2.871</span> estimadas (25).</span>
+                </div>
+                <!-- Tooltip -->
+                <div class="tooltip-content absolute z-20 w-64 p-3 bg-white text-sesi-dark text-xs rounded-lg shadow-xl opacity-0 invisible transition-all duration-200 bottom-full left-1/2 transform -translate-x-1/2 mb-2 border border-gray-200">
+                    <span class="font-bold text-sesi-cyan block mb-1">O Motor da Rede:</span> O Ensino Fundamental é a principal porta de entrada e apresenta o crescimento mais acelerado do portfólio.
+                    <div class="absolute w-3 h-3 bg-white border-b border-r border-gray-200 transform rotate-45 -bottom-1.5 left-1/2 -translate-x-1/2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção 1: ENEM -->
+        <section id="enem" class="mb-20 scroll-mt-24">
+            <div class="flex flex-col md:flex-row gap-10 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
+                <div class="w-full md:w-5/12 flex flex-col justify-center">
+                    <div class="inline-block px-3 py-1 bg-cyan-50 text-sesi-cyan text-xs font-bold rounded-full mb-4 uppercase tracking-wide w-max">Performance Acadêmica</div>
+                    <h2 class="text-3xl font-bold mb-4 text-sesi-dark">Resiliência e Escala no <span class="text-sesi-cyan">ENEM</span></h2>
+                    
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed text-justify">
+                        O Exame Nacional do Ensino Médio é o nosso principal termômetro de efetividade pedagógica. A análise longitudinal demonstra que o SESI Goiás atingiu a marca histórica de <strong>571,03 pontos</strong> em 2024. 
+                    </p>
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed text-justify">
+                        Mais importante do que a nota isolada é o comportamento da curva: no biênio 2023-2024, enquanto a média das escolas do Estado de Goiás sofreu uma retração técnica de <span class="text-red-500 font-bold">-2,06%</span>, a rede SESI avançou <span class="text-green-500 font-bold">+2,75%</span>, evidenciando um descolamento positivo do mercado.
+                    </p>
+
+                    <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-l-sesi-cyan">
+                        <p class="text-xs text-gray-500 font-medium italic">
+                            * As médias consideram unicamente os resultados dos candidatos presentes nas provas objetivas, baseadas nos microdados oficiais do INEP.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-7/12 flex flex-col">
+                    <div class="flex-1 min-h-[350px] relative">
+                        <canvas id="enemChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-4 font-bold uppercase tracking-wider">Série Histórica ENEM (2020 - 2024)</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 mb-4">
+                <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+                    <div class="w-8 h-8 rounded bg-cyan-50 flex items-center justify-center text-sesi-cyan">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-sesi-dark">Raio-X do ENEM: Explorador por Áreas</h3>
+                        <p class="text-xs text-gray-500">Analise a proficiência de Goiás em competências específicas contra o Brasil e a região Centro-Oeste.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                    <!-- Controles e Filtros -->
+                    <div class="md:col-span-4 bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Área de Conhecimento</label>
+                            <div class="relative">
+                                <select id="filterEnemArea" class="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:bg-white focus:border-sesi-cyan focus:ring-1 focus:ring-sesi-cyan transition-colors cursor-pointer shadow-sm text-sm font-medium">
+                                    <option value="media" selected>Média Final</option>
+                                    <option value="redacao">Redação</option>
+                                    <option value="matematica">Matemática e suas Tecnologias</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Comparar Goiás com:</label>
+                            <div class="relative">
+                                <select id="filterEnemComparador" class="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:bg-white focus:border-sesi-cyan focus:ring-1 focus:ring-sesi-cyan transition-colors cursor-pointer shadow-sm text-sm font-medium">
+                                    <option value="BR" selected>Média Nacional (Brasil)</option>
+                                    <option value="MS">Mato Grosso do Sul (MS)</option>
+                                    <option value="MT">Mato Grosso (MT)</option>
+                                    <option value="DF">Distrito Federal (DF)</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <div class="bg-sesi-dark text-white p-5 rounded-xl shadow-lg relative overflow-hidden transition-all duration-300">
+                                <div class="absolute -right-4 -bottom-4 text-sesi-cyan opacity-20 text-5xl">
+                                    <i class="fa-solid fa-crosshairs"></i>
+                                </div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-2">Ponto Forte Detectado</p>
+                                <p id="enemInsightText" class="text-sm leading-relaxed relative z-10 font-medium">
+                                    Na consolidação geral, Goiás demonstra uma aceleração notável. Especialmente no último biênio, a curva goiana tem a inclinação mais íngreme, reduzindo rapidamente o gap em relação à média nacional.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico Dinâmico Área de Conhecimento -->
+                    <div class="md:col-span-8 bg-white p-6 rounded-2xl border border-gray-100 h-[400px] flex flex-col">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 id="enemChartTitle" class="text-lg font-bold text-sesi-dark">Média Final</h4>
+                            <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-200">Série: 2019 - 2023</span>
+                        </div>
+                        <div class="flex-1 relative w-full">
+                            <canvas id="enemAreaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Seção 2: Mercado -->
+        <section id="mercado" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-sesi-dark">O Domínio do <span class="text-sesi-cyan">Market Share</span> Privado</h2>
+                <p class="text-gray-500 mt-3 text-sm max-w-2xl mx-auto">Mapeamento da representatividade institucional no mercado da educação básica, revelando a força da marca frente aos principais concorrentes confessionais e privados.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+                <!-- Gráfico de Barras -->
+                <div class="lg:col-span-7 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col justify-center">
+                    <div class="flex justify-between items-end mb-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-sesi-dark">Top 3 Redes Privadas</h3>
+                            <p class="text-xs text-gray-400 uppercase tracking-wide mt-1">Estado de Goiás (Censo 2024)</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-2xl font-bold text-sesi-cyan">10.519</span>
+                            <p class="text-xs text-gray-500 font-medium">Matrículas Totais</p>
+                        </div>
+                    </div>
+                    
+                    <div class="h-64 relative w-full">
+                        <canvas id="mercadoChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-6 text-center italic">Fonte: Estudo de Mercado Educacional Privado (PROWA / INEP).</p>
+                </div>
+
+                <!-- Painel Centro-Oeste (NOVO: Gráfico de Rosca) -->
+                <div class="lg:col-span-5 flex flex-col gap-5">
+                    <div class="bg-sesi-dark p-8 rounded-3xl shadow-lg relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute -right-8 -bottom-8 text-gray-700 opacity-10 text-9xl">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div>
+                                <div class="inline-block px-2 py-1 bg-gray-800 text-sesi-cyan text-[10px] font-bold rounded-md mb-4 uppercase tracking-widest border border-gray-700">Benchmarking Interno</div>
+                                <h4 class="text-2xl font-bold text-white mb-2">A Força de Goiás no Centro-Oeste</h4>
+                                <p class="text-gray-400 text-xs mb-6">Participação de mercado entre os DRs do SESI na região central do país.</p>
+                            </div>
+                            
+                            <div class="flex-1 flex items-center justify-center relative min-h-[180px]">
+                                <div class="absolute inset-0">
+                                    <canvas id="coChart"></canvas>
+                                </div>
+                                <!-- Texto centralizado no gráfico -->
+                                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                    <span class="text-3xl font-bold text-white">47<span class="text-xl">,5%</span></span>
+                                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Goiás</span>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-300 text-xs leading-relaxed mt-4 text-center">
+                                De todas as <strong class="text-white">22.157</strong> matrículas do SESI no Centro-Oeste, quase a metade está concentrada unicamente na operação goiana.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOVO BLOCO: Explorador de Cenários Interativo -->
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-gray-100 mb-12">
+                <div class="flex items-center gap-3 mb-6 border-b border-gray-100 pb-4">
+                    <div class="w-8 h-8 rounded bg-cyan-50 flex items-center justify-center text-sesi-cyan">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-sesi-dark">Simulador Estratégico: SESI vs Mercado</h3>
+                        <p class="text-xs text-gray-500">Explore o posicionamento da rede SESI aplicando filtros dinâmicos.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                    <!-- Controles -->
+                    <div class="md:col-span-4 bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Unidade / Localidade</label>
+                            <div class="relative">
+                                <select id="filterEstado" class="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:bg-white focus:border-sesi-cyan focus:ring-1 focus:ring-sesi-cyan transition-colors cursor-pointer shadow-sm text-sm font-medium">
+                                    <option value="GO" selected>Estado de Goiás</option>
+                                    <option value="BR">Cenário Nacional (Brasil)</option>
+                                    <option value="MT">Mato Grosso (MT)</option>
+                                    <option value="MS">Mato Grosso do Sul (MS)</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Etapa de Ensino</label>
+                            <div class="relative">
+                                <select id="filterEtapa" class="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:bg-white focus:border-sesi-cyan focus:ring-1 focus:ring-sesi-cyan transition-colors cursor-pointer shadow-sm text-sm font-medium">
+                                    <option value="geral" selected>Educação Básica (Todas)</option>
+                                    <option value="infantil">Educação Infantil</option>
+                                    <option value="fundamental">Ensino Fundamental (I e II)</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <div id="dynamicInsightCard" class="bg-sesi-dark text-white p-5 rounded-xl shadow-lg relative overflow-hidden transition-all duration-300">
+                                <div class="absolute -right-4 -bottom-4 text-sesi-cyan opacity-20 text-5xl">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-2">Insight Analítico</p>
+                                <p id="dynamicInsightText" class="text-sm leading-relaxed relative z-10 font-medium">
+                                    Em Goiás, o SESI lidera o mercado geral com folga, desbancando redes confessionais tradicionais e consolidando sua hegemonia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gráfico Dinâmico -->
+                    <div class="md:col-span-8 bg-white p-6 rounded-2xl border border-gray-100 h-[400px] flex flex-col">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 id="chartTitle" class="text-lg font-bold text-sesi-dark">Comparativo de Matrículas</h4>
+                            <span class="bg-cyan-50 text-sesi-cyan px-3 py-1 rounded-full text-xs font-bold border border-cyan-100">Top 2 Redes</span>
+                        </div>
+                        <div class="flex-1 relative w-full">
+                            <canvas id="interactiveChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO: Análise de Etapas e o Efeito EJA -->
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100">
+                <div class="flex flex-col lg:flex-row gap-10 items-center">
+                    <div class="w-full lg:w-1/2">
+                        <div class="inline-block px-3 py-1 bg-cyan-50 text-sesi-cyan text-xs font-bold rounded-full mb-4 uppercase tracking-wide border border-cyan-100">Deep Dive Analítico</div>
+                        <h3 class="text-2xl font-bold text-sesi-dark mb-4">A Força Orgânica e o <span class="text-sesi-cyan">"Efeito EJA"</span></h3>
+                        
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed text-justify">
+                            Ao destrinchar a composição das matrículas, identificamos um diferencial estratégico expressivo para Goiás. No panorama <strong>nacional</strong>, a liderança em volume da Rede SESI frente aos concorrentes privados (como a Rede Adventista) tem forte dependência da Educação de Jovens e Adultos (EJA) — modalidade essencialmente social e gratuita. Isolando o EJA, o SESI ocuparia a segunda posição no Brasil.
+                        </p>
+                        <p class="text-gray-600 text-sm leading-relaxed text-justify">
+                            Contudo, o <strong>SESI Goiás</strong> demonstra uma maturidade de mercado incomparável. Mesmo expurgando totalmente as matrículas do EJA, a operação goiana mantém a <strong>liderança isolada (1º Lugar)</strong> no estado, superando os concorrentes exclusivamente com a atratividade orgânica da sua Educação Básica Regular (Infantil, Fundamental e Médio).
+                        </p>
+                    </div>
+                    
+                    <div class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Gráfico BR -->
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <h4 class="text-sm font-bold text-gray-700 text-center mb-1 uppercase tracking-wide">Cenário Brasil</h4>
+                            <p class="text-[10px] text-gray-400 text-center mb-4 uppercase">SESI vs 2º Colocado</p>
+                            <div class="h-48 relative w-full">
+                                <canvas id="ejaBrChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- Gráfico GO -->
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-sesi-cyan shadow-[0_0_15px_rgba(0,191,255,0.1)] relative">
+                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-sesi-cyan text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">Destaque</div>
+                            <h4 class="text-sm font-bold text-gray-700 text-center mb-1 uppercase tracking-wide mt-2">Cenário Goiás</h4>
+                            <p class="text-[10px] text-gray-400 text-center mb-4 uppercase">SESI vs 2º Colocado</p>
+                            <div class="h-48 relative w-full">
+                                <canvas id="ejaGoChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOVO BLOCO: Ranking Nacional e Participação -->
+            <div class="mt-12 bg-sesi-dark rounded-3xl shadow-lg border border-gray-800 overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    <!-- Esquerda: Insight e Share -->
+                    <div class="lg:col-span-5 p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-gray-700 flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute -left-10 -bottom-10 text-gray-800 opacity-50 text-9xl pointer-events-none">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="inline-block px-3 py-1 bg-gray-800 text-sesi-cyan text-xs font-bold rounded-full mb-6 uppercase tracking-wide border border-gray-700">Posicionamento Nacional</div>
+                            <h3 class="text-3xl font-bold text-white mb-4">Eficiência que supera o volume.</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-8">
+                                O SESI Goiás responde por <strong class="text-white">3,55%</strong> de todas as matrículas da rede no Brasil. No entanto, seu verdadeiro diferencial estratégico não é o tamanho bruto da operação, mas a sua <strong>dominância de mercado</strong>.
+                            </p>
+                            
+                            <div class="flex items-center gap-6 bg-gray-800/50 p-5 rounded-2xl border border-gray-700/50">
+                                <div class="w-20 h-20 relative flex items-center justify-center">
+                                    <!-- Círculo SVG animado -->
+                                    <svg class="transform -rotate-90 w-20 h-20">
+                                        <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="8" fill="transparent" class="text-gray-700" />
+                                        <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="8" fill="transparent" stroke-dasharray="226.2" stroke-dashoffset="218" class="text-sesi-cyan" />
+                                    </svg>
+                                    <div class="absolute text-white font-bold text-sm">3,5%</div>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Share Brasil</p>
+                                    <p class="text-sm text-gray-300"><strong>10.519</strong> alunos em GO dentro do universo de <strong>295.932</strong> do Brasil.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direita: Leaderboard -->
+                    <div class="lg:col-span-7 p-8 md:p-12 bg-gradient-to-br from-gray-900 to-sesi-dark">
+                        <div class="flex justify-between items-end mb-8">
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Top 10 Departamentos Regionais</h4>
+                                <p class="text-xs text-gray-400 mt-1 uppercase tracking-wider">Ranking Estimado por Volume (Censo 2024)</p>
+                            </div>
+                            <i class="fa-solid fa-trophy text-2xl text-gray-700"></i>
+                        </div>
+
+                        <!-- Lista de Ranking -->
+                        <div class="space-y-3">
+                            <!-- Placeholder topo (SP, MG, etc. representados de forma agregada para contexto visual) -->
+                            <div class="flex items-center gap-4 text-gray-500 py-2 px-4 rounded-lg bg-gray-800/30 border border-transparent">
+                                <span class="font-bold text-sm w-6 text-center">1-7</span>
+                                <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs"><i class="fa-solid fa-layer-group"></i></div>
+                                <span class="flex-1 text-sm font-medium">Grandes Polos (SP, MG, PR, SC, RS, BA, PE)</span>
+                                <span class="text-xs font-bold uppercase tracking-wider opacity-50">Volume Superior</span>
+                            </div>
+
+                            <!-- Destaque Goiás -->
+                            <div class="flex items-center gap-4 text-white py-3 px-4 rounded-xl bg-sesi-cyan/10 border border-sesi-cyan relative overflow-hidden group transition-all hover:bg-sesi-cyan/20">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-sesi-cyan"></div>
+                                <span class="font-bold text-lg w-6 text-center text-sesi-cyan">8º</span>
+                                <div class="w-10 h-10 rounded-full bg-sesi-cyan flex items-center justify-center text-white shadow-[0_0_10px_rgba(0,191,255,0.5)]">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="text-base font-bold">SESI Goiás</h5>
+                                    <p class="text-[10px] text-sesi-cyan uppercase tracking-widest mt-0.5">Líder Absoluto no Mercado Local</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-lg font-bold">10.519</span>
+                                    <span class="text-[10px] text-gray-400 uppercase">Matrículas</span>
+                                </div>
+                            </div>
+
+                            <!-- Placeholder abaixo -->
+                            <div class="flex items-center gap-4 text-gray-500 py-2 px-4 rounded-lg bg-gray-800/30 border border-transparent">
+                                <span class="font-bold text-sm w-6 text-center">9+</span>
+                                <div class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-xs"><i class="fa-solid fa-ellipsis"></i></div>
+                                <span class="flex-1 text-sm font-medium">Demais Departamentos Regionais</span>
+                                <span class="text-xs font-bold uppercase tracking-wider opacity-50">...</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-gray-800 flex gap-3 items-start">
+                            <i class="fa-solid fa-lightbulb text-sesi-cyan mt-0.5"></i>
+                            <p class="text-xs text-gray-400 leading-relaxed text-justify">
+                                <strong class="text-gray-300">O Paradoxo do Crescimento:</strong> Embora grandes DRs figurem no topo do ranking de volume, muitos ocupam a 2ª ou 3ª posição em seus próprios estados, superados por redes como Objetivo ou Adventista. Goiás rompe essa lógica: está no Top 10 nacional, mas <strong>garante o 1º lugar isolado</strong> em Market Share dentro de suas fronteiras.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Seção 3: Crescimento e Sustentabilidade -->
+        <section id="crescimento" class="mb-20 scroll-mt-24">
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
+                <!-- Decorative background -->
+                <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-50 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <div class="inline-block px-3 py-1 bg-cyan-50 text-sesi-cyan text-xs font-bold rounded-full mb-4 uppercase tracking-wide">Expansão e Sustentabilidade</div>
+                        <h2 class="text-3xl font-bold mb-4 text-sesi-dark">O Motor da <span class="text-sesi-cyan">Expansão</span></h2>
+                        <p class="text-gray-600 mb-8 text-sm leading-relaxed text-justify">
+                            A análise da série histórica (2017 a 2025) comprova um avanço sustentável. A rede SESI cresceu quase o triplo do ritmo da rede privada goiana. O grande propulsor dessa jornada de sucesso tem sido o investimento e a resposta das famílias ao <strong>Ensino Fundamental</strong>.
+                        </p>
+                        
+                        <div class="space-y-6 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <div>
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-sm font-bold text-gray-700 uppercase tracking-wide">Evolução Ed. Básica (SESI-GO)</span>
+                                    <span class="text-xl font-bold text-sesi-cyan">+9,5%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-sesi-cyan h-3 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-sm font-bold text-gray-500 uppercase tracking-wide">Evolução Rede Privada (GO)</span>
+                                    <span class="text-xl font-bold text-gray-400">+3,2%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-gray-400 h-3 rounded-full" style="width: 33%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="font-bold text-gray-700 text-sm uppercase tracking-wide">Projeção: Ensino Fundamental I</h4>
+                            <span class="bg-sesi-dark text-white px-2 py-1 rounded text-xs font-bold">+37,5% Geral</span>
+                        </div>
+                        <div class="relative h-64 w-full">
+                             <canvas id="crescimentoChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-gray-400 mt-4 italic">O salto estimado para 2025 reflete a maturação das captações e consolidação da base estrutural.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blocos Futuros (Placeholders) -->
+        <section id="futuro" class="mb-12 scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="h-px bg-gray-200 flex-1"></div>
+                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-widest">Módulos em Integração</h2>
+                <div class="h-px bg-gray-200 flex-1"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card Robótica -->
+                <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-gray-200 group-hover:bg-cyan-50 flex items-center justify-center text-gray-400 group-hover:text-sesi-cyan text-2xl mb-4 transition-colors">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-700 mb-2">Torneios e Robótica</h3>
+                    <p class="text-xs text-gray-500 max-w-sm">Módulo reservado para o ranking de competições (FLL, FRC, F1 in Schools) e quadro de medalhas. Aguardando ingestão de dados da área técnica.</p>
+                </div>
+
+                <!-- Card Satisfação -->
+                <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center flex flex-col items-center justify-center opacity-60 hover:opacity-100 transition duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-gray-200 group-hover:bg-cyan-50 flex items-center justify-center text-gray-400 group-hover:text-sesi-cyan text-2xl mb-4 transition-colors">
+                        <i class="fa-solid fa-face-smile-beam"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-700 mb-2">Pesquisa de Satisfação (NPS)</h3>
+                    <p class="text-xs text-gray-500 max-w-sm">Espaço destinado para análise de retenção, satisfação das famílias e percepção de valor da marca SESI. Aguardando pesquisa anual.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-sesi-dark text-gray-400 py-10 border-t border-gray-800 mt-12">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-1">Observatório SESI Goiás</h4>
+                    <p class="text-sm">Inteligência de Dados para a Educação Básica.</p>
+                </div>
+                <div class="text-xs text-gray-500 text-left md:text-right max-w-md">
+                    <p class="mb-1"><strong class="text-gray-400">Notas Metodológicas:</strong></p>
+                    <p>1. Dados extraídos dos Microdados INEP e Censo Escolar 2022-2024.</p>
+                    <p>2. Volume de mercado exclui Termos de Cooperação Direta.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-xs opacity-60">
+                &copy; 2026 Sistema Indústria. Documento Estratégico.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Registrar o plugin datalabels globalmente
+            Chart.register(ChartDataLabels);
+
+            // Configurações Globais do ChartJS
+            Chart.defaults.font.family = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+            Chart.defaults.color = '#6b7280';
+            Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(33, 37, 41, 0.95)';
+            Chart.defaults.plugins.tooltip.titleFont = { size: 13, weight: 'bold' };
+            Chart.defaults.plugins.tooltip.bodyFont = { size: 14 };
+            Chart.defaults.plugins.tooltip.padding = 12;
+            Chart.defaults.plugins.tooltip.cornerRadius = 8;
+            Chart.defaults.plugins.tooltip.displayColors = true;
+
+            // 1. Gráfico do ENEM (Linhas)
+            const ctxEnem = document.getElementById('enemChart').getContext('2d');
+            new Chart(ctxEnem, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
+                    datasets: [
+                        {
+                            label: 'SESI Goiás',
+                            data: [545.50, 540.10, 553.02, 555.72, 571.03],
+                            borderColor: '#00BFFF',
+                            backgroundColor: 'rgba(0, 191, 255, 0.05)',
+                            borderWidth: 4,
+                            pointBackgroundColor: '#00BFFF',
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Média Brasil',
+                            data: [521.53, 534.02, 542.41, 537.96, 544.71],
+                            borderColor: '#9ca3af',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#9ca3af',
+                            pointRadius: 4,
+                            fill: false,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Média Goiás',
+                            data: [541.17, 526.69, 537.53, 544.49, 533.25],
+                            borderColor: '#d1d5db',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#fff',
+                            pointBorderColor: '#d1d5db',
+                            pointRadius: 4,
+                            fill: false,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    layout: { padding: { top: 25, bottom: 10 } },
+                    plugins: {
+                        datalabels: {
+                            align: function(context) { return context.datasetIndex === 0 ? 'top' : 'bottom'; },
+                            offset: 6,
+                            color: function(context) { return context.dataset.borderColor; },
+                            font: { weight: 'bold', size: 12 },
+                            formatter: function(value) { return value.toFixed(2).replace('.', ','); }
+                        },
+                        legend: { position: 'top', align: 'end', labels: { usePointStyle: true, boxWidth: 8, font: { weight: 'bold' } } }
+                    },
+                    scales: {
+                        y: { min: 510, grid: { borderDash: [4, 4], color: '#f3f4f6', drawBorder: false }, ticks: { font: { weight: 'bold' } } },
+                        x: { grid: { display: false, drawBorder: false }, ticks: { font: { weight: 'bold' }, color: '#4b5563' } }
+                    }
+                }
+            });
+
+            
+            // Dados extraídos dos painéis do ENEM (Série 2019 a 2023)
+            const enemDetalhadoData = {
+                'media': {
+                    title: 'Média Final (Objetivas + Redação)',
+                    insight: 'Na consolidação geral, Goiás demonstra uma aceleração notável. Especialmente no último biênio, a curva goiana tem a inclinação mais íngreme, reduzindo rapidamente o gap em relação à média nacional e superando estados vizinhos como o MT de forma isolada.',
+                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    'GO': [545.50, 540.10, 553.02, 555.72, 571.03],
+                    'BR': [568.66, 560.67, 578.08, 588.02, 589.62],
+                    'MT': [533.04, 524.25, 540.39, 561.57, 534.33],
+                    'MS': [562.28, 559.97, 586.87, 587.84, 601.70],
+                    'DF': [561.52, 547.40, 547.06, 570.52, 558.59]
+                },
+                'redacao': {
+                    title: 'Proficiência em Redação',
+                    insight: 'O grande salto pedagógico de Goiás. A nota disparou de 610 para 718 pontos. Um crescimento ininterrupto de quase +18% na série histórica, provando a alta eficácia das metodologias ativas de letramento e produção textual aplicadas no estado.',
+                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    'GO': [610.70, 638.60, 668.48, 681.46, 718.32],
+                    'BR': [653.19, 663.76, 705.10, 719.22, 741.10],
+                    'MT': [597.56, 600.82, 643.25, 668.82, 621.97],
+                    'MS': [663.79, 696.61, 741.61, 737.25, 759.19],
+                    'DF': [640.38, 617.72, 625.80, 665.61, 665.27]
+                },
+                'matematica': {
+                    title: 'Matemática e suas Tecnologias',
+                    insight: 'A Resiliência Goiana: Observe a passagem do ano de 2022 para 2023. Enquanto o Brasil, MT e DF sofreram quedas acentuadas na proficiência média de Matemática, Goiás caminhou na contramão e registrou crescimento, blindando seus alunos da retração nacional.',
+                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    'GO': [541.33, 541.19, 551.29, 548.83, 557.14],
+                    'BR': [569.11, 566.78, 581.16, 597.81, 584.49],
+                    'MT': [518.35, 529.29, 539.34, 562.00, 522.16],
+                    'MS': [548.61, 550.33, 599.89, 597.90, 603.10],
+                    'DF': [553.84, 553.72, 558.88, 581.81, 556.85]
+                }
+            };
+
+            const nomeComparadores = {
+                'BR': 'Média Nacional (Brasil)',
+                'MT': 'Mato Grosso (MT)',
+                'MS': 'Mato Grosso do Sul (MS)',
+                'DF': 'Distrito Federal (DF)'
+            };
+
+            const ctxEnemArea = document.getElementById('enemAreaChart').getContext('2d');
+            let enemAreaChartInstance;
+
+            function renderEnemAreaChart(area, comparador) {
+                const dataBlock = enemDetalhadoData[area];
+                
+                // Atualiza Título e Insight
+                document.getElementById('enemChartTitle').textContent = dataBlock.title;
+                const insightEl = document.getElementById('enemInsightText');
+                insightEl.style.opacity = 0;
+                setTimeout(() => {
+                    insightEl.textContent = dataBlock.insight;
+                    insightEl.style.opacity = 1;
+                }, 200);
+
+                if (enemAreaChartInstance) {
+                    enemAreaChartInstance.destroy();
+                }
+
+                enemAreaChartInstance = new Chart(ctxEnemArea, {
+                    type: 'line',
+                    data: {
+                        labels: dataBlock.labels,
+                        datasets: [
+                            {
+                                label: 'SESI Goiás',
+                                data: dataBlock['GO'],
+                                borderColor: '#00BFFF',
+                                backgroundColor: 'rgba(0, 191, 255, 0.1)',
+                                borderWidth: 4,
+                                pointBackgroundColor: '#00BFFF',
+                                pointBorderColor: '#fff',
+                                pointRadius: 6,
+                                pointHoverRadius: 8,
+                                fill: true,
+                                tension: 0.3,
+                                z: 10 // Mantém a linha de Goiás sempre por cima
+                            },
+                            {
+                                label: 'SESI ' + nomeComparadores[comparador],
+                                data: dataBlock[comparador],
+                                borderColor: '#9ca3af',
+                                borderDash: [6, 4],
+                                borderWidth: 3,
+                                pointBackgroundColor: '#fff',
+                                pointBorderColor: '#9ca3af',
+                                pointRadius: 5,
+                                fill: false,
+                                tension: 0.3
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { mode: 'index', intersect: false },
+                        layout: { padding: { top: 30, bottom: 10 } },
+                        plugins: {
+                            datalabels: {
+                                align: function(context) { 
+                                    // Dinâmica para evitar sobreposição: GO em cima, Comparador embaixo
+                                    return context.datasetIndex === 0 ? 'top' : 'bottom'; 
+                                },
+                                offset: 8,
+                                color: function(context) { return context.dataset.borderColor; },
+                                font: { weight: 'bold', size: 12 },
+                                formatter: function(value) { return value.toFixed(1).replace('.', ','); }
+                            },
+                            legend: { position: 'top', align: 'end', labels: { usePointStyle: true, boxWidth: 8, font: { weight: 'bold' } } },
+                            tooltip: { callbacks: { label: function(context) { return ' ' + context.dataset.label + ': ' + context.raw.toFixed(2).replace('.', ','); } } }
+                        },
+                        scales: {
+                            y: { grid: { borderDash: [4, 4], color: '#f3f4f6', drawBorder: false }, ticks: { font: { weight: 'bold' } } },
+                            x: { grid: { display: false, drawBorder: false }, ticks: { font: { weight: 'bold' }, color: '#4b5563' } }
+                        },
+                        animation: { duration: 1000, easing: 'easeOutQuart' }
+                    }
+                });
+            }
+
+            // Listeners do novo módulo ENEM
+            document.getElementById('filterEnemArea').addEventListener('change', function() {
+                renderEnemAreaChart(this.value, document.getElementById('filterEnemComparador').value);
+            });
+            document.getElementById('filterEnemComparador').addEventListener('change', function() {
+                renderEnemAreaChart(document.getElementById('filterEnemArea').value, this.value);
+            });
+
+            // Inicializa módulo explorador ENEM (Matemática + Brasil como visão padrão de forte impacto)
+            renderEnemAreaChart('matematica', 'BR');
+
+            // 2. Gráfico de Mercado (Barras Horizontais)
+            const ctxMercado = document.getElementById('mercadoChart').getContext('2d');
+            new Chart(ctxMercado, {
+                type: 'bar',
+                data: {
+                    labels: ['Rede SESI', 'Rede Adventista', 'Rede Agostinianas'],
+                    datasets: [{
+                        label: ' Matrículas',
+                        data: [10519, 8527, 3586],
+                        backgroundColor: ['#00BFFF', '#e5e7eb', '#e5e7eb'],
+                        hoverBackgroundColor: ['#0099cc', '#d1d5db', '#d1d5db'],
+                        borderRadius: 6,
+                        barThickness: 32
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', 
+                    layout: { padding: { right: 60 } },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'end', align: 'end', color: '#212529', font: { weight: 'bold', size: 14 },
+                            formatter: function(value) { return value.toLocaleString('pt-BR'); }
+                        },
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: function(context) { return ' ' + context.raw.toLocaleString('pt-BR') + ' matrículas ativas'; } } }
+                    },
+                    scales: {
+                        x: { grid: { borderDash: [4, 4], color: '#f3f4f6', drawBorder: false }, ticks: { display: false } },
+                        y: { grid: { display: false, drawBorder: false }, ticks: { font: { weight: 'bold', size: 13 }, color: '#212529' } }
+                    },
+                    animation: { duration: 1500, easing: 'easeOutQuart' }
+                }
+            });
+
+            // 2.1 Gráfico de Rosca (Centro-Oeste)
+            const ctxCO = document.getElementById('coChart').getContext('2d');
+            new Chart(ctxCO, {
+                type: 'doughnut',
+                data: {
+                    labels: ['SESI Goiás', 'SESI MT', 'SESI MS', 'SESI DF'],
+                    datasets: [{
+                        data: [10519, 5323, 4550, 1765], // O DF tem residual (22157 total - 10519 - 5323 - 4550 = 1765)
+                        backgroundColor: ['#00BFFF', '#4b5563', '#374151', '#1f2937'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '75%',
+                    plugins: {
+                        datalabels: { display: false }, // Ocultar datalabels neste gráfico
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ' ' + context.label + ': ' + context.raw.toLocaleString('pt-BR') + ' alunos';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 3. EXPLORADOR INTERATIVO (Filtros)
+            
+            // Base de dados simulada (Extraída do PDF Censo 2022/INEP)
+            const marketData = {
+                'GO': {
+                    'geral': {
+                        title: 'Educação Básica - Goiás',
+                        labels: ['SESI', 'Adventista'],
+                        data: [10519, 8527],
+                        insight: 'Em Goiás, o SESI lidera o mercado geral com folga, desbancando redes confessionais tradicionais e consolidando sua hegemonia sem depender de EJA.'
+                    },
+                    'infantil': {
+                        title: 'Educação Infantil - Goiás',
+                        labels: ['SESI', 'Adventista'],
+                        data: [1866, 1634],
+                        insight: 'Na base escolar, o SESI Goiás demonstra atração superior. Captar o aluno na Educação Infantil garante uma jornada longa e sustentável (LTV) dentro da rede.'
+                    },
+                    'fundamental': {
+                        title: 'Ensino Fundamental - Goiás',
+                        labels: ['SESI', 'Adventista'],
+                        data: [7107, 6127],
+                        insight: 'O Ensino Fundamental é a grande fortaleza operacional do SESI GO, operando como o motor principal que impulsiona e consolida a liderança no estado.'
+                    }
+                },
+                'BR': {
+                    'geral': {
+                        title: 'Educação Básica - Brasil',
+                        labels: ['SESI', 'Adventista'],
+                        data: [295932, 261510],
+                        insight: 'No cenário nacional, a liderança em volume depende da carga social do EJA (Educação de Jovens e Adultos). O modelo orgânico de Goiás serve como grande Benchmark de autossuficiência.'
+                    },
+                    'infantil': {
+                        title: 'Educação Infantil - Brasil',
+                        labels: ['SESI', 'Adventista'],
+                        data: [68210, 32164],
+                        insight: 'O SESI possui forte capilaridade nacional na Educação Infantil, operando como uma grande porta de entrada sistêmica para filhos de industriários.'
+                    },
+                    'fundamental': {
+                        title: 'Ensino Fundamental - Brasil',
+                        labels: ['SESI', 'Adventista'],
+                        data: [159862, 192764],
+                        insight: 'Diferente de Goiás, na média nacional o SESI ainda é superado pela rede Adventista no Fundamental regular. Goiás prova que é possível virar este jogo.'
+                    }
+                },
+                'MT': {
+                    'geral': {
+                        title: 'Educação Básica - Mato Grosso',
+                        labels: ['Adventista', 'SESI'],
+                        data: [7631, 5323],
+                        insight: 'Em MT, o SESI ocupa o 3º lugar do mercado. As estratégias de captação orgânica de Goiás podem ser replicadas para alavancar a presença no estado vizinho.'
+                    },
+                    'infantil': {
+                        title: 'Educação Infantil - Mato Grosso',
+                        labels: ['Adventista', 'SESI'],
+                        data: [1354, 691],
+                        insight: 'Na base, o estado vizinho ainda tem forte presença da concorrência. Goiás atua como referência regional de conversão.'
+                    },
+                    'fundamental': {
+                        title: 'Ensino Fundamental - Mato Grosso',
+                        labels: ['Adventista', 'SESI'],
+                        data: [5254, 4192],
+                        insight: 'O SESI MT mostra força, mas a liderança pertence ao Adventista. O modelo de produto do Ensino Fundamental de Goiás é o caminho para a liderança.'
+                    }
+                },
+                'MS': {
+                    'geral': {
+                        title: 'Educação Básica - Mato Grosso do Sul',
+                        labels: ['Grupo Salta', 'SESI'],
+                        data: [6367, 4550],
+                        insight: 'No Mato Grosso do Sul, o SESI figura em 3º lugar, atrás de fundos de investimento (Salta). O ganho de Market Share de Goiás dita as melhores práticas da região.'
+                    },
+                    'infantil': {
+                        title: 'Educação Infantil - MS',
+                        labels: ['Grupo Salta', 'SESI'],
+                        data: [698, 279],
+                        insight: 'O investimento em expansão da base é o próximo desafio em MS, utilizando a atratividade pedagógica comprovada em Goiás.'
+                    },
+                    'fundamental': {
+                        title: 'Ensino Fundamental - MS',
+                        labels: ['Grupo Salta', 'SESI'],
+                        data: [3860, 3417],
+                        insight: 'A diferença no Fundamental em MS é estreita. Um pequeno salto operacional, nos moldes do que foi feito em Goiás, garante posições no topo.'
+                    }
+                }
+            };
+
+            const ctxInteractive = document.getElementById('interactiveChart').getContext('2d');
+            let interactiveChart;
+
+            function renderInteractiveChart(estado, etapa) {
+                const dataBlock = marketData[estado][etapa];
+                
+                // Atualiza Textos
+                document.getElementById('chartTitle').textContent = dataBlock.title;
+                
+                const insightTextEl = document.getElementById('dynamicInsightText');
+                insightTextEl.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    insightTextEl.textContent = dataBlock.insight;
+                    insightTextEl.style.opacity = 1; // Fade in
+                }, 200);
+
+                // Destruir chart antigo se existir
+                if (interactiveChart) {
+                    interactiveChart.destroy();
+                }
+
+                // Criar novo Chart
+                interactiveChart = new Chart(ctxInteractive, {
+                    type: 'bar',
+                    data: {
+                        labels: dataBlock.labels,
+                        datasets: [{
+                            data: dataBlock.data,
+                            backgroundColor: function(context) {
+                                // Pinta de Ciano apenas se a barra for do SESI, senão cinza
+                                const label = context.chart.data.labels[context.dataIndex];
+                                return label === 'SESI' ? '#00BFFF' : '#e5e7eb';
+                            },
+                            hoverBackgroundColor: function(context) {
+                                const label = context.chart.data.labels[context.dataIndex];
+                                return label === 'SESI' ? '#0099cc' : '#d1d5db';
+                            },
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: { padding: { top: 30 } },
+                        plugins: {
+                            datalabels: {
+                                anchor: 'end', align: 'top', color: '#212529', font: { weight: 'bold', size: 14 },
+                                formatter: function(value) { return value.toLocaleString('pt-BR'); }
+                            },
+                            legend: { display: false },
+                            tooltip: { callbacks: { label: function(context) { return ' ' + context.raw.toLocaleString('pt-BR') + ' matrículas'; } } }
+                        },
+                        scales: {
+                            y: { beginAtZero: true, grid: { borderDash: [4, 4], color: '#f3f4f6', drawBorder: false }, ticks: { font: { weight: 'bold' } } },
+                            x: { grid: { display: false, drawBorder: false }, ticks: { font: { weight: 'bold', size: 13 }, color: '#4b5563' } }
+                        },
+                        animation: { duration: 800, easing: 'easeOutQuart' }
+                    }
+                });
+            }
+
+            // Listeners para os selects
+            document.getElementById('filterEstado').addEventListener('change', function() {
+                renderInteractiveChart(this.value, document.getElementById('filterEtapa').value);
+            });
+            document.getElementById('filterEtapa').addEventListener('change', function() {
+                renderInteractiveChart(document.getElementById('filterEstado').value, this.value);
+            });
+
+            // Inicialização padrão (GO + Geral)
+            renderInteractiveChart('GO', 'geral');
+
+            // Configuração comum EJA
+            const ejaOptions = {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10, weight: 'bold' } } },
+                    datalabels: { color: '#fff', font: { weight: 'bold', size: 10 }, formatter: function(value) { return value === 0 ? '' : (value > 1000 ? (value/1000).toFixed(1).replace('.', ',') + 'k' : value); } },
+                    tooltip: { callbacks: { label: function(context) { return ' ' + context.dataset.label + ': ' + context.raw.toLocaleString('pt-BR'); } } }
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false, drawBorder: false }, ticks: { font: { weight: 'bold', size: 11 }, color: '#4b5563' } },
+                    y: { stacked: true, display: false } 
+                }
+            };
+
+            // EJA Brasil
+            new Chart(document.getElementById('ejaBrChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['SESI', 'Adventista'],
+                    datasets: [
+                        { label: 'Ed. Regular', data: [236251, 261510], backgroundColor: '#212529', borderRadius: 4 },
+                        { label: 'EJA', data: [59681, 0], backgroundColor: '#00BFFF', borderRadius: 4 }
+                    ]
+                }, options: ejaOptions
+            });
+
+            // EJA Goiás
+            new Chart(document.getElementById('ejaGoChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['SESI', 'Adventista'],
+                    datasets: [
+                        { label: 'Ed. Regular', data: [9096, 8527], backgroundColor: '#212529', borderRadius: 4 },
+                        { label: 'EJA', data: [1423, 0], backgroundColor: '#00BFFF', borderRadius: 4 }
+                    ]
+                }, options: ejaOptions
+            });
+
+            // Crescimento EFI
+            new Chart(document.getElementById('crescimentoChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['2023', '2024', '2025 (Estimativa)'],
+                    datasets: [{
+                        label: ' Alunos', data: [1721, 1967, 2871],
+                        backgroundColor: ['#e5e7eb', '#d1d5db', '#212529'], hoverBackgroundColor: ['#d1d5db', '#9ca3af', '#00BFFF'],
+                        borderRadius: 8, barPercentage: 0.5
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { top: 30 } },
+                    plugins: {
+                        datalabels: { anchor: 'end', align: 'top', color: '#212529', font: { weight: 'bold', size: 14 }, formatter: function(value) { return value.toLocaleString('pt-BR'); } },
+                        legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ' ' + context.raw.toLocaleString('pt-BR') + ' alunos'; } } }
+                    },
+                    scales: {
+                        y: { grid: { borderDash: [4, 4], color: '#f3f4f6', drawBorder: false }, ticks: { font: { weight: 'bold' } }, beginAtZero: true },
+                        x: { grid: { display: false, drawBorder: false }, ticks: { font: { weight: 'bold' }, color: '#4b5563' } }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
