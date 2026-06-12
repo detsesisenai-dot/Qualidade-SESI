@@ -289,7 +289,7 @@
                     <div class="md:col-span-8 bg-white p-6 rounded-2xl border border-gray-100 h-[400px] flex flex-col">
                         <div class="flex justify-between items-center mb-6">
                             <h4 id="enemChartTitle" class="text-lg font-bold text-sesi-dark">Média Final</h4>
-                            <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-200">Série: 2019 - 2023</span>
+                            <span class="bg-gray-100 text-gray-500 px-3 py-1 rounded-full text-xs font-bold border border-gray-200">Série: 2020 - 2024</span>
                         </div>
                         <div class="flex-1 relative w-full">
                             <canvas id="enemAreaChart"></canvas>
@@ -743,12 +743,12 @@
             });
 
             
-            // Dados extraídos dos painéis do ENEM (Série 2019 a 2023)
+            // Dados extraídos dos painéis do ENEM (Série 2020 a 2024)
             const enemDetalhadoData = {
                 'media': {
                     title: 'Média Final (Objetivas + Redação)',
                     insight: 'Na consolidação geral, Goiás demonstra uma aceleração notável. Especialmente no último biênio, a curva goiana tem a inclinação mais íngreme, reduzindo rapidamente o gap em relação à média nacional e superando estados vizinhos como o MT de forma isolada.',
-                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
                     'GO': [545.50, 540.10, 553.02, 555.72, 571.03],
                     'BR': [568.66, 560.67, 578.08, 588.02, 589.62],
                     'MT': [533.04, 524.25, 540.39, 561.57, 534.33],
@@ -758,7 +758,7 @@
                 'redacao': {
                     title: 'Proficiência em Redação',
                     insight: 'O grande salto pedagógico de Goiás. A nota disparou de 610 para 718 pontos. Um crescimento ininterrupto de quase +18% na série histórica, provando a alta eficácia das metodologias ativas de letramento e produção textual aplicadas no estado.',
-                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
                     'GO': [610.70, 638.60, 668.48, 681.46, 718.32],
                     'BR': [653.19, 663.76, 705.10, 719.22, 741.10],
                     'MT': [597.56, 600.82, 643.25, 668.82, 621.97],
@@ -768,7 +768,7 @@
                 'matematica': {
                     title: 'Matemática e suas Tecnologias',
                     insight: 'A Resiliência Goiana: Observe a passagem do ano de 2022 para 2023. Enquanto o Brasil, MT e DF sofreram quedas acentuadas na proficiência média de Matemática, Goiás caminhou na contramão e registrou crescimento, blindando seus alunos da retração nacional.',
-                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    labels: ['2020', '2021', '2022', '2023', '2024'],
                     'GO': [541.33, 541.19, 551.29, 548.83, 557.14],
                     'BR': [569.11, 566.78, 581.16, 597.81, 584.49],
                     'MT': [518.35, 529.29, 539.34, 562.00, 522.16],
