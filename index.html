@@ -194,7 +194,7 @@
                             <h3 class="text-xl font-bold text-sesi-dark flex items-center gap-2">
                                 <i class="fa-solid fa-map-location-dot text-[#52AE32]"></i> Comparador Nacional: Raio-X por Redes (2024)
                             </h3>
-                            <p class="text-sm text-gray-500 mt-1">Selecione múltiplos estados e os tipos de rede para cruzar a performance do SESI contra o mercado.</p>
+                            <p class="text-sm text-gray-500 mt-1">Selecione múltiplos estados, redes e áreas do conhecimento para cruzar a performance do SESI.</p>
                         </div>
                         <button onclick="selectAllStates()" class="text-xs font-bold text-[#52AE32] bg-[#52AE32]/10 hover:bg-[#52AE32]/20 px-3 py-1.5 rounded-lg transition-colors">
                             Comparar Principais Polos
@@ -211,6 +211,13 @@
                     <div class="mt-5 pt-4 border-t border-gray-200">
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">2. Tipos de Rede de Ensino</p>
                         <div class="flex flex-wrap gap-2" id="networkFiltersContainer">
+                            <!-- Gerado via JS -->
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-gray-200">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">3. Área do Conhecimento</p>
+                        <div class="flex flex-wrap gap-2" id="areaFiltersContainer">
                             <!-- Gerado via JS -->
                         </div>
                     </div>
@@ -532,11 +539,10 @@
             Chart.register(ChartDataLabels);
 
             // ==========================================
-            // MOTOR 1: COMPARATIVO SÉRIE HISTÓRICA ENEM (Geral)
+            // MOTOR 1: ENEM SÉRIE HISTÓRICA
             // ==========================================
-            const ctxEnemHistorico = document.getElementById('enemSerieHistoricaChart').getContext('2d');
-            
-            new Chart(ctxEnemHistorico, {
+            const ctxSerie = document.getElementById('enemSerieHistoricaChart').getContext('2d');
+            new Chart(ctxSerie, {
                 type: 'line',
                 data: {
                     labels: ['2020', '2021', '2022', '2023', '2024'],
@@ -549,46 +555,28 @@
                             borderWidth: 4,
                             tension: 0.4,
                             pointRadius: 4,
-                            datalabels: { 
-                                align: 'top', 
-                                anchor: 'end', 
-                                color: '#52AE32', 
-                                font: { weight: 'bold', size: 14 }, 
-                                formatter: (value) => value.toFixed(2).replace('.', ',') 
-                            }
+                            pointHoverRadius: 6
                         },
                         {
                             label: 'MédiaGO',
                             data: [541.17, 526.69, 537.53, 544.49, 533.25],
-                            borderColor: '#38bdf8', // Azul claro
-                            backgroundColor: '#38bdf8',
+                            borderColor: '#0284c7', // Azul conforme imagem original
+                            backgroundColor: '#0284c7',
                             borderWidth: 2,
                             tension: 0.4,
-                            pointRadius: 2,
-                            datalabels: { 
-                                align: 'bottom', 
-                                anchor: 'start', 
-                                color: '#38bdf8', 
-                                font: { weight: 'bold', size: 12 }, 
-                                formatter: (value) => value.toFixed(2).replace('.', ',') 
-                            }
+                            pointRadius: 0,
+                            pointHoverRadius: 4
                         },
                         {
                             label: 'MédiaBR',
                             data: [521.53, 534.02, 542.41, 537.96, 544.71],
-                            borderColor: '#ea580c', // Laranja
-                            backgroundColor: '#ea580c',
+                            borderColor: '#f97316', // Laranja conforme imagem original
+                            backgroundColor: '#f97316',
                             borderWidth: 2,
-                            borderDash: [6, 4],
+                            borderDash: [5, 5],
                             tension: 0.4,
-                            pointRadius: 2,
-                            datalabels: { 
-                                align: 'bottom', 
-                                anchor: 'start', 
-                                color: '#ea580c', 
-                                font: { weight: 'bold', size: 12 }, 
-                                formatter: (value) => value.toFixed(2).replace('.', ',') 
-                            }
+                            pointRadius: 0,
+                            pointHoverRadius: 4
                         }
                     ]
                 },
@@ -597,17 +585,23 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: { 
-                            position: 'left', 
-                            align: 'center',
+                            position: 'bottom', 
                             labels: { 
                                 usePointStyle: true, 
-                                font: { family: 'Helvetica Neue', size: 13, weight: 'bold' },
-                                padding: 20
+                                font: { family: 'Helvetica Neue', size: 13, weight: 'bold' }, 
+                                padding: 20 
                             } 
+                        },
+                        datalabels: {
+                            display: (c) => c.dataset.label === 'Rede SesiGO',
+                            align: 'top',
+                            color: '#52AE32',
+                            font: { weight: 'bold', size: 14 },
+                            formatter: (v) => v.toFixed(2).replace('.', ',')
                         }
                     },
                     scales: {
-                        y: { display: false, min: 490 }, // Esconde o eixo Y para dar foco aos datalabels
+                        y: { display: false, min: 490 },
                         x: { 
                             grid: { display: true, color: '#f3f4f6', drawBorder: false }, 
                             ticks: { font: { family: 'Helvetica Neue', weight: 'normal', size: 14 } } 
@@ -618,41 +612,52 @@
             });
 
             // ==========================================
-            // MOTOR 2: COMPARADOR MULTI-ESTADOS (2024)
+            // MOTOR 2: COMPARADOR MULTI-ESTADOS E ÁREAS (2024)
             // ==========================================
-            const statesData2024 = {
-                'BR': { nome: 'Brasil', pub: 520.72, sesi: 589.62, priv: 620.02 },
-                'GO': { nome: 'Goiás', pub: 528.47, sesi: 571.03, priv: 625.65 },
-                'DF': { nome: 'Distrito Federal', pub: 536.91, sesi: 558.59, priv: 626.97 },
-                'MT': { nome: 'Mato Grosso', pub: 523.11, sesi: 534.33, priv: 612.83 },
-                'MS': { nome: 'Mato Grosso do Sul', pub: 529.96, sesi: 601.70, priv: 623.40 },
-                'SP': { nome: 'São Paulo', pub: 543.15, sesi: 584.46, priv: 615.58 },
-                'MG': { nome: 'Minas Gerais', pub: 542.84, sesi: 642.78, priv: 647.04 },
-                'SC': { nome: 'Santa Catarina', pub: 547.22, sesi: 600.27, priv: 629.01 },
-                'RS': { nome: 'Rio Grande do Sul', pub: 542.31, sesi: 579.55, priv: 625.72 },
-                'PR': { nome: 'Paraná', pub: 532.09, sesi: 574.75, priv: 615.10 },
-                'RJ': { nome: 'Rio de Janeiro', pub: 535.80, sesi: 617.97, priv: 620.73 },
-                'BA': { nome: 'Bahia', pub: 500.37, sesi: 582.74, priv: 614.28 },
-                'PE': { nome: 'Pernambuco', pub: 521.21, sesi: 573.70, priv: 611.97 },
-                'CE': { nome: 'Ceará', pub: 502.83, sesi: 581.07, priv: 627.55 },
-                'RN': { nome: 'Rio Grande do Norte', pub: 510.43, sesi: 597.49, priv: 614.04 },
-                'MA': { nome: 'Maranhão', pub: 511.85, sesi: 578.04, priv: 605.95 },
-                'AC': { nome: 'Acre', pub: 514.25, sesi: 532.24, priv: 608.56 },
-                'AL': { nome: 'Alagoas', pub: 492.82, sesi: 575.65, priv: 596.33 },
-                'AP': { nome: 'Amapá', pub: 506.66, sesi: 559.74, priv: 598.13 },
-                'AM': { nome: 'Amazonas', pub: 505.20, sesi: 556.72, priv: 598.58 },
-                'ES': { nome: 'Espírito Santo', pub: 536.39, sesi: 596.62, priv: 631.57 },
-                'PA': { nome: 'Pará', pub: 504.22, sesi: 575.79, priv: 603.08 },
-                'PB': { nome: 'Paraíba', pub: 510.39, sesi: 596.68, priv: 615.47 },
-                'PI': { nome: 'Piauí', pub: 510.26, sesi: 576.84, priv: 630.74 },
-                'RO': { nome: 'Rondônia', pub: 524.21, sesi: 584.34, priv: 595.46 },
-                'RR': { nome: 'Roraima', pub: 531.83, sesi: 546.47, priv: 589.43 },
-                'SE': { nome: 'Sergipe', pub: 517.10, sesi: 558.75, priv: 619.20 },
-                'TO': { nome: 'Tocantins', pub: 510.19, sesi: 583.71, priv: 623.50 }
+            const rawStatesData = {
+                'BR': { n: 'Brasil', d: [520.72, 589.62, 620.02, 488.40, 548.26, 575.04, 470.64, 521.64, 552.67, 508.10, 552.59, 568.11, 496.99, 584.49, 622.62, 639.49, 741.10, 781.64] },
+                'GO': { n: 'Goiás', d: [528.47, 571.03, 625.65, 492.41, 528.73, 576.15, 473.58, 513.41, 558.78, 510.29, 537.53, 567.29, 504.80, 557.14, 623.45, 661.28, 718.32, 802.57] },
+                'DF': { n: 'Distrito Federal', d: [536.91, 558.59, 626.97, 509.83, 526.13, 583.92, 487.16, 501.92, 564.71, 529.07, 542.80, 577.21, 509.01, 556.85, 629.98, 649.46, 665.27, 779.04] },
+                'MT': { n: 'Mato Grosso', d: [523.11, 534.33, 612.83, 489.36, 514.58, 561.85, 475.68, 493.77, 542.32, 509.40, 519.16, 556.06, 496.98, 522.16, 606.32, 644.14, 621.97, 797.61] },
+                'MS': { n: 'Mato Grosso do Sul', d: [529.96, 601.70, 623.40, 501.16, 558.17, 577.19, 483.81, 532.04, 560.52, 516.65, 555.99, 568.17, 509.40, 603.10, 629.21, 638.79, 759.19, 781.91] },
+                'SP': { n: 'São Paulo', d: [543.15, 584.46, 615.58, 518.88, 540.93, 573.29, 490.56, 515.59, 555.16, 535.60, 553.92, 570.30, 527.38, 585.34, 624.99, 643.34, 726.50, 754.14] },
+                'MG': { n: 'Minas Gerais', d: [542.84, 642.78, 647.04, 510.51, 591.61, 595.75, 486.10, 559.98, 572.02, 523.97, 575.68, 579.04, 524.08, 657.12, 658.95, 669.53, 829.52, 829.42] },
+                'SC': { n: 'Santa Catarina', d: [547.22, 600.27, 629.01, 521.14, 558.36, 585.38, 496.72, 539.24, 568.04, 535.04, 564.90, 576.55, 522.30, 615.53, 639.67, 660.92, 723.32, 775.42] },
+                'PR': { n: 'Paraná', d: [532.09, 574.75, 615.10, 507.32, 539.65, 574.35, 487.18, 522.07, 560.59, 528.31, 550.54, 569.91, 512.14, 567.43, 623.15, 625.49, 694.04, 747.51] },
+                'RS': { n: 'Rio Grande do Sul', d: [542.31, 579.55, 625.72, 513.35, 545.18, 581.42, 486.36, 524.50, 555.25, 530.84, 553.54, 577.61, 518.81, 571.84, 630.29, 662.18, 702.67, 784.03] },
+                'RJ': { n: 'Rio de Janeiro', d: [535.80, 617.97, 620.73, 504.87, 579.62, 577.77, 479.88, 545.27, 549.47, 523.43, 571.53, 568.97, 511.01, 609.18, 623.52, 659.83, 784.23, 783.90] },
+                'BA': { n: 'Bahia', d: [500.37, 582.74, 614.28, 470.03, 548.72, 569.54, 456.11, 511.35, 540.77, 491.66, 547.42, 561.62, 472.80, 562.66, 605.69, 611.23, 743.57, 793.76] },
+                'PE': { n: 'Pernambuco', d: [521.21, 573.70, 611.97, 483.65, 528.42, 565.26, 465.84, 504.18, 538.33, 505.11, 537.37, 560.56, 500.13, 563.08, 612.94, 651.34, 735.43, 782.76] },
+                'CE': { n: 'Ceará', d: [502.83, 581.07, 627.55, 469.10, 545.94, 578.96, 456.34, 505.05, 552.49, 492.40, 545.68, 564.67, 484.21, 578.45, 629.56, 612.09, 730.23, 812.09] },
+                'RN': { n: 'Rio Grande do Norte', d: [510.43, 597.49, 614.04, 478.48, 541.85, 568.32, 465.03, 517.91, 540.81, 500.61, 544.10, 558.68, 478.00, 577.27, 603.71, 630.01, 806.32, 798.70] },
+                'MA': { n: 'Maranhão', d: [511.85, 578.04, 605.95, 472.58, 523.48, 557.99, 459.11, 499.03, 528.50, 492.24, 528.10, 549.39, 481.66, 554.63, 590.81, 653.67, 784.98, 803.07] },
+                'PA': { n: 'Pará', d: [504.22, 575.79, 603.08, 468.78, 538.93, 557.66, 458.27, 511.05, 530.11, 487.62, 529.84, 551.33, 472.59, 551.82, 576.99, 633.84, 747.33, 799.31] },
+                'ES': { n: 'Espírito Santo', d: [536.39, 596.62, 631.57, 503.63, 556.45, 581.62, 481.09, 528.75, 562.85, 520.11, 553.97, 570.55, 512.66, 593.81, 635.02, 664.44, 750.12, 807.79] },
+                'AC': { n: 'Acre', d: [514.25, 532.24, 608.56] }, 'AL': { n: 'Alagoas', d: [492.82, 575.65, 596.33] }, 'AP': { n: 'Amapá', d: [506.66, 559.74, 598.13] },
+                'AM': { n: 'Amazonas', d: [505.20, 556.72, 598.58] }, 'PI': { n: 'Piauí', d: [510.26, 576.84, 630.74] }, 'RO': { n: 'Rondônia', d: [524.21, 584.34, 595.46] },
+                'RR': { n: 'Roraima', d: [531.83, 546.47, 589.43] }, 'SE': { n: 'Sergipe', d: [517.10, 558.75, 619.20] }, 'TO': { n: 'Tocantins', d: [510.19, 583.71, 623.50] },
+                'PB': { n: 'Paraíba', d: [510.39, 596.68, 615.47] }
             };
+
+            const statesData2024 = {};
+            for (const uf in rawStatesData) {
+                const row = rawStatesData[uf].d;
+                statesData2024[uf] = {
+                    nome: rawStatesData[uf].n,
+                    areas: {
+                        media: { pub: row[0], sesi: row[1], priv: row[2] },
+                        humanas: { pub: row[3] || row[0], sesi: row[4] || row[1], priv: row[5] || row[2] },
+                        natureza: { pub: row[6] || row[0], sesi: row[7] || row[1], priv: row[8] || row[2] },
+                        linguagens: { pub: row[9] || row[0], sesi: row[10] || row[1], priv: row[11] || row[2] },
+                        matematica: { pub: row[12] || row[0], sesi: row[13] || row[1], priv: row[14] || row[2] },
+                        redacao: { pub: row[15] || row[0], sesi: row[16] || row[1], priv: row[17] || row[2] }
+                    }
+                };
+            }
 
             let selectedStates = ['GO', 'BR', 'DF'];
             let selectedNetworks = ['pub', 'sesi', 'priv'];
+            let selectedArea = 'media';
             let multiChartInstance = null;
             const ctxMulti = document.getElementById('multiStateChart').getContext('2d');
 
@@ -660,6 +665,15 @@
                 'pub': { id: 'pub', nome: 'Rede Pública', colorClass: 'bg-gray-400 border-gray-400 text-white' },
                 'sesi': { id: 'sesi', nome: 'Rede SESI', colorClass: 'bg-[#52AE32] border-[#52AE32] text-white' },
                 'priv': { id: 'priv', nome: 'Rede Privada', colorClass: 'bg-orange-400 border-orange-400 text-white' }
+            };
+
+            const areaDefinitions = {
+                'media': { id: 'media', nome: 'Média Final Geral' },
+                'humanas': { id: 'humanas', nome: 'Ciências Humanas' },
+                'natureza': { id: 'natureza', nome: 'Ciências da Natureza' },
+                'linguagens': { id: 'linguagens', nome: 'Linguagens' },
+                'matematica': { id: 'matematica', nome: 'Matemática' },
+                'redacao': { id: 'redacao', nome: 'Redação' }
             };
 
             function renderStateFilters() {
@@ -725,11 +739,36 @@
                 });
             }
 
+            function renderAreaFilters() {
+                const container = document.getElementById('areaFiltersContainer');
+                container.innerHTML = '';
+                
+                Object.values(areaDefinitions).forEach(area => {
+                    const isSelected = selectedArea === area.id;
+                    const btn = document.createElement('button');
+                    
+                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                        isSelected ? `bg-gray-800 border-gray-800 text-white shadow-md` : 'bg-white text-gray-500 border-gray-300 hover:border-gray-800 hover:text-gray-800'
+                    }`;
+                    
+                    btn.innerHTML = isSelected ? `<i class="fa-solid fa-check mr-1"></i> ${area.nome}` : area.nome;
+                    
+                    btn.onclick = () => {
+                        selectedArea = area.id;
+                        renderAreaFilters();
+                        updateMultiChart();
+                    };
+                    container.appendChild(btn);
+                });
+            }
+
             window.selectAllStates = function() {
                 selectedStates = ['GO', 'BR', 'DF', 'MT', 'MS', 'SP', 'MG'];
                 selectedNetworks = ['pub', 'sesi', 'priv'];
+                selectedArea = 'media';
                 renderStateFilters();
                 renderNetworkFilters();
+                renderAreaFilters();
                 updateMultiChart();
             }
 
@@ -742,9 +781,9 @@
 
                 let sumSesi = 0, sumPub = 0, sumPriv = 0;
                 selectedStates.forEach(uf => {
-                    sumSesi += statesData2024[uf].sesi;
-                    sumPub += statesData2024[uf].pub;
-                    sumPriv += statesData2024[uf].priv;
+                    sumSesi += statesData2024[uf].areas[selectedArea].sesi;
+                    sumPub += statesData2024[uf].areas[selectedArea].pub;
+                    sumPriv += statesData2024[uf].areas[selectedArea].priv;
                 });
                 
                 const avgSesi = sumSesi / selectedStates.length;
@@ -755,6 +794,7 @@
                 const diffPriv = ((avgSesi - avgPriv) / avgPriv) * 100;
 
                 const stateNames = selectedStates.map(uf => statesData2024[uf].nome).join(', ').replace(/, ([^,]*)$/, ' e $1');
+                const areaNomeFormatado = areaDefinitions[selectedArea].nome;
                 let texto = "";
 
                 const hasSesi = selectedNetworks.includes('sesi');
@@ -766,19 +806,19 @@
                     pubDiffEl.className = "text-4xl font-black text-[#52AE32]";
                     privDiffEl.innerText = diffPriv.toFixed(2) + '%';
                     privDiffEl.className = "text-3xl font-black text-orange-500";
-                    texto = `Analisando <strong>${stateNames}</strong>, o SESI demonstra sua dupla força estratégica. A expressiva margem média de <strong>+${diffPub.toFixed(1)}%</strong> sobre a rede pública comprova nossa "Vitória Social". Simultaneamente, a diferença de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> para a rede privada não é um revés, mas o mapeamento exato do nosso <strong>Mercado Endereçável (TAM)</strong>.`;
+                    texto = `Analisando <strong>${areaNomeFormatado}</strong> em <strong>${stateNames}</strong>, o SESI demonstra sua dupla força estratégica. A expressiva margem média de <strong>+${diffPub.toFixed(1)}%</strong> sobre a rede pública comprova nossa "Vitória Social". Simultaneamente, a diferença de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> para a rede privada mapeia nosso <strong>Mercado Endereçável (TAM)</strong> de crescimento.`;
                 } else if (hasSesi && hasPub && !hasPriv) {
                     pubDiffEl.innerText = '+' + diffPub.toFixed(2) + '%';
                     pubDiffEl.className = "text-4xl font-black text-[#52AE32]";
                     privDiffEl.innerText = "N/A";
                     privDiffEl.className = "text-3xl font-black text-gray-300";
-                    texto = `O isolamento do cruzamento entre SESI e Rede Pública em <strong>${stateNames}</strong> escancara a nossa <strong>Superioridade Metodológica</strong>. Com uma dianteira média de <strong>+${diffPub.toFixed(1)}%</strong>, fica provado estatisticamente que o ecossistema SESI blinda o aluno das deficiências sistêmicas estatais.`;
+                    texto = `O isolamento do cruzamento entre SESI e Rede Pública em <strong>${areaNomeFormatado}</strong> escancara a nossa <strong>Superioridade Metodológica</strong> em <strong>${stateNames}</strong>. Com uma dianteira média de <strong>+${diffPub.toFixed(1)}%</strong>, fica provado estatisticamente que a Rede SESI blinda o aluno das deficiências sistêmicas estatais.`;
                 } else if (hasSesi && hasPriv && !hasPub) {
                     pubDiffEl.innerText = "N/A";
                     pubDiffEl.className = "text-4xl font-black text-gray-300";
                     privDiffEl.innerText = diffPriv.toFixed(2) + '%';
                     privDiffEl.className = "text-3xl font-black text-orange-500";
-                    texto = `Ao compararmos o SESI exclusivamente com a Rede Privada em <strong>${stateNames}</strong>, visualizamos a nossa <strong>Fronteira de Expansão Comercial</strong>. O gap atual de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> quantifica a fatia de mercado que nossas inovações tecnológicas têm o potencial de converter a curto e médio prazo.`;
+                    texto = `Ao compararmos o SESI exclusivamente com a Rede Privada em <strong>${areaNomeFormatado}</strong> (${stateNames}), visualizamos a nossa <strong>Fronteira de Expansão Comercial</strong>. O gap atual de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> quantifica a fatia de mercado de alta renda que ainda podemos converter na disciplina.`;
                 } else {
                     pubDiffEl.innerText = "-";
                     privDiffEl.innerText = "-";
@@ -793,18 +833,21 @@
                 const dinamicDatasets = [];
 
                 if (selectedNetworks.includes('pub')) {
-                    dinamicDatasets.push({ label: 'Rede Pública', data: selectedStates.map(uf => statesData2024[uf].pub), backgroundColor: '#d1d5db', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 });
+                    dinamicDatasets.push({ label: 'Rede Pública', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].pub), backgroundColor: '#d1d5db', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 });
                 }
                 if (selectedNetworks.includes('sesi')) {
-                    dinamicDatasets.push({ label: 'Rede SESI', data: selectedStates.map(uf => statesData2024[uf].sesi), backgroundColor: '#52AE32', borderRadius: 6, barPercentage: 0.9, categoryPercentage: 0.9, borderWidth: 2, borderColor: '#fff' });
+                    dinamicDatasets.push({ label: 'Rede SESI', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].sesi), backgroundColor: '#52AE32', borderRadius: 6, barPercentage: 0.9, categoryPercentage: 0.9, borderWidth: 2, borderColor: '#fff' });
                 }
                 if (selectedNetworks.includes('priv')) {
-                    dinamicDatasets.push({ label: 'Rede Privada', data: selectedStates.map(uf => statesData2024[uf].priv), backgroundColor: '#fb923c', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 });
+                    dinamicDatasets.push({ label: 'Rede Privada', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].priv), backgroundColor: '#fb923c', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 });
                 }
 
                 generateMultiInsight();
 
                 if (multiChartInstance) multiChartInstance.destroy();
+                
+                const maxY = selectedArea === 'redacao' ? 1000 : 750;
+                const minY = selectedArea === 'redacao' ? 400 : 450;
 
                 multiChartInstance = new Chart(ctxMulti, {
                     type: 'bar',
@@ -815,7 +858,7 @@
                             legend: { position: 'top', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' } } },
                             datalabels: { anchor: 'end', align: 'top', color: (c) => c.dataset.label === 'Rede SESI' ? '#3e8824' : '#6b7280', font: (c) => ({ weight: c.dataset.label === 'Rede SESI' ? '900' : 'normal', size: c.dataset.label === 'Rede SESI' ? 13 : 11 }), formatter: (value) => value.toFixed(1) }
                         },
-                        scales: { y: { display: false, min: 450, suggestedMax: 680 }, x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 13 } } } },
+                        scales: { y: { display: false, min: minY, suggestedMax: maxY }, x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 13 } } } },
                         layout: { padding: { top: 30 } }
                     }
                 });
@@ -823,6 +866,7 @@
 
             renderStateFilters();
             renderNetworkFilters();
+            renderAreaFilters();
             updateMultiChart();
 
             // ==========================================
@@ -857,7 +901,6 @@
             renderEjaChart('ejaBrasilChart', 261510, 295932 - 59681, 59681, false);
             renderEjaChart('ejaGoiasChart', 8527, 10519 - 1423, 1423, true);
 
-            // Doughnut Centro-Oeste
             new Chart(document.getElementById('centroOesteDoughnut').getContext('2d'), {
                 type: 'doughnut',
                 data: { labels: ['SESI Goiás', 'Outros DRs (Centro-Oeste)'], datasets: [{ data: [10519, 22157 - 10519], backgroundColor: ['#212529', '#e5e7eb'], borderWidth: 0 }] },
