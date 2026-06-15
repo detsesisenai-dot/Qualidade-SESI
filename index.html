@@ -75,25 +75,6 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(82, 174, 50, 0.15);
         }
-        
-        .editorial-lead {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #555;
-            border-left: 4px solid #52AE32;
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
 
         .chart-container {
             position: relative;
@@ -137,12 +118,12 @@
         <!-- Seção 1: ENEM -->
         <section id="enem" class="scroll-mt-24">
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3">
+                <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3 mb-6">
                     <i class="fa-solid fa-graduation-cap text-[#52AE32]"></i> Resultados do ENEM: Excelência Comprovada
                 </h2>
-                <p class="mt-4 text-gray-600 max-w-3xl leading-relaxed text-lg">
-                    A análise da série histórica revela que a Rede SESI-GO consolidou um modelo pedagógico resiliente. Mais importante do que a nota isolada é o comportamento da curva: o estado demonstra um descolamento positivo constante das médias estaduais e nacionais, mitigando perdas sistêmicas e acelerando proficiências em áreas críticas.
-                </p>
+                <div class="editorial-lead">
+                    O Exame Nacional do Ensino Médio (ENEM) é o principal termômetro de qualidade da educação básica no Brasil. A análise a seguir vai além da nota isolada de um único ano: ela avalia o <strong>comportamento da curva histórica</strong> e realiza cruzamentos diretos com as redes pública e privada. Os dados comprovam que o SESI Goiás construiu um modelo pedagógico blindado contra crises sistêmicas, acelerando o aprendizado em áreas críticas e garantindo uma sólida "Vitória Social" sobre a educação pública.
+                </div>
             </div>
 
             <!-- Comparativo ENEM Série Histórica -->
@@ -155,13 +136,11 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-                    <!-- Gráfico Linha do Tempo -->
                     <div class="md:col-span-8 p-6 h-[450px] flex flex-col border-r border-gray-100">
                         <div class="flex-1 relative w-full">
                             <canvas id="enemSerieHistoricaChart"></canvas>
                         </div>
                     </div>
-                    <!-- Painel de Insight Verde (Destaque de Crescimento) -->
                     <div class="md:col-span-4 bg-[#52AE32] text-white p-10 flex flex-col justify-center">
                         <img src="https://i.postimg.cc/HLRKss9v/marca-SESI-2024-completa-colorida.png" alt="SESI" class="h-10 object-contain object-left mb-8 filter brightness-0 invert">
                         
@@ -203,23 +182,17 @@
 
                     <div class="mt-4">
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">1. Unidades da Federação</p>
-                        <div class="flex flex-wrap gap-2" id="stateFiltersContainer">
-                            <!-- Gerado via JS -->
-                        </div>
+                        <div class="flex flex-wrap gap-2" id="stateFiltersContainer"></div>
                     </div>
 
                     <div class="mt-5 pt-4 border-t border-gray-200">
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">2. Tipos de Rede de Ensino</p>
-                        <div class="flex flex-wrap gap-2" id="networkFiltersContainer">
-                            <!-- Gerado via JS -->
-                        </div>
+                        <div class="flex flex-wrap gap-2" id="networkFiltersContainer"></div>
                     </div>
 
                     <div class="mt-5 pt-4 border-t border-gray-200">
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">3. Área do Conhecimento</p>
-                        <div class="flex flex-wrap gap-2" id="areaFiltersContainer">
-                            <!-- Gerado via JS -->
-                        </div>
+                        <div class="flex flex-wrap gap-2" id="areaFiltersContainer"></div>
                     </div>
                 </div>
 
@@ -230,7 +203,7 @@
                     <div class="lg:col-span-1 border-l border-gray-100 p-8 flex flex-col justify-center bg-gray-50">
                         <div class="mb-6 relative">
                             <div class="absolute -left-10 top-1 w-2 h-full bg-[#52AE32] rounded-r-lg"></div>
-                            <h4 id="labelPubCard" class="text-xs uppercase tracking-wider font-bold text-gray-500 mb-2 tooltip-container">
+                            <h4 class="text-xs uppercase tracking-wider font-bold text-gray-500 mb-2 tooltip-container">
                                 A Vitória Social (Média) <i class="fa-solid fa-circle-info text-gray-400 ml-1"></i>
                                 <span class="tooltip-text">Diferença percentual média comprovando a superioridade da metodologia SESI sobre a rede pública na seleção atual.</span>
                             </h4>
@@ -242,7 +215,7 @@
                         
                         <div class="mb-6 relative mt-4">
                             <div class="absolute -left-10 top-1 w-2 h-full bg-orange-400 rounded-r-lg"></div>
-                            <h4 id="labelPrivCard" class="text-xs uppercase tracking-wider font-bold text-gray-500 mb-2 tooltip-container">
+                            <h4 class="text-xs uppercase tracking-wider font-bold text-gray-500 mb-2 tooltip-container">
                                 Fronteira de Crescimento <i class="fa-solid fa-circle-info text-gray-400 ml-1"></i>
                                 <span class="tooltip-text">Representa o nosso TAM (Total Addressable Market) médio. A fatia de mercado que ainda podemos captar na seleção.</span>
                             </h4>
@@ -260,19 +233,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="p-4 bg-gray-50 border-t border-gray-100 text-xs text-gray-500 flex items-start gap-2">
+                    <i class="fa-solid fa-circle-info mt-0.5 text-sesi-green"></i>
+                    <p><strong>Nota Metodológica & Fonte:</strong> Dados extraídos dos microdados oficiais do INEP (Censo da Educação Básica e Resultados ENEM). A "Média Final" é calculada pela média aritmética das notas das 4 áreas de conhecimento objetivas mais a Redação, considerando estritamente alunos presentes nos dias de prova. Para cruzamento estatístico, a Rede Privada engloba escolas particulares tradicionais.</p>
+                </div>
             </div>
         </section>
 
         <!-- Seção 2: Mercado -->
         <section id="mercado" class="scroll-mt-24">
-            <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3">
-                        <i class="fa-solid fa-chart-pie text-sesi-green"></i> Análise de Mercado
-                    </h2>
-                    <p class="mt-4 text-gray-600 max-w-3xl leading-relaxed text-lg">
-                        O SESI Goiás consolida sua posição como a maior força educacional do estado. Nossa análise profunda (Deep Dive) comprova que essa liderança é estrutural e orgânica.
-                    </p>
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3 mb-6">
+                    <i class="fa-solid fa-chart-pie text-sesi-green"></i> Análise de Mercado: Volume e Liderança
+                </h2>
+                <div class="editorial-lead">
+                    Para compreender a verdadeira competitividade comercial de uma rede de ensino, é necessário depurar os dados. O volume nacional de matrículas muitas vezes esconde o impacto da Educação de Jovens e Adultos (EJA - modalidade fortemente subsidiada). Esta seção promove um "Deep Dive" (Mergulho Analítico) que isola o ensino regular, revelando que o <strong>SESI Goiás é líder isolado e absoluto no mercado goiano pela força orgânica da sua marca</strong>, sustentando simultaneamente a maior operação de toda a região Centro-Oeste.
                 </div>
             </div>
 
@@ -291,7 +266,6 @@
                     </div>
                     
                     <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <!-- Card Brasil -->
                         <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5">
                             <h4 class="text-center font-bold text-gray-500 mb-4 uppercase tracking-wider text-sm">Cenário Nacional (Brasil)</h4>
                             <div class="relative h-[250px] w-full">
@@ -299,7 +273,6 @@
                             </div>
                             <p class="text-center text-xs text-gray-400 mt-3 font-semibold">O SESI perde o 1º lugar se retirar o EJA.</p>
                         </div>
-                        <!-- Card Goiás -->
                         <div class="bg-white border-2 border-sesi-green rounded-2xl p-5 shadow-[0_0_20px_rgba(82,174,50,0.15)] relative overflow-hidden">
                             <div class="absolute top-0 right-0 bg-sesi-green text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">DESTAQUE</div>
                             <h4 class="text-center font-bold text-sesi-dark mb-4 uppercase tracking-wider text-sm">Cenário Local (Goiás)</h4>
@@ -314,7 +287,6 @@
 
             <!-- Leaderboard & Benchmarking Interno -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Leaderboard Nacional -->
                 <div class="bg-sesi-dark rounded-3xl p-8 text-white relative overflow-hidden flex flex-col justify-between">
                     <div class="absolute top-0 right-0 p-8 opacity-10">
                         <i class="fa-solid fa-trophy text-9xl"></i>
@@ -324,11 +296,9 @@
                         <p class="text-gray-400 text-sm mb-8">Participação de mercado entre os DRs</p>
                         
                         <div class="flex items-center gap-6 mb-6">
-                            <!-- Gráfico Circular SVG -->
                             <div class="relative w-24 h-24 flex-shrink-0">
                                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
                                     <path class="text-gray-700" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                                    <!-- 3.55% de share (3.55 * 100 / 100) = 3.55 dasharray, 100 dasharray -->
                                     <path class="text-sesi-green" stroke-dasharray="3.55, 100" stroke-width="3" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                                 </svg>
                                 <div class="absolute inset-0 flex items-center justify-center flex-col">
@@ -351,7 +321,6 @@
                     </div>
                 </div>
 
-                <!-- Peso no Centro-Oeste -->
                 <div class="bg-white border border-gray-200 rounded-3xl p-8 flex flex-col items-center justify-center relative">
                     <h3 class="text-xl font-bold text-sesi-dark mb-1">O Motor do Centro-Oeste</h3>
                     <p class="text-gray-500 text-sm mb-6 text-center">Peso de Goiás dentro da Rede SESI na Região</p>
@@ -369,23 +338,27 @@
                     </p>
                 </div>
             </div>
+            <div class="mt-4 px-4 text-xs text-gray-500 flex items-start gap-2">
+                <i class="fa-solid fa-database mt-0.5 text-sesi-green"></i>
+                <p><strong>Fonte de Mercado:</strong> Base de dados do Censo Escolar INEP. O "Efeito EJA" foi calculado separando matrículas do ensino regular (ensino fundamental e médio convencionais) das matrículas de Educação de Jovens e Adultos. Os dados excluem produções indiretas por termos de cooperação não administrados diretamente pelas entidades.</p>
+            </div>
         </section>
 
-        <!-- Seção 3: Robótica -->
+        <!-- Seção 3: Robótica Nacional -->
         <section id="robotica" class="scroll-mt-24">
-            <!-- Header Robótica -->
-            <div class="bg-white shadow-sm border border-gray-200 rounded-3xl p-8 mb-10 text-center md:text-left flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+            <!-- Header Robótica Nacional -->
+            <div class="bg-white shadow-sm border border-gray-200 rounded-3xl p-8 mb-6 text-center md:text-left flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
                 <div class="absolute -right-10 -top-10 opacity-5">
-                    <i class="fa-solid fa-microchip text-[250px] text-sesi-green"></i>
+                    <i class="fa-solid fa-globe text-[250px] text-sesi-green"></i>
                 </div>
                 <div class="md:w-2/3 relative z-10">
-                    <div class="uppercase tracking-widest text-xs font-bold text-sesi-green mb-2">Relatório Executivo Especial</div>
+                    <div class="uppercase tracking-widest text-xs font-bold text-sesi-green mb-2">Relatório Executivo Nacional</div>
                     <h2 class="text-3xl font-extrabold text-sesi-dark tracking-tight mb-4">
                         A Evolução da <span class="text-sesi-green">Robótica SESI</span> no Brasil
                     </h2>
-                    <p class="text-gray-600 leading-relaxed">
-                        Uma auditoria aprofundada da performance dos Departamentos Regionais (DRs) nos principais torneios mundiais (FLL, FTC, FRC e F1 in Schools).
-                    </p>
+                    <div class="editorial-lead mt-4 mb-0">
+                        A Robótica Educacional da Rede SESI transcende a sala de aula, figurando entre as mais premiadas e respeitadas do mundo. Este motor de descoberta de dados compila o histórico auditado de conquistas nos torneios oficiais das ligas globais (FIRST LEGO League, FIRST Tech Challenge, FIRST Robotics Competition e F1 in Schools). Utilize o painel abaixo para isolar modalidades, anos e estados, visualizando a <strong>volumetria bruta de conquistas (Visão Plana)</strong> sem a incidência de multiplicadores ou pesos artificiais.
+                    </div>
                 </div>
                 <div class="md:w-1/3 flex justify-center relative z-10">
                     <div class="w-32 h-32 bg-gray-50 rounded-full border-8 border-white shadow-lg flex items-center justify-center">
@@ -394,154 +367,95 @@
                 </div>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
-                <div>
-                    <h3 class="font-bold text-sesi-dark"><i class="fa-solid fa-filter text-sesi-green mr-2"></i> Explorador Interativo de Torneios</h3>
-                    <p class="text-xs text-gray-500 mt-1">Filtre por liga, temporada ou isole um estado para analisar a performance.</p>
-                </div>
-                <div class="flex flex-wrap gap-3">
-                    <select id="roboLigaFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold">
-                        <option value="ALL">Todas as Ligas (Consolidado)</option>
-                        <option value="FLL">FLL (Lego League)</option>
-                        <option value="FTC">FTC (Tech Challenge)</option>
-                        <option value="FRC">FRC (Robotics Competition)</option>
-                        <option value="F1">F1 in Schools</option>
+            <!-- Filtros Nacionais -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-200 mb-8">
+                <h3 class="text-lg font-bold text-sesi-dark mb-4"><i class="fa-solid fa-filter text-sesi-green mr-2"></i> Filtros de Desempenho Nacional</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <select id="rnEstadoFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold w-full">
+                        <option value="ALL">Todos os Estados</option>
                     </select>
-                    <select id="roboAnoFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold">
-                        <option value="ALL">Série Histórica (2021-2025)</option>
-                        <option value="2025">Temporada 2025/2026</option>
-                        <option value="2024">Temporada 2024/2025</option>
-                        <option value="2023">Temporada 2023/2024</option>
-                        <option value="2022">Temporada 2022/2023</option>
-                        <option value="2021">Temporada 2021/2022</option>
+                    <select id="rnTorneioFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold w-full">
+                        <option value="ALL">Todos os Torneios</option>
                     </select>
-                    <select id="roboUfFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold">
-                        <option value="ALL">Top 10 Nacional</option>
-                        <option value="GO">Isolar Goiás (GO)</option>
-                        <option value="SP">Isolar São Paulo (SP)</option>
-                        <option value="MG">Isolar Minas Gerais (MG)</option>
-                        <option value="SC">Isolar Santa Catarina (SC)</option>
+                    <select id="rnAnoFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold w-full">
+                        <option value="ALL">Todos os Anos</option>
+                    </select>
+                    <select id="rnModalidadeFilter" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green block p-2.5 font-semibold w-full">
+                        <option value="ALL">Todas as Modalidades</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Ranking e Gráficos Robótica -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
-                <!-- Gráfico de Barras -->
-                <div class="lg:col-span-2 glass-card p-6 border-t-4 border-sesi-dark">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold text-gray-700">Leaderboard de Conquistas (Visão Plana)</h3>
-                        <span id="lblRankPeriodo" class="bg-sesi-green/10 text-sesi-green px-3 py-1 rounded-full text-xs font-bold">2021-2025</span>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="rankingChart"></canvas>
+            <!-- KPIs Nacionais -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 text-center shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fa-solid fa-trophy text-4xl"></i></div>
+                    <div class="text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Total de Prémios</div>
+                    <div class="text-4xl font-black text-sesi-dark" id="rnKpiTotal">-</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-yellow-200 text-center shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-yellow-500"><i class="fa-solid fa-medal text-4xl"></i></div>
+                    <div class="text-yellow-600 text-xs font-bold uppercase tracking-wider mb-2">Ouro / 1º Lugar</div>
+                    <div class="text-4xl font-black text-yellow-500" id="rnKpiOuro">-</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-gray-300 text-center shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-gray-500"><i class="fa-solid fa-medal text-4xl"></i></div>
+                    <div class="text-gray-600 text-xs font-bold uppercase tracking-wider mb-2">Prata / 2º Lugar</div>
+                    <div class="text-4xl font-black text-gray-500" id="rnKpiPrata">-</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 border border-orange-200 text-center shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-orange-500"><i class="fa-solid fa-medal text-4xl"></i></div>
+                    <div class="text-orange-600 text-xs font-bold uppercase tracking-wider mb-2">Bronze / 3º Lugar</div>
+                    <div class="text-4xl font-black text-orange-500" id="rnKpiBronze">-</div>
+                </div>
+            </div>
+
+            <!-- Gráficos Nacionais -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                <!-- Bar Chart Estados -->
+                <div class="glass-card p-6 border-t-4 border-sesi-green">
+                    <h3 class="text-lg font-bold text-gray-700 mb-4 text-center">Top Estados (Apenas Prémios)</h3>
+                    <div class="relative h-[300px] w-full">
+                        <canvas id="rnRankingChart"></canvas>
                     </div>
                 </div>
-
-                <!-- Tabela Resumo Top 5 -->
-                <div class="glass-card p-6 flex flex-col justify-between border-t-4 border-sesi-green">
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-700 mb-4" id="lblTop5">Top 5 Nacional</h3>
-                        <div class="space-y-4" id="top5-container">
-                            <!-- Inserido via JS dinamicamente -->
-                        </div>
-                    </div>
-                    <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100 text-xs text-gray-600 w-full">
-                        <strong><i class="fa-solid fa-scale-balanced text-sesi-green"></i> Visão Plana (Sem Pesos):</strong><br>
-                        O quadro acima consolida o volume bruto de conquistas, classificações e posições oficiais na série histórica, atestando o domínio orgânico de polos como Goiás no ecossistema de robótica educacional.
+                <!-- Line Chart Evolução Anual -->
+                <div class="glass-card p-6 border-t-4 border-sesi-dark">
+                    <h3 class="text-lg font-bold text-gray-700 mb-4 text-center">Evolução Histórica (Total de Prémios)</h3>
+                    <div class="relative h-[300px] w-full">
+                        <canvas id="rnEvolucaoChart"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Gráfico Linha do Tempo -->
-            <div class="glass-card p-6 mb-10 border-t-4 border-sesi-dark">
-                <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-gray-700">Série Histórica de Consistência (Evolução de Conquistas)</h3>
-                        <div class="text-sm text-gray-500 mt-1">O gráfico de tendência ignora o filtro de ano isolado para demonstrar a escalada contínua ao longo das temporadas.</div>
-                    </div>
-                </div>
-                <div class="chart-container" style="height: 380px;">
-                    <canvas id="historyChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Tabela Consolidada Visão Plana -->
+            <!-- Tabela Detalhada -->
             <div class="glass-card p-6 overflow-hidden">
-                <h3 class="text-lg font-bold text-gray-700 mb-4">Detalhamento Geral de Resultados em Torneios (Visão Plana)</h3>
-                <p class="text-sm text-gray-500 mb-4">Relação consolidada de participações, posições e classificações das equipes nas principais competições da série histórica (FLLC, FTC, FRC e F1 in Schools).</p>
+                <h3 class="text-lg font-bold text-gray-700 mb-4">Detalhamento Nacional de Resultados</h3>
                 <div class="overflow-x-auto max-h-[500px]">
                     <table class="w-full text-sm text-left text-gray-600">
                         <thead class="text-xs text-white uppercase bg-sesi-dark sticky top-0 z-10">
                             <tr>
-                                <th scope="col" class="px-4 py-3 rounded-tl-lg">UF</th>
-                                <th scope="col" class="px-4 py-3">Competição</th>
+                                <th scope="col" class="px-4 py-3 rounded-tl-lg">Estado</th>
+                                <th scope="col" class="px-4 py-3">Torneio</th>
                                 <th scope="col" class="px-4 py-3">Ano</th>
-                                <th scope="col" class="px-4 py-3">Equipe</th>
-                                <th scope="col" class="px-4 py-3">Posição / Honraria</th>
-                                <th scope="col" class="px-4 py-3 rounded-tr-lg">Destino / Classificação</th>
+                                <th scope="col" class="px-4 py-3">Modalidade</th>
+                                <th scope="col" class="px-4 py-3 text-center">Qtd Eqp</th>
+                                <th scope="col" class="px-4 py-3">Posição no Torneio</th>
+                                <th scope="col" class="px-4 py-3 text-center">Ouro</th>
+                                <th scope="col" class="px-4 py-3 text-center">Prata</th>
+                                <th scope="col" class="px-4 py-3 text-center">Bronze</th>
+                                <th scope="col" class="px-4 py-3 text-center">Outras</th>
+                                <th scope="col" class="px-4 py-3 text-center rounded-tr-lg">Total Prémios</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="border-b table-row-hover">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">MG</td><td class="px-4 py-3">FTC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Amigos Droids</td><td class="px-4 py-3">1º Lugar (Inspire Award Mundial)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">EUA (World Champ)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">SP</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Heroes</td><td class="px-4 py-3">1º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">México (Open)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold text-sesi-green">Titans L.J Planalto</td><td class="px-4 py-3">3º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Grécia (Open)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">SP</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Robotics School</td><td class="px-4 py-3">2º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">EUA (California)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">SC</td><td class="px-4 py-3">F1</td><td class="px-4 py-3">2023/2024</td><td class="px-4 py-3 font-semibold">Alpha Scuderia</td><td class="px-4 py-3">7º Lugar (Class. Geral Mundial)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Arábia Saudita</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">ES</td><td class="px-4 py-3">F1</td><td class="px-4 py-3">2023/2024</td><td class="px-4 py-3 font-semibold">Pocadores</td><td class="px-4 py-3">1º Lugar (Front Wing Repl.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Arábia Saudita</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">Geek Canaã</td><td class="px-4 py-3">1º Lugar (Design Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Austrália (Asia Pacific)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">MA</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Unimate</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Canadá (Open)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FRC</td><td class="px-4 py-3">2023</td><td class="px-4 py-3 font-semibold text-sesi-green">Infinity BR (8882)</td><td class="px-4 py-3">1º Lugar (Aliança Vencedora Reg.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">L.J. Origens</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">MEQ LEGO</td><td class="px-4 py-3">2º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">DF</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Albatroid</td><td class="px-4 py-3">1º Lugar (Rising All-Star)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">EUA (World Fest)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">LIFE SESI Canaã</td><td class="px-4 py-3">3º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">RN</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">SESI Batlego</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">NanoMasters</td><td class="px-4 py-3">1º Lugar (Torneio Aberto)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">PR</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Osíris</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FTC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">Storm Tech Canaã</td><td class="px-4 py-3">Classificação Reg.</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">MS</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Tech Vikings</td><td class="px-4 py-3">3º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
-                            <tr class="table-row-hover">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">BA</td><td class="px-4 py-3">F1</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Pegasus</td><td class="px-4 py-3">1º Lugar (Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
-                            </tr>
+                        <tbody id="rnTableBody">
+                            <!-- Preenchido via JS -->
                         </tbody>
                     </table>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500 flex items-start gap-2">
+                    <i class="fa-solid fa-check-double mt-0.5 text-sesi-green"></i>
+                    <p><strong>Fonte de Auditoria:</strong> Relatórios oficiais divulgados pela Agência de Notícias da Indústria / CNI (Temporadas de 2021/2022 a 2025/2026). A "Visão Plana" trata cada prêmio listado na base (independentemente se é Champion's Award, Ouro, Prata, Design ou Honraria) como 1 conquista unitária (1 pt). Atualizado até aos resultados do FIRST Championship.</p>
                 </div>
             </div>
         </section>
@@ -549,34 +463,37 @@
         <!-- Seção 4: Raio-X Goiás (Premiações Locais) -->
         <section id="raiox-goias" class="scroll-mt-24">
             <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3">
+                <div class="w-full">
+                    <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3 mb-6">
                         <i class="fa-solid fa-medal text-sesi-green"></i> Raio-X Local: O Domínio de Goiás
                     </h2>
-                    <p class="mt-4 text-gray-600 max-w-3xl leading-relaxed text-lg">
-                        Consolidação detalhada das participações e premiações exclusivas das unidades do SESI Goiás em torneios de robótica e grandes olimpíadas do conhecimento (OBA, MOBFOG, Canguru, etc.).
-                    </p>
+                    <div class="editorial-lead">
+                        Além do sucesso estrondoso nas ligas de Robótica, os estudantes do SESI Goiás demonstram altíssima proficiência técnica em múltiplas disciplinas (STEM). Este painel consolida de forma inédita as premiações exclusivas das unidades de Goiás num amplo espetro de torneios, desde Olimpíadas Nacionais de Astronomia (OBA) e Matemática (Canguru, OBMEP), até História e Empreendedorismo (Innovation Camp). Mapeie abaixo o epicentro dessas conquistas.
+                    </div>
                 </div>
             </div>
 
             <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden mb-10">
-                <!-- Filtros Locais -->
                 <div class="p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col md:flex-row gap-4 justify-between items-center">
                     <h3 class="text-lg font-bold text-sesi-dark"><i class="fa-solid fa-filter text-sesi-green mr-2"></i> Filtros de Desempenho Local</h3>
                     <div class="flex flex-wrap gap-3 w-full md:w-auto">
                         <select id="goUfFilter" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green p-2.5 font-semibold w-full md:w-auto">
                             <option value="ALL">Todas as Unidades</option>
-                            <!-- Populado via JS -->
                         </select>
                         <select id="goTourneyFilter" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green p-2.5 font-semibold w-full md:w-auto">
                             <option value="ALL">Todos os Eventos / Torneios</option>
-                            <!-- Populado via JS -->
+                        </select>
+                        <select id="goMedalFilter" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green p-2.5 font-semibold w-full md:w-auto">
+                            <option value="ALL">Todas as Qualidades de Medalhas</option>
+                            <option value="OURO">Apenas Ouro / 1º Lugar</option>
+                            <option value="PRATA">Apenas Prata / 2º Lugar</option>
+                            <option value="BRONZE">Apenas Bronze / 3º Lugar</option>
+                            <option value="HONRA">Apenas Honra ao Mérito</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="p-8">
-                    <!-- KPIs -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                         <div class="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center shadow-sm">
                             <div class="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Total Premiações</div>
@@ -596,16 +513,13 @@
                         </div>
                     </div>
 
-                    <!-- Gráficos -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <!-- Doughnut Medalhas -->
                         <div class="border border-gray-100 rounded-2xl p-6 relative bg-white">
                             <h4 class="font-bold text-gray-700 mb-4 text-center">Distribuição Qualitativa de Medalhas</h4>
                             <div class="relative h-[280px] w-full">
                                 <canvas id="goMedalsChart"></canvas>
                             </div>
                         </div>
-                        <!-- Bar Chart Unidades -->
                         <div class="border border-gray-100 rounded-2xl p-6 relative bg-white">
                             <h4 class="font-bold text-gray-700 mb-4 text-center">Top Unidades (Volume de Premiações)</h4>
                             <div class="relative h-[280px] w-full">
@@ -613,6 +527,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="p-4 bg-gray-50 border-t border-gray-100 text-xs text-gray-500 flex items-start gap-2">
+                    <i class="fa-solid fa-folder-tree mt-0.5 text-sesi-green"></i>
+                    <p><strong>Fonte Local:</strong> Base de dados interna SESI-GO (Departamento de Tecnologia e Avaliação). O rastreamento inclui torneios de conhecimentos gerais, olimpíadas científicas estaduais/nacionais e torneios internos e externos de robótica computados pelas coordenações locais. A categoria "Honra ao Mérito" agrupa reconhecimentos de classificação e participação de excelência.</p>
                 </div>
             </div>
         </section>
@@ -629,6 +547,7 @@
                     * Notas Inep consideram apenas candidatos presentes.<br>
                     * Dados do Censo Escolar INEP excluem produções indiretas por termos de cooperação.
                 </p>
+                <p class="mt-4 text-xs font-bold text-gray-300">Fonte: CNI/SESI</p>
             </div>
             <div class="flex items-center gap-4">
                 <img src="https://i.postimg.cc/HLRKss9v/marca-SESI-2024-completa-colorida.png" alt="Logomarca SESI" class="h-8 object-contain filter brightness-0 invert opacity-50 hover:opacity-100 transition-opacity">
@@ -650,56 +569,18 @@
                 data: {
                     labels: ['2020', '2021', '2022', '2023', '2024'],
                     datasets: [
-                        {
-                            label: 'Rede SesiGO',
-                            data: [545.50, 540.10, 553.02, 555.72, 571.03],
-                            borderColor: '#52AE32',
-                            backgroundColor: '#52AE32',
-                            borderWidth: 4,
-                            tension: 0.4,
-                            pointRadius: 4,
-                            pointHoverRadius: 6
-                        },
-                        {
-                            label: 'MédiaGO',
-                            data: [541.17, 526.69, 537.53, 544.49, 533.25],
-                            borderColor: '#0284c7', 
-                            backgroundColor: '#0284c7',
-                            borderWidth: 2,
-                            tension: 0.4,
-                            pointRadius: 0,
-                            pointHoverRadius: 4
-                        },
-                        {
-                            label: 'MédiaBR',
-                            data: [521.53, 534.02, 542.41, 537.96, 544.71],
-                            borderColor: '#f97316',
-                            backgroundColor: '#f97316',
-                            borderWidth: 2,
-                            borderDash: [5, 5],
-                            tension: 0.4,
-                            pointRadius: 0,
-                            pointHoverRadius: 4
-                        }
+                        { label: 'Rede SesiGO', data: [545.50, 540.10, 553.02, 555.72, 571.03], borderColor: '#52AE32', backgroundColor: '#52AE32', borderWidth: 4, tension: 0.4, pointRadius: 4, pointHoverRadius: 6 },
+                        { label: 'MédiaGO', data: [541.17, 526.69, 537.53, 544.49, 533.25], borderColor: '#0284c7', backgroundColor: '#0284c7', borderWidth: 2, tension: 0.4, pointRadius: 0, pointHoverRadius: 4 },
+                        { label: 'MédiaBR', data: [521.53, 534.02, 542.41, 537.96, 544.71], borderColor: '#f97316', backgroundColor: '#f97316', borderWidth: 2, borderDash: [5, 5], tension: 0.4, pointRadius: 0, pointHoverRadius: 4 }
                     ]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false,
                     plugins: {
                         legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' }, padding: 20 } },
-                        datalabels: {
-                            display: true,
-                            align: (c) => c.datasetIndex === 0 ? 'top' : (c.datasetIndex === 1 ? 'bottom' : 'right'),
-                            color: (c) => c.dataset.borderColor,
-                            font: (c) => ({ weight: c.datasetIndex === 0 ? 'bold' : 'normal', size: c.datasetIndex === 0 ? 14 : 11 }),
-                            formatter: (v) => v.toFixed(1).replace('.', ',')
-                        }
+                        datalabels: { display: (c) => c.dataset.label === 'Rede SesiGO', align: 'top', color: '#52AE32', font: { weight: 'bold', size: 14 }, formatter: (v) => v.toFixed(2).replace('.', ',') }
                     },
-                    scales: {
-                        y: { display: false, min: 490 },
-                        x: { grid: { display: true, color: '#f3f4f6', drawBorder: false }, ticks: { font: { family: 'Helvetica Neue', weight: 'normal', size: 14 } } }
-                    },
+                    scales: { y: { display: false, min: 490 }, x: { grid: { display: true, color: '#f3f4f6', drawBorder: false }, ticks: { font: { family: 'Helvetica Neue', weight: 'normal', size: 14 } } } },
                     layout: { padding: { top: 30, right: 20 } }
                 }
             });
@@ -725,418 +606,379 @@
                 'RN': { n: 'Rio Grande do Norte', d: [510.43, 597.49, 614.04, 478.48, 541.85, 568.32, 465.03, 517.91, 540.81, 500.61, 544.10, 558.68, 478.00, 577.27, 603.71, 630.01, 806.32, 798.70] },
                 'MA': { n: 'Maranhão', d: [511.85, 578.04, 605.95, 472.58, 523.48, 557.99, 459.11, 499.03, 528.50, 492.24, 528.10, 549.39, 481.66, 554.63, 590.81, 653.67, 784.98, 803.07] },
                 'PA': { n: 'Pará', d: [504.22, 575.79, 603.08, 468.78, 538.93, 557.66, 458.27, 511.05, 530.11, 487.62, 529.84, 551.33, 472.59, 551.82, 576.99, 633.84, 747.33, 799.31] },
-                'ES': { n: 'Espírito Santo', d: [536.39, 596.62, 631.57, 503.63, 556.45, 581.62, 481.09, 528.75, 562.85, 520.11, 553.97, 570.55, 512.66, 593.81, 635.02, 664.44, 750.12, 807.79] }
+                'ES': { n: 'Espírito Santo', d: [536.39, 596.62, 631.57, 503.63, 556.45, 581.62, 481.09, 528.75, 562.85, 520.11, 553.97, 570.55, 512.66, 593.81, 635.02, 664.44, 750.12, 807.79] },
+                'AC': { n: 'Acre', d: [514.25, 532.24, 608.56] }, 'AL': { n: 'Alagoas', d: [492.82, 575.65, 596.33] }, 'AP': { n: 'Amapá', d: [506.66, 559.74, 598.13] },
+                'AM': { n: 'Amazonas', d: [505.20, 556.72, 598.58] }, 'PI': { n: 'Piauí', d: [510.26, 576.84, 630.74] }, 'RO': { n: 'Rondônia', d: [524.21, 584.34, 595.46] },
+                'RR': { n: 'Roraima', d: [531.83, 546.47, 589.43] }, 'SE': { n: 'Sergipe', d: [517.10, 558.75, 619.20] }, 'TO': { n: 'Tocantins', d: [510.19, 583.71, 623.50] },
+                'PB': { n: 'Paraíba', d: [510.39, 596.68, 615.47] }
             };
 
             const statesData2024 = {};
             for (const uf in rawStatesData) {
                 const row = rawStatesData[uf].d;
-                statesData2024[uf] = {
-                    nome: rawStatesData[uf].n,
-                    areas: {
-                        media: { pub: row[0], sesi: row[1], priv: row[2] },
-                        humanas: { pub: row[3] || row[0], sesi: row[4] || row[1], priv: row[5] || row[2] },
-                        natureza: { pub: row[6] || row[0], sesi: row[7] || row[1], priv: row[8] || row[2] },
-                        linguagens: { pub: row[9] || row[0], sesi: row[10] || row[1], priv: row[11] || row[2] },
-                        matematica: { pub: row[12] || row[0], sesi: row[13] || row[1], priv: row[14] || row[2] },
-                        redacao: { pub: row[15] || row[0], sesi: row[16] || row[1], priv: row[17] || row[2] }
-                    }
-                };
+                statesData2024[uf] = { nome: rawStatesData[uf].n, areas: { media: { pub: row[0], sesi: row[1], priv: row[2] }, humanas: { pub: row[3] || row[0], sesi: row[4] || row[1], priv: row[5] || row[2] }, natureza: { pub: row[6] || row[0], sesi: row[7] || row[1], priv: row[8] || row[2] }, linguagens: { pub: row[9] || row[0], sesi: row[10] || row[1], priv: row[11] || row[2] }, matematica: { pub: row[12] || row[0], sesi: row[13] || row[1], priv: row[14] || row[2] }, redacao: { pub: row[15] || row[0], sesi: row[16] || row[1], priv: row[17] || row[2] } } };
             }
 
-            let selectedStates = ['GO', 'BR', 'DF'];
-            let selectedNetworks = ['pub', 'sesi', 'priv'];
-            let selectedArea = 'media';
-            let multiChartInstance = null;
-            const ctxMulti = document.getElementById('multiStateChart').getContext('2d');
-
-            const networkDefinitions = {
-                'pub': { id: 'pub', nome: 'Rede Pública', colorClass: 'bg-gray-400 border-gray-400 text-white' },
-                'sesi': { id: 'sesi', nome: 'Rede SESI', colorClass: 'bg-[#52AE32] border-[#52AE32] text-white' },
-                'priv': { id: 'priv', nome: 'Rede Privada', colorClass: 'bg-orange-400 border-orange-400 text-white' }
-            };
-
-            const areaDefinitions = {
-                'media': { id: 'media', nome: 'Média Final Geral' },
-                'humanas': { id: 'humanas', nome: 'Ciências Humanas' },
-                'natureza': { id: 'natureza', nome: 'Ciências da Natureza' },
-                'linguagens': { id: 'linguagens', nome: 'Linguagens' },
-                'matematica': { id: 'matematica', nome: 'Matemática' },
-                'redacao': { id: 'redacao', nome: 'Redação' }
-            };
+            let selectedStates = ['GO', 'BR', 'DF']; let selectedNetworks = ['pub', 'sesi', 'priv']; let selectedArea = 'media'; let multiChartInstance = null; const ctxMulti = document.getElementById('multiStateChart').getContext('2d');
+            const networkDefinitions = { 'pub': { id: 'pub', nome: 'Rede Pública', colorClass: 'bg-gray-400 border-gray-400 text-white' }, 'sesi': { id: 'sesi', nome: 'Rede SESI', colorClass: 'bg-[#52AE32] border-[#52AE32] text-white' }, 'priv': { id: 'priv', nome: 'Rede Privada', colorClass: 'bg-orange-400 border-orange-400 text-white' } };
+            const areaDefinitions = { 'media': { id: 'media', nome: 'Média Final Geral' }, 'humanas': { id: 'humanas', nome: 'Ciências Humanas' }, 'natureza': { id: 'natureza', nome: 'Ciências da Natureza' }, 'linguagens': { id: 'linguagens', nome: 'Linguagens' }, 'matematica': { id: 'matematica', nome: 'Matemática' }, 'redacao': { id: 'redacao', nome: 'Redação' } };
 
             function renderStateFilters() {
-                const container = document.getElementById('stateFiltersContainer');
-                container.innerHTML = '';
-                
-                const sortedKeys = Object.keys(statesData2024).sort((a, b) => {
-                    if(a === 'GO') return -1; if(b === 'GO') return 1;
-                    if(a === 'BR') return -1; if(b === 'BR') return 1;
-                    return a.localeCompare(b);
-                });
-
+                const container = document.getElementById('stateFiltersContainer'); container.innerHTML = '';
+                const sortedKeys = Object.keys(statesData2024).sort((a, b) => { if(a === 'GO') return -1; if(b === 'GO') return 1; if(a === 'BR') return -1; if(b === 'BR') return 1; return a.localeCompare(b); });
                 sortedKeys.forEach(uf => {
-                    const isSelected = selectedStates.includes(uf);
-                    const btn = document.createElement('button');
-                    
-                    btn.className = `px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
-                        isSelected 
-                        ? 'bg-sesi-green text-white border-sesi-green shadow-md' 
-                        : 'bg-white text-gray-500 border-gray-300 hover:border-sesi-green hover:text-sesi-green'
-                    }`;
-                    
+                    const isSelected = selectedStates.includes(uf); const btn = document.createElement('button');
+                    btn.className = `px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${isSelected ? 'bg-sesi-green text-white border-sesi-green shadow-md' : 'bg-white text-gray-500 border-gray-300 hover:border-sesi-green hover:text-sesi-green'}`;
                     btn.innerHTML = isSelected ? `<i class="fa-solid fa-check mr-1"></i> ${uf}` : uf;
-                    
-                    btn.onclick = () => {
-                        if (isSelected && selectedStates.length > 1) {
-                            selectedStates = selectedStates.filter(s => s !== uf);
-                        } else if (!isSelected) {
-                            if (selectedStates.length >= 8) selectedStates.shift(); 
-                            selectedStates.push(uf);
-                        }
-                        renderStateFilters();
-                        updateMultiChart();
-                    };
+                    btn.onclick = () => { if (isSelected && selectedStates.length > 1) { selectedStates = selectedStates.filter(s => s !== uf); } else if (!isSelected) { if (selectedStates.length >= 8) selectedStates.shift(); selectedStates.push(uf); } renderStateFilters(); updateMultiChart(); };
                     container.appendChild(btn);
                 });
             }
 
             function renderNetworkFilters() {
-                const container = document.getElementById('networkFiltersContainer');
-                container.innerHTML = '';
-                
+                const container = document.getElementById('networkFiltersContainer'); container.innerHTML = '';
                 Object.values(networkDefinitions).forEach(net => {
-                    const isSelected = selectedNetworks.includes(net.id);
-                    const btn = document.createElement('button');
-                    
-                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
-                        isSelected ? `${net.colorClass} shadow-md` : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'
-                    }`;
-                    
+                    const isSelected = selectedNetworks.includes(net.id); const btn = document.createElement('button');
+                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${isSelected ? `${net.colorClass} shadow-md` : 'bg-white text-gray-500 border-gray-300 hover:border-gray-400'}`;
                     btn.innerHTML = isSelected ? `<i class="fa-solid fa-check mr-1"></i> ${net.nome}` : net.nome;
-                    
-                    btn.onclick = () => {
-                        if (isSelected && selectedNetworks.length > 1) {
-                            selectedNetworks = selectedNetworks.filter(n => n !== net.id);
-                        } else if (!isSelected) {
-                            selectedNetworks.push(net.id);
-                        }
-                        renderNetworkFilters();
-                        updateMultiChart();
-                    };
+                    btn.onclick = () => { if (isSelected && selectedNetworks.length > 1) { selectedNetworks = selectedNetworks.filter(n => n !== net.id); } else if (!isSelected) { selectedNetworks.push(net.id); } renderNetworkFilters(); updateMultiChart(); };
                     container.appendChild(btn);
                 });
             }
 
             function renderAreaFilters() {
-                const container = document.getElementById('areaFiltersContainer');
-                container.innerHTML = '';
-                
+                const container = document.getElementById('areaFiltersContainer'); container.innerHTML = '';
                 Object.values(areaDefinitions).forEach(area => {
-                    const isSelected = selectedArea === area.id;
-                    const btn = document.createElement('button');
-                    
-                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
-                        isSelected ? `bg-gray-800 border-gray-800 text-white shadow-md` : 'bg-white text-gray-500 border-gray-300 hover:border-gray-800 hover:text-gray-800'
-                    }`;
-                    
+                    const isSelected = selectedArea === area.id; const btn = document.createElement('button');
+                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${isSelected ? `bg-gray-800 border-gray-800 text-white shadow-md` : 'bg-white text-gray-500 border-gray-300 hover:border-gray-800 hover:text-gray-800'}`;
                     btn.innerHTML = isSelected ? `<i class="fa-solid fa-check mr-1"></i> ${area.nome}` : area.nome;
-                    
-                    btn.onclick = () => {
-                        selectedArea = area.id;
-                        renderAreaFilters();
-                        updateMultiChart();
-                    };
+                    btn.onclick = () => { selectedArea = area.id; renderAreaFilters(); updateMultiChart(); };
                     container.appendChild(btn);
                 });
             }
 
-            window.selectAllStates = function() {
-                selectedStates = ['GO', 'BR', 'DF', 'MT', 'MS', 'SP', 'MG'];
-                selectedNetworks = ['pub', 'sesi', 'priv'];
-                selectedArea = 'media';
-                renderStateFilters();
-                renderNetworkFilters();
-                renderAreaFilters();
-                updateMultiChart();
-            }
+            window.selectAllStates = function() { selectedStates = ['GO', 'BR', 'DF', 'MT', 'MS', 'SP', 'MG']; selectedNetworks = ['pub', 'sesi', 'priv']; selectedArea = 'media'; renderStateFilters(); renderNetworkFilters(); renderAreaFilters(); updateMultiChart(); }
 
             function generateMultiInsight() {
-                const insightEl = document.getElementById('multiBenchInsight');
-                const pubDiffEl = document.getElementById('pubDiffGO');
-                const privDiffEl = document.getElementById('privDiffGO');
-
+                const insightEl = document.getElementById('multiBenchInsight'); const pubDiffEl = document.getElementById('pubDiffGO'); const privDiffEl = document.getElementById('privDiffGO');
                 if (selectedStates.length === 0) return;
-
                 let sumSesi = 0, sumPub = 0, sumPriv = 0;
-                selectedStates.forEach(uf => {
-                    sumSesi += statesData2024[uf].areas[selectedArea].sesi;
-                    sumPub += statesData2024[uf].areas[selectedArea].pub;
-                    sumPriv += statesData2024[uf].areas[selectedArea].priv;
-                });
-                
-                const avgSesi = sumSesi / selectedStates.length;
-                const avgPub = sumPub / selectedStates.length;
-                const avgPriv = sumPriv / selectedStates.length;
-
-                const diffPub = ((avgSesi - avgPub) / avgPub) * 100;
-                const diffPriv = ((avgSesi - avgPriv) / avgPriv) * 100;
-
-                const stateNames = selectedStates.map(uf => statesData2024[uf].nome).join(', ').replace(/, ([^,]*)$/, ' e $1');
-                const areaNomeFormatado = areaDefinitions[selectedArea].nome;
-                let texto = "";
-
-                const hasSesi = selectedNetworks.includes('sesi');
-                const hasPub = selectedNetworks.includes('pub');
-                const hasPriv = selectedNetworks.includes('priv');
-
-                if (hasSesi && hasPub && hasPriv) {
-                    pubDiffEl.innerText = '+' + diffPub.toFixed(2) + '%';
-                    pubDiffEl.className = "text-4xl font-black text-[#52AE32]";
-                    privDiffEl.innerText = diffPriv.toFixed(2) + '%';
-                    privDiffEl.className = "text-3xl font-black text-orange-500";
-                    texto = `Analisando <strong>${areaNomeFormatado}</strong> em <strong>${stateNames}</strong>, o SESI demonstra sua dupla força estratégica. A expressiva margem média de <strong>+${diffPub.toFixed(1)}%</strong> sobre a rede pública comprova nossa "Vitória Social". Simultaneamente, a diferença de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> para a rede privada mapeia nosso <strong>Mercado Endereçável (TAM)</strong> de crescimento.`;
-                } else if (hasSesi && hasPub && !hasPriv) {
-                    pubDiffEl.innerText = '+' + diffPub.toFixed(2) + '%';
-                    pubDiffEl.className = "text-4xl font-black text-[#52AE32]";
-                    privDiffEl.innerText = "N/A";
-                    privDiffEl.className = "text-3xl font-black text-gray-300";
-                    texto = `O isolamento do cruzamento entre SESI e Rede Pública em <strong>${areaNomeFormatado}</strong> escancara a nossa <strong>Superioridade Metodológica</strong> em <strong>${stateNames}</strong>. Com uma dianteira média de <strong>+${diffPub.toFixed(1)}%</strong>, fica provado estatisticamente que a Rede SESI blinda o aluno das deficiências sistêmicas estatais.`;
-                } else if (hasSesi && hasPriv && !hasPub) {
-                    pubDiffEl.innerText = "N/A";
-                    pubDiffEl.className = "text-4xl font-black text-gray-300";
-                    privDiffEl.innerText = diffPriv.toFixed(2) + '%';
-                    privDiffEl.className = "text-3xl font-black text-orange-500";
-                    texto = `Ao compararmos o SESI exclusivamente com a Rede Privada em <strong>${areaNomeFormatado}</strong> (${stateNames}), visualizamos a nossa <strong>Fronteira de Expansão Comercial</strong>. O gap atual de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> quantifica a fatia de mercado de alta renda que ainda podemos converter na disciplina.`;
-                } else {
-                    pubDiffEl.innerText = "-";
-                    privDiffEl.innerText = "-";
-                    texto = `<em>Habilite a rede SESI e pelo menos mais um comparador nos filtros acima para extrair insights estratégicos.</em>`;
-                }
-
+                selectedStates.forEach(uf => { sumSesi += statesData2024[uf].areas[selectedArea].sesi; sumPub += statesData2024[uf].areas[selectedArea].pub; sumPriv += statesData2024[uf].areas[selectedArea].priv; });
+                const avgSesi = sumSesi / selectedStates.length; const avgPub = sumPub / selectedStates.length; const avgPriv = sumPriv / selectedStates.length;
+                const diffPub = ((avgSesi - avgPub) / avgPub) * 100; const diffPriv = ((avgSesi - avgPriv) / avgPriv) * 100;
+                const stateNames = selectedStates.map(uf => statesData2024[uf].nome).join(', ').replace(/, ([^,]*)$/, ' e $1'); const areaNomeFormatado = areaDefinitions[selectedArea].nome;
+                let texto = ""; const hasSesi = selectedNetworks.includes('sesi'); const hasPub = selectedNetworks.includes('pub'); const hasPriv = selectedNetworks.includes('priv');
+                if (hasSesi && hasPub && hasPriv) { pubDiffEl.innerText = '+' + diffPub.toFixed(2) + '%'; pubDiffEl.className = "text-4xl font-black text-[#52AE32]"; privDiffEl.innerText = diffPriv.toFixed(2) + '%'; privDiffEl.className = "text-3xl font-black text-orange-500"; texto = `Analisando <strong>${areaNomeFormatado}</strong> em <strong>${stateNames}</strong>, o SESI demonstra sua dupla força estratégica. A expressiva margem média de <strong>+${diffPub.toFixed(1)}%</strong> sobre a rede pública comprova nossa "Vitória Social". Simultaneamente, a diferença de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> para a rede privada mapeia nosso <strong>Mercado Endereçável (TAM)</strong> de crescimento.`; } else if (hasSesi && hasPub && !hasPriv) { pubDiffEl.innerText = '+' + diffPub.toFixed(2) + '%'; pubDiffEl.className = "text-4xl font-black text-[#52AE32]"; privDiffEl.innerText = "N/A"; privDiffEl.className = "text-3xl font-black text-gray-300"; texto = `O isolamento do cruzamento entre SESI e Rede Pública em <strong>${areaNomeFormatado}</strong> escancara a nossa <strong>Superioridade Metodológica</strong> em <strong>${stateNames}</strong>. Com uma dianteira média de <strong>+${diffPub.toFixed(1)}%</strong>, fica provado estatisticamente que a Rede SESI blinda o aluno das deficiências sistêmicas estatais.`; } else if (hasSesi && hasPriv && !hasPub) { pubDiffEl.innerText = "N/A"; pubDiffEl.className = "text-4xl font-black text-gray-300"; privDiffEl.innerText = diffPriv.toFixed(2) + '%'; privDiffEl.className = "text-3xl font-black text-orange-500"; texto = `Ao compararmos o SESI exclusivamente com a Rede Privada em <strong>${areaNomeFormatado}</strong> (${stateNames}), visualizamos a nossa <strong>Fronteira de Expansão Comercial</strong>. O gap atual de <strong>${Math.abs(diffPriv).toFixed(1)}%</strong> quantifica a fatia de mercado de alta renda que ainda podemos converter na disciplina.`; } else { pubDiffEl.innerText = "-"; privDiffEl.innerText = "-"; texto = `<em>Habilite a rede SESI e pelo menos mais um comparador nos filtros acima para extrair insights estratégicos.</em>`; }
                 insightEl.innerHTML = texto;
             }
 
             function updateMultiChart() {
-                const labels = selectedStates.map(uf => statesData2024[uf].nome);
-                const dinamicDatasets = [];
-
-                if (selectedNetworks.includes('pub')) {
-                    dinamicDatasets.push({ label: 'Rede Pública', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].pub), backgroundColor: '#d1d5db', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 });
-                }
-                if (selectedNetworks.includes('sesi')) {
-                    dinamicDatasets.push({ label: 'Rede SESI', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].sesi), backgroundColor: '#52AE32', borderRadius: 6, barPercentage: 0.9, categoryPercentage: 0.9, borderWidth: 2, borderColor: '#fff' });
-                }
-                if (selectedNetworks.includes('priv')) {
-                    dinamicDatasets.push({ label: 'Rede Privada', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].priv), backgroundColor: '#fb923c', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 });
-                }
-
+                const labels = selectedStates.map(uf => statesData2024[uf].nome); const dinamicDatasets = [];
+                if (selectedNetworks.includes('pub')) { dinamicDatasets.push({ label: 'Rede Pública', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].pub), backgroundColor: '#d1d5db', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 }); }
+                if (selectedNetworks.includes('sesi')) { dinamicDatasets.push({ label: 'Rede SESI', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].sesi), backgroundColor: '#52AE32', borderRadius: 6, barPercentage: 0.9, categoryPercentage: 0.9, borderWidth: 2, borderColor: '#fff' }); }
+                if (selectedNetworks.includes('priv')) { dinamicDatasets.push({ label: 'Rede Privada', data: selectedStates.map(uf => statesData2024[uf].areas[selectedArea].priv), backgroundColor: '#fb923c', borderRadius: 4, barPercentage: 0.8, categoryPercentage: 0.8 }); }
                 generateMultiInsight();
-
                 if (multiChartInstance) multiChartInstance.destroy();
-                
-                const maxY = selectedArea === 'redacao' ? 1000 : 750;
-                const minY = selectedArea === 'redacao' ? 400 : 450;
-
-                multiChartInstance = new Chart(ctxMulti, {
-                    type: 'bar',
-                    data: { labels: labels, datasets: dinamicDatasets },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'top', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' } } },
-                            datalabels: { anchor: 'end', align: 'top', color: (c) => c.dataset.label === 'Rede SESI' ? '#3e8824' : '#6b7280', font: (c) => ({ weight: c.dataset.label === 'Rede SESI' ? '900' : 'normal', size: c.dataset.label === 'Rede SESI' ? 13 : 11 }), formatter: (value) => value.toFixed(1) }
-                        },
-                        scales: { y: { display: false, min: minY, suggestedMax: maxY }, x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 13 } } } },
-                        layout: { padding: { top: 30 } }
-                    }
-                });
+                const maxY = selectedArea === 'redacao' ? 1000 : 750; const minY = selectedArea === 'redacao' ? 400 : 450;
+                multiChartInstance = new Chart(ctxMulti, { type: 'bar', data: { labels: labels, datasets: dinamicDatasets }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' } } }, datalabels: { anchor: 'end', align: 'top', color: (c) => c.dataset.label === 'Rede SESI' ? '#3e8824' : '#6b7280', font: (c) => ({ weight: c.dataset.label === 'Rede SESI' ? '900' : 'normal', size: c.dataset.label === 'Rede SESI' ? 13 : 11 }), formatter: (value) => value.toFixed(1) } }, scales: { y: { display: false, min: minY, suggestedMax: maxY }, x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 13 } } } }, layout: { padding: { top: 30 } } } });
             }
 
-            renderStateFilters();
-            renderNetworkFilters();
-            renderAreaFilters();
-            updateMultiChart();
+            renderStateFilters(); renderNetworkFilters(); renderAreaFilters(); updateMultiChart();
 
             // ==========================================
             // MOTOR 3: ANÁLISE DE MERCADO & EJA
             // ==========================================
             function renderEjaChart(canvasId, totalPrivada, totalOutrosSesi, totalEjaSesi, isGoias) {
-                const ctx = document.getElementById(canvasId).getContext('2d');
-                const labelConcorrente = isGoias ? 'Adventista (2º)' : 'Adventista (2º)';
-                const concorrenteValor = isGoias ? 8527 : 261510;
+                const ctx = document.getElementById(canvasId).getContext('2d'); const labelConcorrente = isGoias ? 'Adventista (2º)' : 'Adventista (2º)'; const concorrenteValor = isGoias ? 8527 : 261510;
+                new Chart(ctx, { type: 'bar', data: { labels: ['Rede SESI', labelConcorrente], datasets: [ { label: 'Alunos Regulares (Orgânico)', data: [totalOutrosSesi, concorrenteValor], backgroundColor: isGoias ? ['#3e8824', '#d1d5db'] : ['#4b5563', '#d1d5db'], stack: 'Stack 0', borderRadius: {bottomLeft: 4, bottomRight: 4, topLeft: 0, topRight: 0} }, { label: 'Alunos EJA (Subsidiado)', data: [totalEjaSesi, 0], backgroundColor: isGoias ? '#8cd175' : '#9ca3af', stack: 'Stack 0', borderRadius: {topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0} } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: {size: 10} } }, datalabels: { display: (c) => c.datasetIndex === 1 || (c.datasetIndex === 0 && c.dataIndex === 1), anchor: 'end', align: 'top', color: isGoias ? '#52AE32' : '#6b7280', font: { weight: 'bold', size: 12 }, formatter: (v, c) => (c.dataIndex === 0 ? (totalOutrosSesi + totalEjaSesi) : v).toLocaleString('pt-BR') } }, scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, display: false } }, layout: { padding: { top: 25 } } } });
+            }
+            renderEjaChart('ejaBrasilChart', 261510, 295932 - 59681, 59681, false); renderEjaChart('ejaGoiasChart', 8527, 10519 - 1423, 1423, true);
 
-                new Chart(ctx, {
+            new Chart(document.getElementById('centroOesteDoughnut').getContext('2d'), { type: 'doughnut', data: { labels: ['SESI Goiás', 'Outros DRs (Centro-Oeste)'], datasets: [{ data: [10519, 22157 - 10519], backgroundColor: ['#212529', '#e5e7eb'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { display: false }, tooltip: { enabled: false }, datalabels: { display: true, color: (context) => context.dataIndex === 0 ? '#fff' : '#6b7280', font: { weight: 'bold', size: 12 }, formatter: (value, context) => { let sum = 0; context.chart.data.datasets[0].data.forEach(data => { sum += data; }); return (value * 100 / sum).toFixed(1) + "%"; } } } } });
+
+            // ==========================================
+            // MOTOR 4: ROBÓTICA NACIONAL (PROCESSANDO PLANILHA DE DADOS REAL)
+            // ==========================================
+            const csvNacionalRealData = `Estado;UF;Regional do SESI;Torneio;Ano;Temporada;Modalidade;Quantidade de Equipes;Qtd. equipes com vínculo SESI/SENAI explícito;Escopo da contagem;Equipe(s);Posição no torneio;Classificadas Internacional;País etapa internacional;Total medalhas de ouro;Total medalhas de prata;Total medalhas de bronze;Prêmios sem ranqueamento;Total Premiações;Fonte ID;Fonte;URL da fonte;Confiabilidade;Observações de auditoria
+Espírito Santo;ES;SESI Espírito Santo (ES);Festival SESI de Robótica 2022;2022;2021/2022;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Pocadores;1º lugar geral;Não;-;1;0;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;"Fonte pública lista F1 in Schools; temporada 2021/2022."
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Robótica 2022;2022;2021/2022;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Spark;2º lugar geral;Não;-;0;1;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Fonte pública lista F1 in Schools.
+Paraná;PR;SESI Paraná (PR);Festival SESI de Robótica 2022;2022;2021/2022;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Takion;"3º lugar geral; 1º lugar corrida mata-mata";Não;-;1;0;1;0;2;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Mesma equipe premiada em geral e corrida mata-mata.
+Tocantins;TO;SESI Tocantins (TO);Festival SESI de Robótica 2022;2022;2021/2022;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Tucana;2º lugar corrida mata-mata;Não;-;0;1;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Premiação específica da corrida mata-mata.
+Alagoas;AL;SESI Alagoas (AL);Festival SESI de Robótica 2022;2022;2021/2022;FTC;1;1;Evidência pública de equipe/resultado;FTCAMB;1º lugar - Inspire Award;Não;-;1;0;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Premiação principal FTC.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2022;2022;2021/2022;FTC;2;2;Evidência pública de equipe/resultado;"Geartech Canaã; Output Jundiaí";2º e 3º lugares - Inspire Award;Não;-;0;1;1;0;2;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Duas equipes de GO com pódio no Inspire Award.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2022;2022;2021/2022;FTC;2;1;Evidência pública de equipe/resultado;Geartech Canaã + Brainmachine;Aliança vencedora FTC;Não;-;2;0;0;0;2;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Robótica 2022;2022;2021/2022;FTC;2;0;Evidência pública de equipe/resultado;"Under Ctrl; Cavalo Vendado";"Aliança vencedora; aliança finalista";Não;-;1;1;0;0;2;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Estado aparece em aliança vencedora e finalista.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Robótica 2022;2022;2021/2022;FTC;1;0;Evidência pública de equipe/resultado;Agrotech;Aliança finalista FTC;Não;-;0;1;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança finalista.
+Paraná;PR;SESI Paraná (PR);Festival SESI de Robótica 2022;2022;2021/2022;FTC;1;0;Evidência pública de equipe/resultado;Nautilus;Aliança finalista FTC;Não;-;0;1;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança finalista.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Robótica 2022;2022;2021/2022;FLLC;1;1;Evidência pública de equipe/resultado;Halley;1º lugar - Champion's Award;Sim;Brasil - Open Internacional Rio;1;0;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Champion's Award nacional.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2022;2022;2021/2022;FLLC;2;2;Evidência pública de equipe/resultado;"LJ Origens; Titans LJ Planalto";2º e 3º lugares - Champion's Award;Sim;Brasil - Open Internacional Rio;0;1;1;0;2;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;As equipes campeãs/colocadas foram indicadas a torneios abertos/mundiais conforme notícia.
+Minas Gerais;MG;SESI Minas Gerais (MG);Festival SESI de Robótica 2022;2022;2021/2022;FLLC;2;0;Evidência pública de equipe/resultado;"Atombot; Delta";"4º Champion's Award; Aliança vencedora";Sim;Brasil - Open Internacional Rio;1;0;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;"Medalha atribuída à Aliança vencedora; 4º lugar sem medalha."
+Pernambuco;PE;SESI Pernambuco (PE);Festival SESI de Robótica 2022;2022;2021/2022;FLLC;1;0;Evidência pública de equipe/resultado;Visão Eletronsbot;Aliança vencedora;Sim;Brasil - Open Internacional Rio;1;0;0;0;1;F06;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2021-2022;https://noticias.portaldaindustria.com.br/noticias/robotica/e-campeao-os-vencedores-do-festival-sesi-de-robotica-2022/;A - fonte oficial SESI/CNI;Medalha atribuída à Aliança vencedora.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Robótica 2023;2023;2022/2023;FLLC;3;3;Evidência pública de equipe/resultado;"Halley + SESI Heroes; Red Rabbit";"Aliança vencedora; 2º Champion's Award";Sim;A definir / torneios abertos;2;1;0;0;3;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;SP aparece em aliança vencedora e em 2º lugar do Champion's Award.
+Minas Gerais;MG;SESI Minas Gerais (MG);Festival SESI de Robótica 2023;2023;2022/2023;FLLC;2;1;Evidência pública de equipe/resultado;"Lego Bros; Amigos Droids";1º e 3º lugares - Champion's Award;Sim;A definir / torneios abertos;1;0;1;0;2;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;"Lego Bros vinculada ao SESI; Amigos Droids indicada como equipe de garagem."
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2023;2023;2022/2023;FLLC;1;1;Evidência pública de equipe/resultado;Robotic Engineers;4º lugar - Champion's Award;Não localizada;-;0;0;0;0;0;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Resultado ranqueado sem medalha ouro/prata/bronze.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2023;2023;2022/2023;STEM Racing / F1 in Schools;1;1;Evidência pública de equipe/resultado;Mach One Planalto;1º lugar geral;Sim;Singapura;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Fonte informa preparação para mundial de Singapura.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Robótica 2023;2023;2022/2023;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Alpha;"2º lugar geral; 2º corrida mata-mata";Não localizada;-;0;2;0;0;2;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Mesma equipe com duas premiações de prata.
+Espírito Santo;ES;SESI Espírito Santo (ES);Festival SESI de Robótica 2023;2023;2022/2023;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Hyoku;3º lugar geral;Não localizada;-;0;0;1;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Premiação geral F1.
+Tocantins;TO;SESI Tocantins (TO);Festival SESI de Robótica 2023;2023;2022/2023;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Tucuna;1º lugar corrida mata-mata;Não localizada;-;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Premiação corrida mata-mata.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2023;2023;2022/2023;FTC;1;1;Evidência pública de equipe/resultado;Justice FTC Team;1º lugar - Inspire Award;Não localizada;-;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Premiação principal FTC.
+Maranhão;MA;SESI Maranhão (MA);Festival SESI de Robótica 2023;2023;2022/2023;FTC;1;0;Evidência pública de equipe/resultado;Falcons;2º lugar - Inspire Award;Não localizada;-;0;1;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Premiação principal FTC.
+Pará;PA;SESI Pará (PA);Festival SESI de Robótica 2023;2023;2022/2023;FTC;1;0;Evidência pública de equipe/resultado;Ananintech;3º lugar - Inspire Award;Não localizada;-;0;0;1;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Premiação principal FTC.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Robótica 2023;2023;2022/2023;FTC;2;1;Evidência pública de equipe/resultado;"AgroTech; TechMaker";"Aliança vencedora; aliança finalista";Não localizada;-;1;1;0;0;2;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante de aliança.
+Rio de Janeiro;RJ;SESI Rio de Janeiro (RJ);Festival SESI de Robótica 2023;2023;2022/2023;FTC;1;0;Evidência pública de equipe/resultado;Alpha Byte;Aliança vencedora;Não localizada;-;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança vencedora.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Robótica 2023;2023;2022/2023;FTC;1;0;Evidência pública de equipe/resultado;Cavalo Vendado;Aliança vencedora;Não localizada;-;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança vencedora.
+Alagoas;AL;SESI Alagoas (AL);Festival SESI de Robótica 2023;2023;2022/2023;FTC;2;1;Evidência pública de equipe/resultado;"FTCAMB; FTBEN";Aliança finalista;Não localizada;-;0;2;0;0;2;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança finalista.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Robótica 2023;2023;2022/2023;FRC;3;3;Evidência pública de equipe/resultado;"SESI SENAI Megazord; Robonáticos; Stardust";"Event Winner; Event Finalist; Impact Award";Não localizada;-;1;2;0;1;4;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;"Medalhas por posição de aliança; Impact Award lançado em prêmios sem ranqueamento."
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Robótica 2023;2023;2022/2023;FRC;1;0;Evidência pública de equipe/resultado;Under Control;Event Winner;Não localizada;-;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança vencedora.
+Mato Grosso;MT;SESI Mato Grosso (MT);Festival SESI de Robótica 2023;2023;2022/2023;FRC;1;0;Evidência pública de equipe/resultado;Agrobot;Event Winner;Não localizada;-;1;0;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança vencedora.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Robótica 2023;2023;2022/2023;FRC;1;0;Evidência pública de equipe/resultado;BrainMachine;Event Finalist;Não localizada;-;0;1;0;0;1;F05;Agência de Notícias da Indústria/CNI - Festival SESI de Robótica 2022-2023;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-robotica-2023/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança finalista.
+Minas Gerais;MG;SESI Minas Gerais (MG);Festival SESI de Educação 2023-2024;2024;2023/2024;FTC;2;0;Evidência pública de equipe/resultado;"Amigos Droids; Tech Zeus";"1º Inspire; Aliança vencedora";Sim;Estados Unidos - Houston;2;0;0;0;2;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Ambas aparecem como classificadas ao mundial FIRST.
+Maranhão;MA;SESI Maranhão (MA);Festival SESI de Educação 2023-2024;2024;2023/2024;FTC;1;0;Evidência pública de equipe/resultado;Everest;2º Inspire Award;Sim;Estados Unidos - Houston;0;1;0;0;1;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Equipe listada entre classificadas para mundial FIRST.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2023-2024;2024;2023/2024;FTC;1;1;Evidência pública de equipe/resultado;Justice FTC Team;3º Inspire Award;Não localizada;-;0;0;1;0;1;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Pódio nacional FTC.
+Paraíba;PB;SESI Paraíba (PB);Festival SESI de Educação 2023-2024;2024;2023/2024;FTC;1;0;Evidência pública de equipe/resultado;Criadores do Amanhã;Aliança vencedora;Não localizada;-;1;0;0;0;1;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança vencedora.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Educação 2023-2024;2024;2023/2024;FTC;1;0;Evidência pública de equipe/resultado;Cavalo Vendado;Aliança vencedora;Não localizada;-;1;0;0;0;1;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Contagem por equipe integrante da aliança vencedora.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Educação 2023-2024;2024;2023/2024;FRC;1;0;Evidência pública de equipe/resultado;Under Control;Event Winner;Sim;Estados Unidos - Houston;1;0;0;0;1;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Equipe listada entre classificadas para mundial FIRST.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2023-2024;2024;2023/2024;FRC;2;2;Evidência pública de equipe/resultado;"Robonáticos; Bulls Steel";"Event Winner; Event Finalist";Sim;Estados Unidos - Houston;1;1;0;0;2;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;"Robonáticos em aliança vencedora e listado ao mundial; Bulls Steel finalista."
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2023-2024;2024;2023/2024;FRC;2;0;Evidência pública de equipe/resultado;"Infinity BR; BrainMachine";"Event Winner; Creativity Award";Sim;Estados Unidos - Houston;1;0;0;1;2;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;"Infinity BR listada ao mundial; Creativity Award sem ranqueamento."
+Mato Grosso;MT;SESI Mato Grosso (MT);Festival SESI de Educação 2023-2024;2024;2023/2024;FRC;2;0;Evidência pública de equipe/resultado;"Canintech; Agrobot";Event Finalist;Não localizada;-;0;2;0;0;2;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Duas equipes do MT finalistas.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2023-2024;2024;2023/2024;FRC;3;3;Evidência pública de equipe/resultado;"Octopus; Robonáticos; JACTECH";"Impact; Engineering Inspiration; Rookie All-Star";Sim;Estados Unidos - Houston;0;0;0;3;3;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;"Prêmios sem ranqueamento numérico; Robonáticos também aparece no bloco de classificação."
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Educação 2023-2024;2024;2023/2024;FRC;1;0;Evidência pública de equipe/resultado;Magic Island;Team Spirit Award;Não localizada;-;0;0;0;1;1;F04;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2023-2024;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2023-2024/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2024-2025;2025;2024/2025;FLLC;4;4;Evidência pública de equipe/resultado;"Heroes; Biotech; Roboecus; Eagles";1º, 2º, 3º e 4º Champion's Award;Sim;Estados Unidos - Houston;1;1;1;0;3;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Três equipes de SP foram classificadas ao mundial FIRST.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Educação 2024-2025;2025;2024/2025;FTC;1;1;Evidência pública de equipe/resultado;Unimate SESI SENAI SC;Aliança vencedora FTC;Sim;Estados Unidos - Houston;1;0;0;0;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Equipe classificada para Houston.
+Sergipe;SE;SESI Sergipe (SE);Festival SESI de Educação 2024-2025;2025;2024/2025;FTC;1;0;Evidência pública de equipe/resultado;Robotech;Aliança vencedora FTC;Sim;Estados Unidos - Houston;1;0;0;0;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Equipe classificada para Houston.
+Maranhão;MA;SESI Maranhão (MA);Festival SESI de Educação 2024-2025;2025;2024/2025;FTC;1;0;Evidência pública de equipe/resultado;Falcon;1º Inspire Award;Sim;Estados Unidos - Houston;1;0;0;0;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Equipe classificada para Houston.
+Minas Gerais;MG;SESI Minas Gerais (MG);Festival SESI de Educação 2024-2025;2025;2024/2025;FTC;2;0;Evidência pública de equipe/resultado;"Amigos Droids; Starbots";2º e 3º Inspire Award;Não localizada;-;0;1;1;0;2;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Duas equipes de MG com pódio no Inspire.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2024-2025;2025;2024/2025;FTC;1;0;Evidência pública de equipe/resultado;BrainMachine;1º Design Award;Não localizada;-;1;0;0;0;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Pódio técnico FTC.
+Espírito Santo;ES;SESI Espírito Santo (ES);Festival SESI de Educação 2024-2025;2025;2024/2025;STEM Racing / F1 in Schools;2;0;Evidência pública de equipe/resultado;"Gear One; Hyoku";Classificadas ao mundial F1 in Schools;Sim;A definir pela organização;0;0;0;0;0;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Fonte lista duas equipes de ES indicadas ao mundial F1.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Educação 2024-2025;2025;2024/2025;STEM Racing / F1 in Schools;1;0;Evidência pública de equipe/resultado;Alpha;Classificada ao mundial F1 in Schools;Sim;A definir pela organização;0;0;0;0;0;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Fonte lista Alpha (SC).
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2024-2025;2025;2024/2025;FRC;2;2;Evidência pública de equipe/resultado;"Megazord; Sharks";Classificadas ao mundial FIRST;Sim;Estados Unidos - Houston;0;0;0;0;0;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Duas equipes de SP classificadas em FRC para Houston.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Educação 2024-2025;2025;2024/2025;FRC;1;0;Evidência pública de equipe/resultado;Under Control;Classificada ao mundial FIRST;Sim;Estados Unidos - Houston;0;0;0;0;0;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Equipe do RS classificada em FRC para Houston.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2024-2025;2025;2024/2025;FRC;1;0;Evidência pública de equipe/resultado;AlphaStorm;"Team Sustainability Award; Dean's List Finalist";Não localizada;-;0;0;0;2;2;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Prêmios sem ranqueamento numérico.
+Bahia;BA;SESI Bahia (BA);Festival SESI de Educação 2024-2025;2025;2024/2025;FRC;1;0;Evidência pública de equipe/resultado;Hydra;Team Sustainability Award;Não localizada;-;0;0;0;1;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Pará;PA;SESI Pará (PA);Festival SESI de Educação 2024-2025;2025;2024/2025;FRC;1;0;Evidência pública de equipe/resultado;ParáTech;Gracious Professionalism Award;Não localizada;-;0;0;0;1;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Paraná;PR;SESI Paraná (PR);Festival SESI de Educação 2024-2025;2025;2024/2025;FRC;1;0;Evidência pública de equipe/resultado;Roosters;Judges Award;Não localizada;-;0;0;0;1;1;F03;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2024-2025;https://noticias.portaldaindustria.com.br/noticias/robotica/os-grandes-vencedores-do-festival-sesi-de-educacao-2024-2025/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;1;1;Evidência pública de equipe/resultado;SESI SENAI SC Pipeline Surfers;"1º Champion's Award; 3º desempenho do robô; 3º técnico/mentor";Sim;Estados Unidos - Houston;1;0;2;0;3;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe classificada para o mundial FIRST e também premiada em outras categorias.
+Mato Grosso;MT;SESI Mato Grosso (MT);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;1;0;Evidência pública de equipe/resultado;Young Inventors;2º Champion's Award;Sim;Estados Unidos - Houston;0;1;0;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe classificada para Houston.
+Distrito Federal;DF;SESI Distrito Federal (DF);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;1;0;Evidência pública de equipe/resultado;Albatroid;"3º Champion's Award; 1º desempenho do robô";Sim;Estados Unidos - Houston;1;0;1;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe classificada para Houston.
+Maranhão;MA;SESI Maranhão (MA);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;3;0;Evidência pública de equipe/resultado;"Unimate; Gipsy Danger; Dracarys";"4º Champion's Award; 3º inovação; 4º desempenho";Sim;Canadá / Coreia / a definir;0;0;1;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Coreia/Canadá aparecem para equipes abertas; 4ºs não contam medalhas."
+Pará;PA;SESI Pará (PA);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;2;0;Evidência pública de equipe/resultado;"Tamba Taja Tech; Jurunabots";"Aliança vencedora; prêmio revelação";Não localizada;-;1;0;0;1;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Aliança vencedora com medalha; prêmio revelação sem ranqueamento."
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;5;1;Evidência pública de equipe/resultado;"Robotics School; Robotics Schools; Red Rabbit; Morvan; Pardoboots";"Aliança vencedora; 3º Core Values; 2º, 3º e 4º Design";Sim;Califórnia / a definir;1;1;2;0;4;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Inclui equipes de SP premiadas em múltiplas categorias; 4º sem medalha."
+Bahia;BA;SESI Bahia (BA);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;2;0;Evidência pública de equipe/resultado;"Robolife; Gênius";1º e 2º Core Values;Não localizada;-;1;1;0;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Pódio Core Values.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;5;2;Evidência pública de equipe/resultado;"Life SESI Canaã; Nanomasters; Born to Fight; Titans L.J. Planalto; Geek Canaã";"4º Core Values; 1º Inovação; 1º Design; Prêmio SESI/Guidon; Excelência Engenharia";Sim;Austrália / Grécia / a definir;2;0;0;2;4;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Duas premiações com 1º lugar; prêmios extraoficiais sem ranqueamento; Geek Canaã listada para Austrália."
+Pernambuco;PE;SESI Pernambuco (PE);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;1;0;Evidência pública de equipe/resultado;Kyrios Lego;Girl Inspire FIRST LEGO Girls;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio extraoficial sem ranqueamento numérico.
+Rio Grande do Norte;RN;SESI Rio Grande do Norte (RN);Festival SESI de Educação 2025-2026;2026;2025/2026;FLLC;1;1;Evidência pública de equipe/resultado;SESI Batlego;Prêmio Motivação extraoficial;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Sergipe;SE;SESI Sergipe (SE);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Robotech FTC;"Aliança vencedora; 2º Design Award";Sim;Estados Unidos - Houston;1;1;0;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe avançou à etapa mundial FTC e aparece na delegação de Houston.
+Pernambuco;PE;SESI Pernambuco (PE);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;3;1;Evidência pública de equipe/resultado;"Space Tech; Unity Sunset; Rev Atom";"Aliança vencedora; 1º Control; 1º e 2º Think; 3º Inspire";Sim;Estados Unidos - Houston / Premier Events;3;1;1;0;5;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"PE tem três equipes avançadas; Space Tech na delegação de Houston."
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;3;3;Evidência pública de equipe/resultado;"SESI SENAI SC TechMaker Challenge; Unimate SESI SENAI SC; SESI SENAI SC AgroTech";"Aliança finalista; 2º Sustain; 2º Innovate; 2º Control";Sim;Premier Events / Estados Unidos - Houston;0;4;0;0;4;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Duas equipes avançadas; SC também aparece com AgroTech no Sustain."
+Espírito Santo;ES;SESI Espírito Santo (ES);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;2;1;Evidência pública de equipe/resultado;"Tech Dragons; Atlas";"1º Sustain; Leadership finalist";Sim;Estados Unidos - Houston / Premier Events;1;0;0;1;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Tech Dragons avançou à etapa mundial; Atlas aparece em liderança sem ranqueamento."
+Mato Grosso;MT;SESI Mato Grosso (MT);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Dumonters;3º Sustain;Não localizada;-;0;0;1;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Pódio Sustain.
+Minas Gerais;MG;SESI Minas Gerais (MG);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;2;0;Evidência pública de equipe/resultado;"Amigos Droids; Starbots FTC";1º e 3º Inspire Award;Sim;Estados Unidos - Houston / Premier Events;1;0;1;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Amigos Droids avançou à etapa mundial.
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;3;2;Evidência pública de equipe/resultado;"Justice FTC Team; BrainMachine; Output Jundiaí";"2º Inspire; 3º Connect; 1º Innovate";Sim;Estados Unidos - Houston / Premier Events;1;1;1;0;3;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Justice e BrainMachine listadas entre equipes avançadas; Output Jundiaí premiada em Innovate."
+Paraíba;PB;SESI Paraíba (PB);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Criadores;3º Think Award;Não localizada;-;0;0;1;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Pódio Think.
+Alagoas;AL;SESI Alagoas (AL);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;1;Evidência pública de equipe/resultado;SESI FTCAMB;"1º Reach Award; Leadership finalist; Compass Award";Não localizada;-;1;0;0;2;3;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Premiações sem ranqueamento adicional em liderança/compass.
+Rio Grande do Norte;RN;SESI Rio Grande do Norte (RN);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;1;Evidência pública de equipe/resultado;SESI BAT TECH;"1º Connect; Compass Award";Não localizada;-;1;0;0;1;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Compass sem ranqueamento numérico.
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;2;1;Evidência pública de equipe/resultado;"SESI Thunderbóticos; Alta Voltagem";"2º Connect; 3º Reach";Não localizada;-;0;1;1;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Pódios Connect/Reach.
+Bahia;BA;SESI Bahia (BA);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Hydra;3º Innovate Award;Não localizada;-;0;0;1;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Pódio Innovate.
+Paraná;PR;SESI Paraná (PR);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;1;Evidência pública de equipe/resultado;SESI SENAI Brontobyte FTC;"3º Control; 3º Design";Sim;Premier Events;0;0;2;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe avançou à etapa mundial FTC.
+Maranhão;MA;SESI Maranhão (MA);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Equipe FTC MA;1º Design Award;Sim;Canadá / Premier Events;1;0;0;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe do MA aparece em Design e Unimate em Open Canadá na fonte.
+Rio de Janeiro;RJ;SESI Rio de Janeiro (RJ);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Tech Fenix;Equipe avançada à etapa mundial FTC;Sim;Premier Events;0;0;0;0;0;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Classificação internacional sem pódio localizado na fonte.
+Mato Grosso do Sul;MS;SESI Mato Grosso do Sul (MS);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Tech Vikings;Equipe avançada à etapa mundial FTC;Sim;Premier Events;0;0;0;0;0;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Classificação internacional sem pódio localizado na fonte.
+Pará;PA;SESI Pará (PA);Festival SESI de Educação 2025-2026;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Equipe PA;Judges Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;2;0;Evidência pública de equipe/resultado;"Under Control; Cavalo Vendado";"1º e 3º Event Winner; semifinal mundial posterior";Sim;Estados Unidos - Houston;1;0;1;0;2;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Duas equipes do RS na aliança vencedora; delegação Houston confirma RS com 2 equipes."
+São Paulo;SP;SESI São Paulo (SP);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;4;3;Evidência pública de equipe/resultado;"SESI SENAI Megazord; SESI SENAI Robonáticos; Steel Bulls; Octopus";"2º Event Winner; Event Finalist; Impact/Judges";Sim;Estados Unidos - Houston;0;3;0;2;5;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"Megazord e Robonáticos classificadas a Houston; Octopus premiada no mundial."
+Ceará;CE;SESI Ceará (CE);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;All Might;"4º Event Winner; Imagery Award";Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;"4º lugar não conta medalha; Imagery sem ranqueamento."
+Goiás;GO;SESI Goiás (GO);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;BrainMachine-FRC;Event Finalist;Sim;Estados Unidos - Houston;0;1;0;0;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Equipe classificada para Houston.
+Distrito Federal;DF;SESI Distrito Federal (DF);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;Robot's District;Engineering Excellence Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Pará;PA;SESI Pará (PA);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;ParaTech;Gracious Professionalism Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Santa Catarina;SC;SESI Santa Catarina (SC);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;CyberRain;Rising All-Star Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Minas Gerais;MG;SESI Minas Gerais (MG);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;ATOMIIC;Quality Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Bahia;BA;SESI Bahia (BA);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;Hydra;Team Sustainability Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Mato Grosso;MT;SESI Mato Grosso (MT);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;Agrotech;Judges Award;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Prêmio sem ranqueamento numérico.
+Alagoas;AL;SESI Alagoas (AL);Festival SESI de Educação 2025-2026;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;BBTech;Dean's List Finalist;Não localizada;-;0;0;0;1;1;F02;Agência de Notícias da Indústria/CNI - Festival SESI de Educação 2025-2026;https://noticias.portaldaindustria.com.br/noticias/robotica/festival-sesi-de-educacao-20252026-veja-quem-sao-os-grandes-vencedores/;A - fonte oficial SESI/CNI;Reconhecimento individual/da equipe sem ranqueamento.
+Distrito Federal;DF;SESI Distrito Federal (DF);FIRST Championship;2026;2025/2026;FLLC;1;0;Evidência pública de equipe/resultado;Albatroid;Rising All-Star Award;Sim;Estados Unidos;0;0;0;1;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Prêmio mundial sem ranqueamento ouro/prata/bronze.
+Santa Catarina;SC;SESI Santa Catarina (SC);FIRST Championship;2026;2025/2026;FLLC;1;1;Evidência pública de equipe/resultado;Pipeline Surfers;Champion's Award Finalist - top 5 mundial;Sim;Estados Unidos;0;0;0;1;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Finalista mundial, não tratado como prata por ausência de 2º lugar explícito.
+Minas Gerais;MG;SESI Minas Gerais (MG);FIRST Championship;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Amigos Droids;"1º Inspiration Award; Impact Award divisão e geral";Sim;Estados Unidos;1;0;0;2;3;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Impact Award lançado como prêmio sem ranqueamento adicional.
+Pernambuco;PE;SESI Pernambuco (PE);FIRST Championship;2026;2025/2026;FTC;1;1;Evidência pública de equipe/resultado;Space Tech (SESI Paulista/PE);3º Inspiration Award;Sim;Estados Unidos;0;0;1;0;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Premiação mundial FTC.
+Sergipe;SE;SESI Sergipe (SE);FIRST Championship;2026;2025/2026;FTC;1;0;Evidência pública de equipe/resultado;Robotech FTC;2º Design Award;Sim;Estados Unidos;0;1;0;0;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Premiação mundial FTC.
+Espírito Santo;ES;SESI Espírito Santo (ES);FIRST Championship;2026;2025/2026;FTC;1;1;Evidência pública de equipe/resultado;Tech Dragons (SESI Cachoeiro do Itapemirim/ES);1º Design Award;Sim;Estados Unidos;1;0;0;0;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Premiação mundial FTC.
+Goiás;GO;SESI Goiás (GO);FIRST Championship;2026;2025/2026;FTC;1;1;Evidência pública de equipe/resultado;Justice Team (SESI Goiânia/GO);2º Sustainability Award;Sim;Estados Unidos;0;1;0;0;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Premiação mundial FTC.
+São Paulo;SP;SESI São Paulo (SP);FIRST Championship;2026;2025/2026;FRC;1;1;Evidência pública de equipe/resultado;Octopus;Judges Award;Sim;Estados Unidos;0;0;0;1;1;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Prêmio mundial sem ranqueamento numérico.
+Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/2026;FRC;1;0;Evidência pública de equipe/resultado;Under Control;Semifinalista mundial;Sim;Estados Unidos;0;0;0;0;0;F08;Agência de Notícias da Indústria/CNI - Resultados Brasil FIRST Championship 2026;https://noticias.portaldaindustria.com.br/noticias/robotica/brasil-conquista-9-premios-na-maior-competicao-de-robotica-do-mundo-em-houston/;A - fonte oficial SESI/CNI;Desempenho competitivo sem medalha formal indicada.`;
+
+            // Parser seguro de CSV para contornar problemas com textos que têm ponto-e-vírgula dentro de aspas
+            function parseCSVRow(str) {
+                let result = [];
+                let inQuotes = false;
+                let current = "";
+                for(let i = 0; i < str.length; i++) {
+                    let char = str[i];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ';' && !inQuotes) {
+                        result.push(current);
+                        current = "";
+                    } else {
+                        current += char;
+                    }
+                }
+                result.push(current);
+                return result;
+            }
+
+            const roboticaNacionalData = [];
+            const lines = csvNacionalRealData.trim().split('\n');
+            for(let i = 1; i < lines.length; i++) {
+                const cols = parseCSVRow(lines[i].trim());
+                if(cols.length < 19) continue;
+                
+                // Extraindo o "Total Premiações" isolado na coluna 18.
+                roboticaNacionalData.push({
+                    estado: cols[1].trim(),
+                    torneio: cols[3].trim(),
+                    ano: cols[4].trim(),
+                    modalidade: cols[6].trim(),
+                    qtdEquipes: parseInt(cols[7]) || 0,
+                    posicao: cols[11].trim(),
+                    ouro: parseInt(cols[14]) || 0,
+                    prata: parseInt(cols[15]) || 0,
+                    bronze: parseInt(cols[16]) || 0,
+                    outras: parseInt(cols[17]) || 0,
+                    total: parseInt(cols[18]) || 0
+                });
+            }
+
+            const rnEstados = [...new Set(roboticaNacionalData.map(d => d.estado))].sort();
+            const rnTorneios = [...new Set(roboticaNacionalData.map(d => d.torneio))].sort();
+            const rnAnos = [...new Set(roboticaNacionalData.map(d => d.ano))].sort();
+            const rnModalidades = [...new Set(roboticaNacionalData.map(d => d.modalidade))].sort();
+
+            const fillSelect = (id, options) => {
+                const sel = document.getElementById(id);
+                options.forEach(opt => sel.add(new Option(opt, opt)));
+            };
+            fillSelect('rnEstadoFilter', rnEstados);
+            fillSelect('rnTorneioFilter', rnTorneios);
+            fillSelect('rnAnoFilter', rnAnos);
+            fillSelect('rnModalidadeFilter', rnModalidades);
+
+            let rnRankingChartInst = null;
+            let rnEvolucaoChartInst = null;
+
+            function updateRoboticaNacional() {
+                const est = document.getElementById('rnEstadoFilter').value;
+                const tor = document.getElementById('rnTorneioFilter').value;
+                const ano = document.getElementById('rnAnoFilter').value;
+                const mod = document.getElementById('rnModalidadeFilter').value;
+
+                let filtered = roboticaNacionalData.filter(d => {
+                    return (est === 'ALL' || d.estado === est) &&
+                           (tor === 'ALL' || d.torneio === tor) &&
+                           (ano === 'ALL' || d.ano === ano) &&
+                           (mod === 'ALL' || d.modalidade === mod);
+                });
+
+                let kpiTot = 0, kpiO = 0, kpiP = 0, kpiB = 0;
+                let rankMap = {};
+                let evolMap = {};
+                const tableBody = document.getElementById('rnTableBody');
+                tableBody.innerHTML = '';
+
+                filtered.forEach((d, idx) => {
+                    kpiTot += d.total;
+                    kpiO += d.ouro;
+                    kpiP += d.prata;
+                    kpiB += d.bronze;
+
+                    // O somatório leva APENAS os prémios (d.total), ignorando a quantidade de equipas.
+                    rankMap[d.estado] = (rankMap[d.estado] || 0) + d.total;
+                    evolMap[d.ano] = (evolMap[d.ano] || 0) + d.total;
+
+                    if(idx < 100) {
+                        tableBody.innerHTML += `
+                            <tr class="border-b table-row-hover ${d.estado === 'GO' ? 'border-l-4 border-sesi-green bg-green-50/20' : ''}">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">${d.estado}</td>
+                                <td class="px-4 py-3">${d.torneio}</td>
+                                <td class="px-4 py-3">${d.ano}</td>
+                                <td class="px-4 py-3 font-semibold">${d.modalidade}</td>
+                                <td class="px-4 py-3 text-center">${d.qtdEquipes}</td>
+                                <td class="px-4 py-3 text-gray-700">${d.posicao}</td>
+                                <td class="px-4 py-3 text-center text-yellow-600 font-bold">${d.ouro > 0 ? d.ouro : '-'}</td>
+                                <td class="px-4 py-3 text-center text-gray-500 font-bold">${d.prata > 0 ? d.prata : '-'}</td>
+                                <td class="px-4 py-3 text-center text-orange-600 font-bold">${d.bronze > 0 ? d.bronze : '-'}</td>
+                                <td class="px-4 py-3 text-center text-blue-600">${d.outras > 0 ? d.outras : '-'}</td>
+                                <td class="px-4 py-3 text-center font-black text-sesi-dark bg-gray-50/50">${d.total}</td>
+                            </tr>
+                        `;
+                    }
+                });
+
+                document.getElementById('rnKpiTotal').innerText = kpiTot;
+                document.getElementById('rnKpiOuro').innerText = kpiO;
+                document.getElementById('rnKpiPrata').innerText = kpiP;
+                document.getElementById('rnKpiBronze').innerText = kpiB;
+
+                const sortedRanks = Object.entries(rankMap).sort((a,b) => b[1] - a[1]).slice(0, 10);
+                const sortedAnos = Object.keys(evolMap).sort();
+                const evolData = sortedAnos.map(a => evolMap[a]);
+
+                const ctxRank = document.getElementById('rnRankingChart').getContext('2d');
+                if(rnRankingChartInst) rnRankingChartInst.destroy();
+                rnRankingChartInst = new Chart(ctxRank, {
                     type: 'bar',
                     data: {
-                        labels: ['Rede SESI', labelConcorrente],
-                        datasets: [
-                            { label: 'Alunos Regulares (Orgânico)', data: [totalOutrosSesi, concorrenteValor], backgroundColor: isGoias ? ['#3e8824', '#d1d5db'] : ['#4b5563', '#d1d5db'], stack: 'Stack 0', borderRadius: {bottomLeft: 4, bottomRight: 4, topLeft: 0, topRight: 0} },
-                            { label: 'Alunos EJA (Subsidiado)', data: [totalEjaSesi, 0], backgroundColor: isGoias ? '#8cd175' : '#9ca3af', stack: 'Stack 0', borderRadius: {topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0} }
-                        ]
+                        labels: sortedRanks.map(x => x[0]),
+                        datasets: [{
+                            data: sortedRanks.map(x => x[1]),
+                            backgroundColor: sortedRanks.map(x => x[0] === 'GO' ? '#52AE32' : '#a3db8f'),
+                            borderRadius: 4
+                        }]
                     },
                     options: {
                         responsive: true, maintainAspectRatio: false,
                         plugins: {
-                            legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: {size: 10} } },
-                            datalabels: { display: (c) => c.datasetIndex === 1 || (c.datasetIndex === 0 && c.dataIndex === 1), anchor: 'end', align: 'top', color: isGoias ? '#52AE32' : '#6b7280', font: { weight: 'bold', size: 12 }, formatter: (v, c) => (c.dataIndex === 0 ? (totalOutrosSesi + totalEjaSesi) : v).toLocaleString('pt-BR') }
+                            legend: { display: false },
+                            datalabels: { align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: v => v>0?v:'' }
                         },
-                        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, display: false } },
-                        layout: { padding: { top: 25 } }
+                        scales: { y: { display: false, suggestedMax: (sortedRanks[0]?sortedRanks[0][1]:10)*1.2 }, x: { grid: {display:false}, ticks: {font: {weight: 'bold'}} } }
                     }
                 });
-            }
 
-            renderEjaChart('ejaBrasilChart', 261510, 295932 - 59681, 59681, false);
-            renderEjaChart('ejaGoiasChart', 8527, 10519 - 1423, 1423, true);
-
-            new Chart(document.getElementById('centroOesteDoughnut').getContext('2d'), {
-                type: 'doughnut',
-                data: { labels: ['SESI Goiás', 'Outros DRs (Centro-Oeste)'], datasets: [{ data: [10519, 22157 - 10519], backgroundColor: ['#212529', '#e5e7eb'], borderWidth: 0 }] },
-                options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    cutout: '75%', 
-                    plugins: { 
-                        legend: { display: false }, 
-                        tooltip: { enabled: false }, 
-                        datalabels: { 
-                            display: true, 
-                            color: (context) => context.dataIndex === 0 ? '#fff' : '#6b7280', 
-                            font: { weight: 'bold', size: 12 }, 
-                            formatter: (value, context) => { 
-                                let sum = 0; 
-                                context.chart.data.datasets[0].data.forEach(data => { sum += data; }); 
-                                return (value * 100 / sum).toFixed(1) + "%"; 
-                            } 
-                        } 
-                    } 
-                }
-            });
-
-            // ==========================================
-            // MOTOR 4: ROBÓTICA SESI (DATA DISCOVERY GLOBAL)
-            // ==========================================
-            const roboticaRawData = [
-                { id: 'SP', nome: 'São Paulo', history: { '2021': { FLL: 10, FTC: 5, FRC: 2, F1: 1 }, '2022': { FLL: 12, FTC: 6, FRC: 3, F1: 1 }, '2023': { FLL: 14, FTC: 6, FRC: 5, F1: 2 }, '2024': { FLL: 16, FTC: 7, FRC: 7, F1: 3 }, '2025': { FLL: 20, FTC: 8, FRC: 8, F1: 4 } } },
-                { id: 'MG', nome: 'Minas Gerais', history: { '2021': { FLL: 8, FTC: 6, FRC: 1, F1: 1 }, '2022': { FLL: 9, FTC: 7, FRC: 1, F1: 1 }, '2023': { FLL: 10, FTC: 8, FRC: 2, F1: 2 }, '2024': { FLL: 11, FTC: 9, FRC: 2, F1: 2 }, '2025': { FLL: 12, FTC: 12, FRC: 3, F1: 2 } } },
-                { id: 'GO', nome: 'Goiás', history: { '2021': { FLL: 5, FTC: 1, FRC: 0, F1: 0 }, '2022': { FLL: 7, FTC: 2, FRC: 1, F1: 0 }, '2023': { FLL: 10, FTC: 3, FRC: 3, F1: 0 }, '2024': { FLL: 15, FTC: 5, FRC: 4, F1: 0 }, '2025': { FLL: 22, FTC: 7, FRC: 5, F1: 0 } } },
-                { id: 'SC', nome: 'Santa Catarina', history: { '2021': { FLL: 6, FTC: 2, FRC: 0, F1: 3 }, '2022': { FLL: 7, FTC: 2, FRC: 0, F1: 4 }, '2023': { FLL: 8, FTC: 2, FRC: 0, F1: 6 }, '2024': { FLL: 9, FTC: 2, FRC: 0, F1: 8 }, '2025': { FLL: 10, FTC: 3, FRC: 0, F1: 9 } } },
-                { id: 'PR', nome: 'Paraná', history: { '2021': { FLL: 7, FTC: 4, FRC: 0, F1: 0 }, '2022': { FLL: 8, FTC: 5, FRC: 0, F1: 0 }, '2023': { FLL: 9, FTC: 7, FRC: 0, F1: 0 }, '2024': { FLL: 10, FTC: 8, FRC: 0, F1: 0 }, '2025': { FLL: 12, FTC: 9, FRC: 0, F1: 0 } } },
-                { id: 'RS', nome: 'Rio Grande do Sul', history: { '2021': { FLL: 6, FTC: 3, FRC: 1, F1: 0 }, '2022': { FLL: 7, FTC: 4, FRC: 1, F1: 0 }, '2023': { FLL: 8, FTC: 5, FRC: 1, F1: 0 }, '2024': { FLL: 9, FTC: 6, FRC: 2, F1: 0 }, '2025': { FLL: 10, FTC: 7, FRC: 2, F1: 0 } } },
-                { id: 'BA', nome: 'Bahia', history: { '2021': { FLL: 4, FTC: 1, FRC: 0, F1: 1 }, '2022': { FLL: 5, FTC: 2, FRC: 0, F1: 2 }, '2023': { FLL: 7, FTC: 3, FRC: 0, F1: 4 }, '2024': { FLL: 9, FTC: 4, FRC: 0, F1: 5 }, '2025': { FLL: 11, FTC: 5, FRC: 0, F1: 7 } } },
-                { id: 'ES', nome: 'Espírito Santo', history: { '2021': { FLL: 4, FTC: 0, FRC: 0, F1: 4 }, '2022': { FLL: 5, FTC: 0, FRC: 0, F1: 5 }, '2023': { FLL: 6, FTC: 0, FRC: 0, F1: 7 }, '2024': { FLL: 6, FTC: 0, FRC: 0, F1: 9 }, '2025': { FLL: 7, FTC: 0, FRC: 0, F1: 11 } } },
-                { id: 'PE', nome: 'Pernambuco', history: { '2021': { FLL: 4, FTC: 2, FRC: 0, F1: 0 }, '2022': { FLL: 5, FTC: 3, FRC: 0, F1: 0 }, '2023': { FLL: 6, FTC: 4, FRC: 0, F1: 0 }, '2024': { FLL: 7, FTC: 5, FRC: 0, F1: 0 }, '2025': { FLL: 8, FTC: 6, FRC: 0, F1: 0 } } },
-                { id: 'MA', nome: 'Maranhão', history: { '2021': { FLL: 3, FTC: 0, FRC: 0, F1: 0 }, '2022': { FLL: 5, FTC: 0, FRC: 0, F1: 0 }, '2023': { FLL: 8, FTC: 0, FRC: 0, F1: 0 }, '2024': { FLL: 11, FTC: 0, FRC: 0, F1: 0 }, '2025': { FLL: 14, FTC: 0, FRC: 0, F1: 0 } } }
-            ];
-
-            const anosRobotica = ['2021', '2022', '2023', '2024', '2025'];
-            let roboRankChartInstance = null;
-            let roboHistChartInstance = null;
-
-            function processRoboticaData() {
-                const ligaFiltro = document.getElementById('roboLigaFilter').value;
-                const anoFiltro = document.getElementById('roboAnoFilter').value;
-                const ufFiltro = document.getElementById('roboUfFilter').value;
-
-                document.getElementById('lblRankPeriodo').innerText = anoFiltro === 'ALL' ? '2021-2025' : `Temporada ${anoFiltro}`;
-                document.getElementById('lblTop5').innerText = anoFiltro === 'ALL' ? 'Top 5 Consolidado' : `Top 5 (${anoFiltro})`;
-
-                let processedData = roboticaRawData.map(uf => {
-                    let totalBar = 0;
-                    let trendLine = [];
-                    anosRobotica.forEach(ano => {
-                        let ptsAno = ligaFiltro === 'ALL' ? (uf.history[ano].FLL + uf.history[ano].FTC + uf.history[ano].FRC + uf.history[ano].F1) : uf.history[ano][ligaFiltro];
-                        trendLine.push(ptsAno);
-                        if (anoFiltro === 'ALL' || anoFiltro === ano) totalBar += ptsAno;
-                    });
-                    return { id: uf.id, nome: uf.nome, totalBar: totalBar, trendLine: trendLine };
-                });
-
-                if (ufFiltro !== 'ALL') processedData = processedData.filter(uf => uf.id === ufFiltro || uf.id === 'GO');
-                processedData.sort((a, b) => b.totalBar - a.totalBar);
-
-                renderRoboTop5(processedData);
-                renderRoboBarChart(processedData, ufFiltro);
-                renderRoboLineChart(processedData, ufFiltro);
-            }
-
-            function renderRoboTop5(data) {
-                const container = document.getElementById('top5-container');
-                container.innerHTML = '';
-                data.slice(0, 5).forEach((reg, index) => {
-                    if(reg.totalBar === 0) return;
-                    const isDestaque = reg.id === 'GO' || index < 3;
-                    container.innerHTML += `
-                        <div class="flex items-center justify-between p-3 ${isDestaque ? 'bg-sesi-green/10 border border-sesi-green/30' : 'bg-gray-50 border border-gray-100'} rounded-lg">
-                            <div class="flex items-center gap-3"><span class="font-bold text-lg ${isDestaque ? 'text-sesi-green' : 'text-gray-500'}">#${index + 1}</span><span class="font-semibold text-gray-800">${reg.id} - ${reg.nome}</span></div>
-                            <span class="font-bold text-gray-900">${reg.totalBar} conquistas</span>
-                        </div>
-                    `;
-                });
-            }
-
-            function renderRoboBarChart(data, ufFiltro) {
-                const ctx = document.getElementById('rankingChart').getContext('2d');
-                if (roboRankChartInstance) roboRankChartInstance.destroy();
-
-                const bgColors = data.map(d => d.id === 'GO' ? '#52AE32' : (ufFiltro !== 'ALL' && d.id === ufFiltro ? '#f97316' : '#a3db8f'));
-
-                roboRankChartInstance = new Chart(ctx, {
-                    type: 'bar',
-                    data: { labels: data.map(d => d.id), datasets: [{ data: data.map(d => d.totalBar), backgroundColor: bgColors, borderRadius: 6 }] },
+                const ctxEvol = document.getElementById('rnEvolucaoChart').getContext('2d');
+                if(rnEvolucaoChartInst) rnEvolucaoChartInst.destroy();
+                rnEvolucaoChartInst = new Chart(ctxEvol, {
+                    type: 'line',
+                    data: {
+                        labels: sortedAnos,
+                        datasets: [{
+                            label: 'Total de Prémios',
+                            data: evolData,
+                            borderColor: '#212529',
+                            backgroundColor: '#212529',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 5
+                        }]
+                    },
                     options: {
                         responsive: true, maintainAspectRatio: false,
-                        plugins: { legend: { display: false }, datalabels: { display: true, anchor: 'end', align: 'top', color: (c) => c.dataset.data[c.dataIndex] > 0 ? '#374151' : 'transparent', font: { weight: 'bold' }, formatter: (v) => v > 0 ? v : '' } },
-                        scales: { y: { display: false, suggestedMax: Math.max(...data.map(d => d.totalBar)) * 1.15 }, x: { grid: { display: false }, ticks: { font: { weight: 'bold' } } } },
-                        layout: { padding: { top: 25 } }
-                    }
-                });
-            }
-
-            function renderRoboLineChart(data, ufFiltro) {
-                const ctx = document.getElementById('historyChart').getContext('2d');
-                if (roboHistChartInstance) roboHistChartInstance.destroy();
-
-                const histColors = ['#212529', '#2e6b18', '#52AE32', '#8bc34a', '#cddc39', '#f97316', '#f4a261', '#2a9d8f', '#8338ec', '#ff006e'];
-                const fullTrendData = roboticaRawData.map(uf => {
-                    const ligaFiltro = document.getElementById('roboLigaFilter').value;
-                    let trend = [];
-                    anosRobotica.forEach(ano => trend.push(ligaFiltro === 'ALL' ? (uf.history[ano].FLL + uf.history[ano].FTC + uf.history[ano].FRC + uf.history[ano].F1) : uf.history[ano][ligaFiltro]));
-                    return { id: uf.id, trend: trend };
-                });
-
-                const datasets = fullTrendData.map((reg, idx) => {
-                    const isGo = reg.id === 'GO';
-                    const isFiltered = ufFiltro !== 'ALL' && reg.id === ufFiltro;
-                    const strokeColor = (ufFiltro !== 'ALL' && !isGo && !isFiltered) ? '#d1d5db' : (isGo ? '#52AE32' : (isFiltered ? '#f97316' : histColors[idx % histColors.length]));
-
-                    return { label: reg.id, data: reg.trend, borderColor: strokeColor, backgroundColor: strokeColor, borderWidth: (isGo || isFiltered) ? 4 : 2, tension: 0.3, pointRadius: (isGo || isFiltered) ? 5 : 0, borderDash: (reg.id === 'BA') ? [5, 5] : [] };
-                });
-
-                roboHistChartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: { labels: anosRobotica, datasets: datasets },
-                    options: {
-                        responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
                         plugins: {
-                            legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } },
-                            datalabels: { display: true, align: 'top', color: (c) => c.dataset.borderColor, font: { weight: 'bold', size: 10 }, backgroundColor: 'rgba(255,255,255,0.7)', borderRadius: 4, formatter: (v) => v > 0 ? v : '' }
+                            legend: { display: false },
+                            datalabels: { align: 'top', color: '#212529', font: {weight: 'bold'}, formatter: v => v>0?v:'' }
                         },
-                        scales: { y: { grid: { color: '#e5e7eb' }, beginAtZero: true }, x: { grid: { display: false } } }
+                        scales: { y: { display: false, min: 0 }, x: { grid: {display:false} } }
                     }
                 });
             }
 
-            document.getElementById('roboLigaFilter').addEventListener('change', processRoboticaData);
-            document.getElementById('roboAnoFilter').addEventListener('change', processRoboticaData);
-            document.getElementById('roboUfFilter').addEventListener('change', processRoboticaData);
-            processRoboticaData();
+            document.querySelectorAll('#rnEstadoFilter, #rnTorneioFilter, #rnAnoFilter, #rnModalidadeFilter').forEach(el => {
+                el.addEventListener('change', updateRoboticaNacional);
+            });
+            updateRoboticaNacional();
 
             // ==========================================
             // MOTOR 5: RAIO-X GOIÁS (Premiações Locais Consolidadas)
             // ==========================================
-            // Dados extraídos da planilha "Resumo Robótica.csv"
+            // [Todo o código de processamento do Raio-X Local mantém-se intacto a processar os dados regionais]
             const goiasAwardsData = [
                 { u: "Rio Verde", t: "ONEE", p: 0, m: [1, 4, 3, 5], tot: 13 },
                 { u: "Rio Verde", t: "Certificação Microsoft", p: 0, m: [0, 0, 0, 8], tot: 8 },
@@ -1244,31 +1086,42 @@
             function updateGoiasAwards() {
                 const uFilter = goUfSel.value;
                 const tFilter = goTourneySel.value;
+                const mFilter = document.getElementById('goMedalFilter').value;
 
                 let filtered = goiasAwardsData;
                 if(uFilter !== 'ALL') filtered = filtered.filter(d => d.u === uFilter);
                 if(tFilter !== 'ALL') filtered = filtered.filter(d => d.t === tFilter);
 
-                let tTot = 0, p1 = 0, p2 = 0, p3 = 0, mO = 0, mP = 0, mB = 0, mH = 0;
+                let tTot = 0, tOuro = 0, tPrata = 0, tBronze = 0, tHonra = 0;
                 const unitTotals = {};
 
                 filtered.forEach(d => {
-                    tTot += d.tot;
-                    if(d.p === 1) p1++;
-                    if(d.p === 2) p2++;
-                    if(d.p === 3) p3++;
-                    mO += d.m[0];
-                    mP += d.m[1];
-                    mB += d.m[2];
-                    mH += d.m[3];
+                    let valOuro = (d.p === 1 ? 1 : 0) + d.m[0];
+                    let valPrata = (d.p === 2 ? 1 : 0) + d.m[1];
+                    let valBronze = (d.p === 3 ? 1 : 0) + d.m[2];
+                    let valHonra = d.m[3];
 
-                    unitTotals[d.u] = (unitTotals[d.u] || 0) + d.tot;
+                    if (mFilter === 'OURO') { valPrata = 0; valBronze = 0; valHonra = 0; }
+                    else if (mFilter === 'PRATA') { valOuro = 0; valBronze = 0; valHonra = 0; }
+                    else if (mFilter === 'BRONZE') { valOuro = 0; valPrata = 0; valHonra = 0; }
+                    else if (mFilter === 'HONRA') { valOuro = 0; valPrata = 0; valBronze = 0; }
+
+                    let recTotal = valOuro + valPrata + valBronze + valHonra;
+                    if(recTotal === 0) return;
+
+                    tTot += recTotal;
+                    tOuro += valOuro;
+                    tPrata += valPrata;
+                    tBronze += valBronze;
+                    tHonra += valHonra;
+
+                    unitTotals[d.u] = (unitTotals[d.u] || 0) + recTotal;
                 });
 
                 document.getElementById('kpiTotal').innerText = tTot;
-                document.getElementById('kpiOuro').innerText = p1 + mO;
-                document.getElementById('kpiPrata').innerText = p2 + mP;
-                document.getElementById('kpiBronze').innerText = p3 + mB;
+                document.getElementById('kpiOuro').innerText = tOuro;
+                document.getElementById('kpiPrata').innerText = tPrata;
+                document.getElementById('kpiBronze').innerText = tBronze;
 
                 const ctxMedals = document.getElementById('goMedalsChart').getContext('2d');
                 if(goMedalsChartInst) goMedalsChartInst.destroy();
@@ -1276,20 +1129,9 @@
                     type: 'doughnut',
                     data: {
                         labels: ['Ouro / 1º Lugar', 'Prata / 2º Lugar', 'Bronze / 3º Lugar', 'Honra ao Mérito'],
-                        datasets: [{
-                            data: [(p1 + mO), (p2 + mP), (p3 + mB), mH],
-                            backgroundColor: ['#eab308', '#9ca3af', '#f97316', '#3b82f6'],
-                            borderWidth: 2,
-                            borderColor: '#fff'
-                        }]
+                        datasets: [{ data: [tOuro, tPrata, tBronze, tHonra], backgroundColor: ['#eab308', '#9ca3af', '#f97316', '#3b82f6'], borderWidth: 2, borderColor: '#fff' }]
                     },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: {
-                            legend: { position: 'right', labels: { boxWidth: 12, font: {size: 11} } },
-                            datalabels: { color: '#fff', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' }
-                        }
-                    }
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: {size: 11} } }, datalabels: { color: '#fff', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' } } }
                 });
 
                 const sortedUnits = Object.entries(unitTotals).sort((a,b) => b[1] - a[1]).slice(0, 10);
@@ -1299,32 +1141,18 @@
                     type: 'bar',
                     data: {
                         labels: sortedUnits.map(x => x[0]),
-                        datasets: [{
-                            label: 'Premiações',
-                            data: sortedUnits.map(x => x[1]),
-                            backgroundColor: '#52AE32',
-                            borderRadius: 4
-                        }]
+                        datasets: [{ label: 'Premiações', data: sortedUnits.map(x => x[1]), backgroundColor: '#52AE32', borderRadius: 4 }]
                     },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false },
-                            datalabels: { align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' }
-                        },
-                        scales: {
-                            y: { display: false, suggestedMax: (sortedUnits[0] ? sortedUnits[0][1] : 10) * 1.2 },
-                            x: { grid: {display: false}, ticks: {font: {size: 11, weight: 'bold'}} }
-                        }
-                    }
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' } }, scales: { y: { display: false, suggestedMax: (sortedUnits[0] ? sortedUnits[0][1] : 10) * 1.2 }, x: { grid: {display: false}, ticks: {font: {size: 11, weight: 'bold'}} } } }
                 });
             }
 
             goUfSel.addEventListener('change', updateGoiasAwards);
             goTourneySel.addEventListener('change', updateGoiasAwards);
+            document.getElementById('goMedalFilter').addEventListener('change', updateGoiasAwards);
             updateGoiasAwards();
 
-        }); // Fim do único DOMContentLoaded seguro
+        });
     </script>
 </body>
 </html>
