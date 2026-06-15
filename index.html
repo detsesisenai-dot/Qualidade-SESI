@@ -86,6 +86,15 @@
         .table-row-hover:hover {
             background-color: #f1f8ee;
         }
+        
+        .editorial-lead {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #555;
+            border-left: 4px solid #52AE32;
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-sesi-green selection:text-white">
@@ -527,6 +536,30 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Tabela Detalhada Local -->
+                    <div class="glass-card p-6 overflow-hidden mt-8">
+                        <h3 class="text-lg font-bold text-gray-700 mb-4">Detalhamento Local de Resultados</h3>
+                        <div class="overflow-x-auto max-h-[500px]">
+                            <table class="w-full text-sm text-left text-gray-600">
+                                <thead class="text-xs text-white uppercase bg-sesi-dark sticky top-0 z-10">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 rounded-tl-lg">Unidade</th>
+                                        <th scope="col" class="px-4 py-3">Torneio / Evento</th>
+                                        <th scope="col" class="px-4 py-3 text-center">Ouro / 1º Lugar</th>
+                                        <th scope="col" class="px-4 py-3 text-center">Prata / 2º Lugar</th>
+                                        <th scope="col" class="px-4 py-3 text-center">Bronze / 3º Lugar</th>
+                                        <th scope="col" class="px-4 py-3 text-center">Honra ao Mérito</th>
+                                        <th scope="col" class="px-4 py-3 text-center rounded-tr-lg">Total Premiações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="goTableBody">
+                                    <!-- Preenchido via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="p-4 bg-gray-50 border-t border-gray-100 text-xs text-gray-500 flex items-start gap-2">
                     <i class="fa-solid fa-folder-tree mt-0.5 text-sesi-green"></i>
@@ -578,7 +611,7 @@
                     responsive: true, maintainAspectRatio: false,
                     plugins: {
                         legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' }, padding: 20 } },
-                        datalabels: { display: (c) => c.dataset.label === 'Rede SesiGO', align: 'top', color: '#52AE32', font: { weight: 'bold', size: 14 }, formatter: (v) => v.toFixed(2).replace('.', ',') }
+                        datalabels: { display: true, align: (c) => c.datasetIndex === 0 ? 'top' : (c.datasetIndex === 1 ? 'bottom' : 'right'), color: (c) => c.dataset.borderColor, font: (c) => ({ weight: c.datasetIndex === 0 ? 'bold' : 'normal', size: c.datasetIndex === 0 ? 14 : 11 }), formatter: (v) => v.toFixed(2).replace('.', ',') }
                     },
                     scales: { y: { display: false, min: 490 }, x: { grid: { display: true, color: '#f3f4f6', drawBorder: false }, ticks: { font: { family: 'Helvetica Neue', weight: 'normal', size: 14 } } } },
                     layout: { padding: { top: 30, right: 20 } }
@@ -680,7 +713,7 @@
                 generateMultiInsight();
                 if (multiChartInstance) multiChartInstance.destroy();
                 const maxY = selectedArea === 'redacao' ? 1000 : 750; const minY = selectedArea === 'redacao' ? 400 : 450;
-                multiChartInstance = new Chart(ctxMulti, { type: 'bar', data: { labels: labels, datasets: dinamicDatasets }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' } } }, datalabels: { anchor: 'end', align: 'top', color: (c) => c.dataset.label === 'Rede SESI' ? '#3e8824' : '#6b7280', font: (c) => ({ weight: c.dataset.label === 'Rede SESI' ? '900' : 'normal', size: c.dataset.label === 'Rede SESI' ? 13 : 11 }), formatter: (value) => value.toFixed(1) } }, scales: { y: { display: false, min: minY, suggestedMax: maxY }, x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 13 } } } }, layout: { padding: { top: 30 } } } });
+                multiChartInstance = new Chart(ctxMulti, { type: 'bar', data: { labels: labels, datasets: dinamicDatasets }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' } } }, datalabels: { display: true, anchor: 'end', align: 'top', color: (c) => c.dataset.label === 'Rede SESI' ? '#3e8824' : '#6b7280', font: (c) => ({ weight: c.dataset.label === 'Rede SESI' ? '900' : 'normal', size: c.dataset.label === 'Rede SESI' ? 13 : 11 }), formatter: (value) => value.toFixed(1) } }, scales: { y: { display: false, min: minY, suggestedMax: maxY }, x: { grid: { display: false }, ticks: { font: { weight: 'bold', size: 13 } } } }, layout: { padding: { top: 30 } } } });
             }
 
             renderStateFilters(); renderNetworkFilters(); renderAreaFilters(); updateMultiChart();
@@ -690,7 +723,7 @@
             // ==========================================
             function renderEjaChart(canvasId, totalPrivada, totalOutrosSesi, totalEjaSesi, isGoias) {
                 const ctx = document.getElementById(canvasId).getContext('2d'); const labelConcorrente = isGoias ? 'Adventista (2º)' : 'Adventista (2º)'; const concorrenteValor = isGoias ? 8527 : 261510;
-                new Chart(ctx, { type: 'bar', data: { labels: ['Rede SESI', labelConcorrente], datasets: [ { label: 'Alunos Regulares (Orgânico)', data: [totalOutrosSesi, concorrenteValor], backgroundColor: isGoias ? ['#3e8824', '#d1d5db'] : ['#4b5563', '#d1d5db'], stack: 'Stack 0', borderRadius: {bottomLeft: 4, bottomRight: 4, topLeft: 0, topRight: 0} }, { label: 'Alunos EJA (Subsidiado)', data: [totalEjaSesi, 0], backgroundColor: isGoias ? '#8cd175' : '#9ca3af', stack: 'Stack 0', borderRadius: {topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0} } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: {size: 10} } }, datalabels: { display: (c) => c.datasetIndex === 1 || (c.datasetIndex === 0 && c.dataIndex === 1), anchor: 'end', align: 'top', color: isGoias ? '#52AE32' : '#6b7280', font: { weight: 'bold', size: 12 }, formatter: (v, c) => (c.dataIndex === 0 ? (totalOutrosSesi + totalEjaSesi) : v).toLocaleString('pt-BR') } }, scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, display: false } }, layout: { padding: { top: 25 } } } });
+                new Chart(ctx, { type: 'bar', data: { labels: ['Rede SESI', labelConcorrente], datasets: [ { label: 'Alunos Regulares (Orgânico)', data: [totalOutrosSesi, concorrenteValor], backgroundColor: isGoias ? ['#3e8824', '#d1d5db'] : ['#4b5563', '#d1d5db'], stack: 'Stack 0', borderRadius: {bottomLeft: 4, bottomRight: 4, topLeft: 0, topRight: 0} }, { label: 'Alunos EJA (Subsidiado)', data: [totalEjaSesi, 0], backgroundColor: isGoias ? '#8cd175' : '#9ca3af', stack: 'Stack 0', borderRadius: {topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0} } ] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8, font: {size: 10} } }, datalabels: { display: true, anchor: 'center', align: 'center', color: (c) => isGoias && c.datasetIndex === 0 && c.dataIndex === 0 ? '#fff' : (isGoias ? '#212529' : '#fff'), font: { weight: 'bold', size: 12 }, formatter: (v) => v > 0 ? v.toLocaleString('pt-BR') : '' } }, scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, display: false } }, layout: { padding: { top: 25 } } } });
             }
             renderEjaChart('ejaBrasilChart', 261510, 295932 - 59681, 59681, false); renderEjaChart('ejaGoiasChart', 8527, 10519 - 1423, 1423, true);
 
@@ -937,7 +970,7 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
                         responsive: true, maintainAspectRatio: false,
                         plugins: {
                             legend: { display: false },
-                            datalabels: { align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: v => v>0?v:'' }
+                            datalabels: { display: true, align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: v => v>0?v:'' }
                         },
                         scales: { y: { display: false, suggestedMax: (sortedRanks[0]?sortedRanks[0][1]:10)*1.2 }, x: { grid: {display:false}, ticks: {font: {weight: 'bold'}} } }
                     }
@@ -963,7 +996,7 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
                         responsive: true, maintainAspectRatio: false,
                         plugins: {
                             legend: { display: false },
-                            datalabels: { align: 'top', color: '#212529', font: {weight: 'bold'}, formatter: v => v>0?v:'' }
+                            datalabels: { display: true, align: 'top', color: '#212529', font: {weight: 'bold'}, formatter: v => v>0?v:'' }
                         },
                         scales: { y: { display: false, min: 0 }, x: { grid: {display:false} } }
                     }
@@ -978,7 +1011,6 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
             // ==========================================
             // MOTOR 5: RAIO-X GOIÁS (Premiações Locais Consolidadas)
             // ==========================================
-            // [Todo o código de processamento do Raio-X Local mantém-se intacto a processar os dados regionais]
             const goiasAwardsData = [
                 { u: "Rio Verde", t: "ONEE", p: 0, m: [1, 4, 3, 5], tot: 13 },
                 { u: "Rio Verde", t: "Certificação Microsoft", p: 0, m: [0, 0, 0, 8], tot: 8 },
@@ -1094,8 +1126,13 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
 
                 let tTot = 0, tOuro = 0, tPrata = 0, tBronze = 0, tHonra = 0;
                 const unitTotals = {};
+                const localTableBody = document.getElementById('goTableBody');
+                localTableBody.innerHTML = '';
 
-                filtered.forEach(d => {
+                // Ordenar para a tabela local por total absoluto para manter as unidades/conquistas maiores no topo
+                const sortedFiltered = [...filtered].sort((a,b) => b.tot - a.tot);
+
+                sortedFiltered.forEach(d => {
                     let valOuro = (d.p === 1 ? 1 : 0) + d.m[0];
                     let valPrata = (d.p === 2 ? 1 : 0) + d.m[1];
                     let valBronze = (d.p === 3 ? 1 : 0) + d.m[2];
@@ -1116,6 +1153,19 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
                     tHonra += valHonra;
 
                     unitTotals[d.u] = (unitTotals[d.u] || 0) + recTotal;
+
+                    // Adicionar linha à tabela local detalhada
+                    localTableBody.innerHTML += `
+                        <tr class="border-b table-row-hover">
+                            <td class="px-4 py-3 font-bold text-sesi-dark">${d.u}</td>
+                            <td class="px-4 py-3 font-semibold">${d.t}</td>
+                            <td class="px-4 py-3 text-center text-yellow-600 font-bold">${valOuro > 0 ? valOuro : '-'}</td>
+                            <td class="px-4 py-3 text-center text-gray-500 font-bold">${valPrata > 0 ? valPrata : '-'}</td>
+                            <td class="px-4 py-3 text-center text-orange-600 font-bold">${valBronze > 0 ? valBronze : '-'}</td>
+                            <td class="px-4 py-3 text-center text-blue-600 font-bold">${valHonra > 0 ? valHonra : '-'}</td>
+                            <td class="px-4 py-3 text-center font-black text-sesi-dark bg-gray-50/50">${recTotal}</td>
+                        </tr>
+                    `;
                 });
 
                 document.getElementById('kpiTotal').innerText = tTot;
@@ -1131,7 +1181,7 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
                         labels: ['Ouro / 1º Lugar', 'Prata / 2º Lugar', 'Bronze / 3º Lugar', 'Honra ao Mérito'],
                         datasets: [{ data: [tOuro, tPrata, tBronze, tHonra], backgroundColor: ['#eab308', '#9ca3af', '#f97316', '#3b82f6'], borderWidth: 2, borderColor: '#fff' }]
                     },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: {size: 11} } }, datalabels: { color: '#fff', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' } } }
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: {size: 11} } }, datalabels: { display: true, color: '#fff', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' } } }
                 });
 
                 const sortedUnits = Object.entries(unitTotals).sort((a,b) => b[1] - a[1]).slice(0, 10);
@@ -1143,7 +1193,7 @@ Rio Grande do Sul;RS;SESI Rio Grande do Sul (RS);FIRST Championship;2026;2025/20
                         labels: sortedUnits.map(x => x[0]),
                         datasets: [{ label: 'Premiações', data: sortedUnits.map(x => x[1]), backgroundColor: '#52AE32', borderRadius: 4 }]
                     },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' } }, scales: { y: { display: false, suggestedMax: (sortedUnits[0] ? sortedUnits[0][1] : 10) * 1.2 }, x: { grid: {display: false}, ticks: {font: {size: 11, weight: 'bold'}} } } }
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, datalabels: { display: true, align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' } }, scales: { y: { display: false, suggestedMax: (sortedUnits[0] ? sortedUnits[0][1] : 10) * 1.2 }, x: { grid: {display: false}, ticks: {font: {size: 11, weight: 'bold'}} } } }
                 });
             }
 
