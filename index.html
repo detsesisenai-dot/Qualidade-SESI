@@ -384,7 +384,7 @@
                         A Evolução da <span class="text-sesi-green">Robótica SESI</span> no Brasil
                     </h2>
                     <p class="text-gray-600 leading-relaxed">
-                        Uma auditoria aprofundada da performance dos Departamentos Regionais (DRs) nos principais torneios mundiais (FLL, FTC, FRC e F1 in Schools). Sob a ótica da <strong>eficiência e alta complexidade</strong>, o novo ranking premia não apenas o volume de equipes, mas as conversões cirúrgicas em vagas internacionais e conquistas globais.
+                        Uma auditoria aprofundada da performance dos Departamentos Regionais (DRs) nos principais torneios mundiais (FLL, FTC, FRC e F1 in Schools).
                     </p>
                 </div>
                 <div class="md:w-1/3 flex justify-center relative z-10">
@@ -430,7 +430,7 @@
                 <!-- Gráfico de Barras -->
                 <div class="lg:col-span-2 glass-card p-6 border-t-4 border-sesi-dark">
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold text-gray-700">Leaderboard Auditado: Eficiência & Alta Complexidade</h3>
+                        <h3 class="text-lg font-bold text-gray-700">Leaderboard de Conquistas (Visão Plana)</h3>
                         <span id="lblRankPeriodo" class="bg-sesi-green/10 text-sesi-green px-3 py-1 rounded-full text-xs font-bold">2021-2025</span>
                     </div>
                     <div class="chart-container">
@@ -446,10 +446,9 @@
                             <!-- Inserido via JS dinamicamente -->
                         </div>
                     </div>
-                    <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100 text-xs text-gray-600 tooltip-container w-full">
-                        <strong><i class="fa-solid fa-scale-balanced text-sesi-green"></i> Novos Critérios Aplicados:</strong><br>
-                        Foco em conversão internacional e alta complexidade, reduzindo o viés de volume demográfico.
-                        <span class="tooltip-text" style="width: 280px; margin-left: -140px;">Participação: 1pt<br>3º Lugar: 5pts | 2º Lugar: 7pts | 1º Lugar: 10pts<br>Vaga Internacional: 15pts<br>Bônus FRC/F1: +5pts.</span>
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100 text-xs text-gray-600 w-full">
+                        <strong><i class="fa-solid fa-scale-balanced text-sesi-green"></i> Visão Plana (Sem Pesos):</strong><br>
+                        O quadro acima consolida o volume bruto de conquistas, classificações e posições oficiais na série histórica, atestando o domínio orgânico de polos como Goiás no ecossistema de robótica educacional.
                     </div>
                 </div>
             </div>
@@ -458,8 +457,8 @@
             <div class="glass-card p-6 mb-10 border-t-4 border-sesi-dark">
                 <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
                     <div>
-                        <h3 class="text-lg font-bold text-gray-700">Série Histórica de Consistência (Evolução)</h3>
-                        <div class="text-sm text-gray-500 mt-1">O gráfico de tendência ignora o filtro de ano isolado para demonstrar o crescimento contínuo ao longo da série.</div>
+                        <h3 class="text-lg font-bold text-gray-700">Série Histórica de Consistência (Evolução de Conquistas)</h3>
+                        <div class="text-sm text-gray-500 mt-1">O gráfico de tendência ignora o filtro de ano isolado para demonstrar a escalada contínua ao longo das temporadas.</div>
                     </div>
                 </div>
                 <div class="chart-container" style="height: 380px;">
@@ -467,46 +466,152 @@
                 </div>
             </div>
 
-            <!-- Tabela Consolidada -->
+            <!-- Tabela Consolidada Visão Plana -->
             <div class="glass-card p-6 overflow-hidden">
-                <h3 class="text-lg font-bold text-gray-700 mb-4">Auditoria Internacional: Escuderias de Elite e Destinos (24/26)</h3>
-                <div class="overflow-x-auto">
+                <h3 class="text-lg font-bold text-gray-700 mb-4">Detalhamento Geral de Resultados em Torneios (Visão Plana)</h3>
+                <p class="text-sm text-gray-500 mb-4">Relação consolidada de participações, posições e classificações das equipes nas principais competições da série histórica (FLLC, FTC, FRC e F1 in Schools).</p>
+                <div class="overflow-x-auto max-h-[500px]">
                     <table class="w-full text-sm text-left text-gray-600">
-                        <thead class="text-xs text-white uppercase bg-sesi-dark">
+                        <thead class="text-xs text-white uppercase bg-sesi-dark sticky top-0 z-10">
                             <tr>
                                 <th scope="col" class="px-4 py-3 rounded-tl-lg">UF</th>
-                                <th scope="col" class="px-4 py-3">Liga</th>
+                                <th scope="col" class="px-4 py-3">Competição</th>
+                                <th scope="col" class="px-4 py-3">Ano</th>
                                 <th scope="col" class="px-4 py-3">Equipe</th>
-                                <th scope="col" class="px-4 py-3">Honraria Máxima</th>
-                                <th scope="col" class="px-4 py-3 rounded-tr-lg">Destino / Selo Global</th>
+                                <th scope="col" class="px-4 py-3">Posição / Honraria</th>
+                                <th scope="col" class="px-4 py-3 rounded-tr-lg">Destino / Classificação</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="border-b table-row-hover">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">MG</td><td class="px-4 py-3">FTC</td><td class="px-4 py-3 font-semibold">Amigos Droids</td><td class="px-4 py-3">1º Lugar (Inspire Award Mundial)</td><td class="px-4 py-3"><span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-0.5 rounded border border-blue-200">EUA (World Champ)</span></td>
+                                <td class="px-4 py-3 font-bold text-sesi-dark">MG</td><td class="px-4 py-3">FTC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Amigos Droids</td><td class="px-4 py-3">1º Lugar (Inspire Award Mundial)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">EUA (World Champ)</span></td>
                             </tr>
                             <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">SP</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3 font-semibold">Heroes</td><td class="px-4 py-3">1º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-green-100 text-green-800 text-xs font-bold px-2.5 py-0.5 rounded border border-green-200">México (Open)</span></td>
+                                <td class="px-4 py-3 font-bold text-sesi-dark">SP</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Heroes</td><td class="px-4 py-3">1º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">México (Open)</span></td>
                             </tr>
                             <tr class="border-b table-row-hover border-l-4 border-sesi-green">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3 font-semibold text-sesi-green">Titans L.J Planalto</td><td class="px-4 py-3">3º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-purple-100 text-purple-800 text-xs font-bold px-2.5 py-0.5 rounded border border-purple-200">Grécia (Open)</span></td>
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold text-sesi-green">Titans L.J Planalto</td><td class="px-4 py-3">3º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Grécia (Open)</span></td>
                             </tr>
                             <tr class="border-b table-row-hover bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">SC</td><td class="px-4 py-3">F1</td><td class="px-4 py-3 font-semibold">Alpha Scuderia</td><td class="px-4 py-3">7º Lugar (Classificação Geral Mundial)</td><td class="px-4 py-3"><span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2.5 py-0.5 rounded border border-yellow-200">Arábia Saudita</span></td>
+                                <td class="px-4 py-3 font-bold text-sesi-dark">SP</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Robotics School</td><td class="px-4 py-3">2º Lugar (Champion's Award Int.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">EUA (California)</span></td>
                             </tr>
                             <tr class="border-b table-row-hover">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">ES</td><td class="px-4 py-3">F1</td><td class="px-4 py-3 font-semibold">Pocadores</td><td class="px-4 py-3">1º Lugar (Front Wing Replacement Mundial)</td><td class="px-4 py-3"><span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2.5 py-0.5 rounded border border-yellow-200">Arábia Saudita</span></td>
+                                <td class="px-4 py-3 font-bold text-sesi-dark">SC</td><td class="px-4 py-3">F1</td><td class="px-4 py-3">2023/2024</td><td class="px-4 py-3 font-semibold">Alpha Scuderia</td><td class="px-4 py-3">7º Lugar (Class. Geral Mundial)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Arábia Saudita</span></td>
                             </tr>
-                             <tr class="border-b table-row-hover border-l-4 border-sesi-green bg-gray-50/50">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3 font-semibold text-sesi-green">Geek Canaã</td><td class="px-4 py-3">1º Lugar (Design do Robô Regional)</td><td class="px-4 py-3"><span class="bg-orange-100 text-orange-800 text-xs font-bold px-2.5 py-0.5 rounded border border-orange-200">Austrália (Asia Pacific)</span></td>
+                            <tr class="border-b table-row-hover bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">ES</td><td class="px-4 py-3">F1</td><td class="px-4 py-3">2023/2024</td><td class="px-4 py-3 font-semibold">Pocadores</td><td class="px-4 py-3">1º Lugar (Front Wing Repl.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Arábia Saudita</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">Geek Canaã</td><td class="px-4 py-3">1º Lugar (Design Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Austrália (Asia Pacific)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">MA</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Unimate</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Canadá (Open)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FRC</td><td class="px-4 py-3">2023</td><td class="px-4 py-3 font-semibold text-sesi-green">Infinity BR (8882)</td><td class="px-4 py-3">1º Lugar (Aliança Vencedora Reg.)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">L.J. Origens</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">MEQ LEGO</td><td class="px-4 py-3">2º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">DF</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2025/2026</td><td class="px-4 py-3 font-semibold">Albatroid</td><td class="px-4 py-3">1º Lugar (Rising All-Star)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">EUA (World Fest)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">LIFE SESI Canaã</td><td class="px-4 py-3">3º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">RN</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">SESI Batlego</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">NanoMasters</td><td class="px-4 py-3">1º Lugar (Torneio Aberto)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">PR</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Osíris</td><td class="px-4 py-3">1º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover border-l-4 border-sesi-green">
+                                <td class="px-4 py-3 font-bold text-sesi-green">GO</td><td class="px-4 py-3">FTC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold text-sesi-green">Storm Tech Canaã</td><td class="px-4 py-3">Classificação Reg.</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
+                            </tr>
+                            <tr class="border-b table-row-hover bg-gray-50/50">
+                                <td class="px-4 py-3 font-bold text-sesi-dark">MS</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Tech Vikings</td><td class="px-4 py-3">3º Lugar (Champion's Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
                             </tr>
                             <tr class="table-row-hover">
-                                <td class="px-4 py-3 font-bold text-sesi-dark">MA</td><td class="px-4 py-3">FLLC</td><td class="px-4 py-3 font-semibold">Gipsy Danger</td><td class="px-4 py-3">2º Lugar (Champion's Award Regional)</td><td class="px-4 py-3"><span class="bg-red-100 text-red-800 text-xs font-bold px-2.5 py-0.5 rounded border border-red-200">Coreia do Sul (Open)</span></td>
+                                <td class="px-4 py-3 font-bold text-sesi-dark">BA</td><td class="px-4 py-3">F1</td><td class="px-4 py-3">2024/2025</td><td class="px-4 py-3 font-semibold">Pegasus</td><td class="px-4 py-3">1º Lugar (Regional)</td><td class="px-4 py-3"><span class="bg-gray-100 text-gray-800 text-xs font-bold px-2 py-1 rounded">Brasil (Nacional)</span></td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-right mt-3">
-                        <span class="text-xs text-gray-400 italic">*Extrato representativo das principais conquistas globais. Tabela sujeita a atualização pós-mundial.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Raio-X Goiás (Premiações Locais) -->
+        <section id="raiox-goias" class="scroll-mt-24">
+            <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-sesi-dark flex items-center gap-3">
+                        <i class="fa-solid fa-medal text-sesi-green"></i> Raio-X Local: O Domínio de Goiás
+                    </h2>
+                    <p class="mt-4 text-gray-600 max-w-3xl leading-relaxed text-lg">
+                        Consolidação detalhada das participações e premiações exclusivas das unidades do SESI Goiás em torneios de robótica e grandes olimpíadas do conhecimento (OBA, MOBFOG, Canguru, etc.).
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden mb-10">
+                <!-- Filtros Locais -->
+                <div class="p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <h3 class="text-lg font-bold text-sesi-dark"><i class="fa-solid fa-filter text-sesi-green mr-2"></i> Filtros de Desempenho Local</h3>
+                    <div class="flex flex-wrap gap-3 w-full md:w-auto">
+                        <select id="goUfFilter" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green p-2.5 font-semibold w-full md:w-auto">
+                            <option value="ALL">Todas as Unidades</option>
+                            <!-- Populado via JS -->
+                        </select>
+                        <select id="goTourneyFilter" class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-sesi-green focus:border-sesi-green p-2.5 font-semibold w-full md:w-auto">
+                            <option value="ALL">Todos os Eventos / Torneios</option>
+                            <!-- Populado via JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="p-8">
+                    <!-- KPIs -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-gray-50 rounded-2xl p-5 border border-gray-200 text-center shadow-sm">
+                            <div class="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Total Premiações</div>
+                            <div class="text-4xl font-black text-sesi-dark" id="kpiTotal">-</div>
+                        </div>
+                        <div class="bg-yellow-50 rounded-2xl p-5 border border-yellow-200 text-center shadow-sm">
+                            <div class="text-yellow-600 text-xs font-bold uppercase tracking-wider mb-1">1º Lugar / Ouro</div>
+                            <div class="text-4xl font-black text-yellow-500" id="kpiOuro">-</div>
+                        </div>
+                        <div class="bg-gray-100 rounded-2xl p-5 border border-gray-300 text-center shadow-sm">
+                            <div class="text-gray-600 text-xs font-bold uppercase tracking-wider mb-1">2º Lugar / Prata</div>
+                            <div class="text-4xl font-black text-gray-500" id="kpiPrata">-</div>
+                        </div>
+                        <div class="bg-orange-50 rounded-2xl p-5 border border-orange-200 text-center shadow-sm">
+                            <div class="text-orange-600 text-xs font-bold uppercase tracking-wider mb-1">3º Lugar / Bronze</div>
+                            <div class="text-4xl font-black text-orange-500" id="kpiBronze">-</div>
+                        </div>
+                    </div>
+
+                    <!-- Gráficos -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Doughnut Medalhas -->
+                        <div class="border border-gray-100 rounded-2xl p-6 relative bg-white">
+                            <h4 class="font-bold text-gray-700 mb-4 text-center">Distribuição Qualitativa de Medalhas</h4>
+                            <div class="relative h-[280px] w-full">
+                                <canvas id="goMedalsChart"></canvas>
+                            </div>
+                        </div>
+                        <!-- Bar Chart Unidades -->
+                        <div class="border border-gray-100 rounded-2xl p-6 relative bg-white">
+                            <h4 class="font-bold text-gray-700 mb-4 text-center">Top Unidades (Volume de Premiações)</h4>
+                            <div class="relative h-[280px] w-full">
+                                <canvas id="goUnitsChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -532,10 +637,8 @@
     </footer>
 
     <script>
-        // Único listener de DOMContentLoaded para garantir a execução segura de todo o JS
         document.addEventListener('DOMContentLoaded', () => {
             
-            // Registrar plugin de rótulos globalmente
             Chart.register(ChartDataLabels);
 
             // ==========================================
@@ -560,7 +663,7 @@
                         {
                             label: 'MédiaGO',
                             data: [541.17, 526.69, 537.53, 544.49, 533.25],
-                            borderColor: '#0284c7', // Azul conforme imagem original
+                            borderColor: '#0284c7', 
                             backgroundColor: '#0284c7',
                             borderWidth: 2,
                             tension: 0.4,
@@ -570,7 +673,7 @@
                         {
                             label: 'MédiaBR',
                             data: [521.53, 534.02, 542.41, 537.96, 544.71],
-                            borderColor: '#f97316', // Laranja conforme imagem original
+                            borderColor: '#f97316',
                             backgroundColor: '#f97316',
                             borderWidth: 2,
                             borderDash: [5, 5],
@@ -584,35 +687,25 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { 
-                            position: 'bottom', 
-                            labels: { 
-                                usePointStyle: true, 
-                                font: { family: 'Helvetica Neue', size: 13, weight: 'bold' }, 
-                                padding: 20 
-                            } 
-                        },
+                        legend: { position: 'bottom', labels: { usePointStyle: true, font: { family: 'Helvetica Neue', size: 13, weight: 'bold' }, padding: 20 } },
                         datalabels: {
-                            display: (c) => c.dataset.label === 'Rede SesiGO',
-                            align: 'top',
-                            color: '#52AE32',
-                            font: { weight: 'bold', size: 14 },
-                            formatter: (v) => v.toFixed(2).replace('.', ',')
+                            display: true,
+                            align: (c) => c.datasetIndex === 0 ? 'top' : (c.datasetIndex === 1 ? 'bottom' : 'right'),
+                            color: (c) => c.dataset.borderColor,
+                            font: (c) => ({ weight: c.datasetIndex === 0 ? 'bold' : 'normal', size: c.datasetIndex === 0 ? 14 : 11 }),
+                            formatter: (v) => v.toFixed(1).replace('.', ',')
                         }
                     },
                     scales: {
                         y: { display: false, min: 490 },
-                        x: { 
-                            grid: { display: true, color: '#f3f4f6', drawBorder: false }, 
-                            ticks: { font: { family: 'Helvetica Neue', weight: 'normal', size: 14 } } 
-                        }
+                        x: { grid: { display: true, color: '#f3f4f6', drawBorder: false }, ticks: { font: { family: 'Helvetica Neue', weight: 'normal', size: 14 } } }
                     },
                     layout: { padding: { top: 30, right: 20 } }
                 }
             });
 
             // ==========================================
-            // MOTOR 2: COMPARADOR MULTI-ESTADOS E ÁREAS (2024)
+            // MOTOR 2: COMPARADOR MULTI-ESTADOS E ÁREAS
             // ==========================================
             const rawStatesData = {
                 'BR': { n: 'Brasil', d: [520.72, 589.62, 620.02, 488.40, 548.26, 575.04, 470.64, 521.64, 552.67, 508.10, 552.59, 568.11, 496.99, 584.49, 622.62, 639.49, 741.10, 781.64] },
@@ -632,11 +725,7 @@
                 'RN': { n: 'Rio Grande do Norte', d: [510.43, 597.49, 614.04, 478.48, 541.85, 568.32, 465.03, 517.91, 540.81, 500.61, 544.10, 558.68, 478.00, 577.27, 603.71, 630.01, 806.32, 798.70] },
                 'MA': { n: 'Maranhão', d: [511.85, 578.04, 605.95, 472.58, 523.48, 557.99, 459.11, 499.03, 528.50, 492.24, 528.10, 549.39, 481.66, 554.63, 590.81, 653.67, 784.98, 803.07] },
                 'PA': { n: 'Pará', d: [504.22, 575.79, 603.08, 468.78, 538.93, 557.66, 458.27, 511.05, 530.11, 487.62, 529.84, 551.33, 472.59, 551.82, 576.99, 633.84, 747.33, 799.31] },
-                'ES': { n: 'Espírito Santo', d: [536.39, 596.62, 631.57, 503.63, 556.45, 581.62, 481.09, 528.75, 562.85, 520.11, 553.97, 570.55, 512.66, 593.81, 635.02, 664.44, 750.12, 807.79] },
-                'AC': { n: 'Acre', d: [514.25, 532.24, 608.56] }, 'AL': { n: 'Alagoas', d: [492.82, 575.65, 596.33] }, 'AP': { n: 'Amapá', d: [506.66, 559.74, 598.13] },
-                'AM': { n: 'Amazonas', d: [505.20, 556.72, 598.58] }, 'PI': { n: 'Piauí', d: [510.26, 576.84, 630.74] }, 'RO': { n: 'Rondônia', d: [524.21, 584.34, 595.46] },
-                'RR': { n: 'Roraima', d: [531.83, 546.47, 589.43] }, 'SE': { n: 'Sergipe', d: [517.10, 558.75, 619.20] }, 'TO': { n: 'Tocantins', d: [510.19, 583.71, 623.50] },
-                'PB': { n: 'Paraíba', d: [510.39, 596.68, 615.47] }
+                'ES': { n: 'Espírito Santo', d: [536.39, 596.62, 631.57, 503.63, 556.45, 581.62, 481.09, 528.75, 562.85, 520.11, 553.97, 570.55, 512.66, 593.81, 635.02, 664.44, 750.12, 807.79] }
             };
 
             const statesData2024 = {};
@@ -904,23 +993,41 @@
             new Chart(document.getElementById('centroOesteDoughnut').getContext('2d'), {
                 type: 'doughnut',
                 data: { labels: ['SESI Goiás', 'Outros DRs (Centro-Oeste)'], datasets: [{ data: [10519, 22157 - 10519], backgroundColor: ['#212529', '#e5e7eb'], borderWidth: 0 }] },
-                options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { display: false }, tooltip: { enabled: false }, datalabels: { display: false } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    cutout: '75%', 
+                    plugins: { 
+                        legend: { display: false }, 
+                        tooltip: { enabled: false }, 
+                        datalabels: { 
+                            display: true, 
+                            color: (context) => context.dataIndex === 0 ? '#fff' : '#6b7280', 
+                            font: { weight: 'bold', size: 12 }, 
+                            formatter: (value, context) => { 
+                                let sum = 0; 
+                                context.chart.data.datasets[0].data.forEach(data => { sum += data; }); 
+                                return (value * 100 / sum).toFixed(1) + "%"; 
+                            } 
+                        } 
+                    } 
+                }
             });
 
             // ==========================================
-            // MOTOR 4: ROBÓTICA SESI (DATA DISCOVERY)
+            // MOTOR 4: ROBÓTICA SESI (DATA DISCOVERY GLOBAL)
             // ==========================================
             const roboticaRawData = [
-                { id: 'SP', nome: 'São Paulo', history: { '2021': { FLL: 80, FTC: 50, FRC: 40, F1: 10 }, '2022': { FLL: 90, FTC: 60, FRC: 50, F1: 10 }, '2023': { FLL: 100, FTC: 60, FRC: 60, F1: 20 }, '2024': { FLL: 110, FTC: 70, FRC: 70, F1: 20 }, '2025': { FLL: 120, FTC: 70, FRC: 90, F1: 20 } } },
-                { id: 'MG', nome: 'Minas Gerais', history: { '2021': { FLL: 50, FTC: 50, FRC: 20, F1: 10 }, '2022': { FLL: 60, FTC: 60, FRC: 20, F1: 10 }, '2023': { FLL: 60, FTC: 70, FRC: 30, F1: 10 }, '2024': { FLL: 70, FTC: 80, FRC: 30, F1: 10 }, '2025': { FLL: 70, FTC: 100, FRC: 30, F1: 10 } } },
-                { id: 'GO', nome: 'Goiás', history: { '2021': { FLL: 40, FTC: 10, FRC: 10, F1: 0 }, '2022': { FLL: 60, FTC: 15, FRC: 20, F1: 0 }, '2023': { FLL: 90, FTC: 25, FRC: 40, F1: 0 }, '2024': { FLL: 120, FTC: 40, FRC: 50, F1: 0 }, '2025': { FLL: 150, FTC: 50, FRC: 60, F1: 0 } } },
-                { id: 'RS', nome: 'Rio Grande do Sul', history: { '2021': { FLL: 50, FTC: 30, FRC: 20, F1: 0 }, '2022': { FLL: 60, FTC: 40, FRC: 20, F1: 0 }, '2023': { FLL: 65, FTC: 50, FRC: 20, F1: 0 }, '2024': { FLL: 70, FTC: 55, FRC: 20, F1: 0 }, '2025': { FLL: 70, FTC: 60, FRC: 20, F1: 0 } } },
-                { id: 'PR', nome: 'Paraná', history: { '2021': { FLL: 50, FTC: 40, FRC: 0, F1: 0 }, '2022': { FLL: 55, FTC: 50, FRC: 0, F1: 0 }, '2023': { FLL: 60, FTC: 60, FRC: 0, F1: 0 }, '2024': { FLL: 65, FTC: 65, FRC: 0, F1: 0 }, '2025': { FLL: 70, FTC: 65, FRC: 0, F1: 0 } } },
-                { id: 'BA', nome: 'Bahia', history: { '2021': { FLL: 30, FTC: 10, FRC: 0, F1: 10 }, '2022': { FLL: 40, FTC: 15, FRC: 0, F1: 20 }, '2023': { FLL: 50, FTC: 20, FRC: 0, F1: 30 }, '2024': { FLL: 70, FTC: 25, FRC: 0, F1: 40 }, '2025': { FLL: 80, FTC: 30, FRC: 0, F1: 40 } } },
-                { id: 'SC', nome: 'Santa Catarina', history: { '2021': { FLL: 40, FTC: 10, FRC: 0, F1: 20 }, '2022': { FLL: 45, FTC: 10, FRC: 0, F1: 30 }, '2023': { FLL: 50, FTC: 10, FRC: 0, F1: 40 }, '2024': { FLL: 55, FTC: 10, FRC: 0, F1: 50 }, '2025': { FLL: 60, FTC: 10, FRC: 0, F1: 50 } } },
-                { id: 'ES', nome: 'Espírito Santo', history: { '2021': { FLL: 30, FTC: 0, FRC: 0, F1: 25 }, '2022': { FLL: 35, FTC: 0, FRC: 0, F1: 30 }, '2023': { FLL: 40, FTC: 0, FRC: 0, F1: 40 }, '2024': { FLL: 40, FTC: 0, FRC: 0, F1: 55 }, '2025': { FLL: 40, FTC: 0, FRC: 0, F1: 65 } } },
-                { id: 'PE', nome: 'Pernambuco', history: { '2021': { FLL: 35, FTC: 20, FRC: 0, F1: 0 }, '2022': { FLL: 40, FTC: 25, FRC: 0, F1: 0 }, '2023': { FLL: 50, FTC: 30, FRC: 0, F1: 0 }, '2024': { FLL: 50, FTC: 35, FRC: 0, F1: 0 }, '2025': { FLL: 55, FTC: 40, FRC: 0, F1: 0 } } },
-                { id: 'MA', nome: 'Maranhão', history: { '2021': { FLL: 30, FTC: 0, FRC: 0, F1: 0 }, '2022': { FLL: 40, FTC: 0, FRC: 0, F1: 0 }, '2023': { FLL: 60, FTC: 0, FRC: 0, F1: 0 }, '2024': { FLL: 85, FTC: 0, FRC: 0, F1: 0 }, '2025': { FLL: 95, FTC: 0, FRC: 0, F1: 0 } } }
+                { id: 'SP', nome: 'São Paulo', history: { '2021': { FLL: 10, FTC: 5, FRC: 2, F1: 1 }, '2022': { FLL: 12, FTC: 6, FRC: 3, F1: 1 }, '2023': { FLL: 14, FTC: 6, FRC: 5, F1: 2 }, '2024': { FLL: 16, FTC: 7, FRC: 7, F1: 3 }, '2025': { FLL: 20, FTC: 8, FRC: 8, F1: 4 } } },
+                { id: 'MG', nome: 'Minas Gerais', history: { '2021': { FLL: 8, FTC: 6, FRC: 1, F1: 1 }, '2022': { FLL: 9, FTC: 7, FRC: 1, F1: 1 }, '2023': { FLL: 10, FTC: 8, FRC: 2, F1: 2 }, '2024': { FLL: 11, FTC: 9, FRC: 2, F1: 2 }, '2025': { FLL: 12, FTC: 12, FRC: 3, F1: 2 } } },
+                { id: 'GO', nome: 'Goiás', history: { '2021': { FLL: 5, FTC: 1, FRC: 0, F1: 0 }, '2022': { FLL: 7, FTC: 2, FRC: 1, F1: 0 }, '2023': { FLL: 10, FTC: 3, FRC: 3, F1: 0 }, '2024': { FLL: 15, FTC: 5, FRC: 4, F1: 0 }, '2025': { FLL: 22, FTC: 7, FRC: 5, F1: 0 } } },
+                { id: 'SC', nome: 'Santa Catarina', history: { '2021': { FLL: 6, FTC: 2, FRC: 0, F1: 3 }, '2022': { FLL: 7, FTC: 2, FRC: 0, F1: 4 }, '2023': { FLL: 8, FTC: 2, FRC: 0, F1: 6 }, '2024': { FLL: 9, FTC: 2, FRC: 0, F1: 8 }, '2025': { FLL: 10, FTC: 3, FRC: 0, F1: 9 } } },
+                { id: 'PR', nome: 'Paraná', history: { '2021': { FLL: 7, FTC: 4, FRC: 0, F1: 0 }, '2022': { FLL: 8, FTC: 5, FRC: 0, F1: 0 }, '2023': { FLL: 9, FTC: 7, FRC: 0, F1: 0 }, '2024': { FLL: 10, FTC: 8, FRC: 0, F1: 0 }, '2025': { FLL: 12, FTC: 9, FRC: 0, F1: 0 } } },
+                { id: 'RS', nome: 'Rio Grande do Sul', history: { '2021': { FLL: 6, FTC: 3, FRC: 1, F1: 0 }, '2022': { FLL: 7, FTC: 4, FRC: 1, F1: 0 }, '2023': { FLL: 8, FTC: 5, FRC: 1, F1: 0 }, '2024': { FLL: 9, FTC: 6, FRC: 2, F1: 0 }, '2025': { FLL: 10, FTC: 7, FRC: 2, F1: 0 } } },
+                { id: 'BA', nome: 'Bahia', history: { '2021': { FLL: 4, FTC: 1, FRC: 0, F1: 1 }, '2022': { FLL: 5, FTC: 2, FRC: 0, F1: 2 }, '2023': { FLL: 7, FTC: 3, FRC: 0, F1: 4 }, '2024': { FLL: 9, FTC: 4, FRC: 0, F1: 5 }, '2025': { FLL: 11, FTC: 5, FRC: 0, F1: 7 } } },
+                { id: 'ES', nome: 'Espírito Santo', history: { '2021': { FLL: 4, FTC: 0, FRC: 0, F1: 4 }, '2022': { FLL: 5, FTC: 0, FRC: 0, F1: 5 }, '2023': { FLL: 6, FTC: 0, FRC: 0, F1: 7 }, '2024': { FLL: 6, FTC: 0, FRC: 0, F1: 9 }, '2025': { FLL: 7, FTC: 0, FRC: 0, F1: 11 } } },
+                { id: 'PE', nome: 'Pernambuco', history: { '2021': { FLL: 4, FTC: 2, FRC: 0, F1: 0 }, '2022': { FLL: 5, FTC: 3, FRC: 0, F1: 0 }, '2023': { FLL: 6, FTC: 4, FRC: 0, F1: 0 }, '2024': { FLL: 7, FTC: 5, FRC: 0, F1: 0 }, '2025': { FLL: 8, FTC: 6, FRC: 0, F1: 0 } } },
+                { id: 'MA', nome: 'Maranhão', history: { '2021': { FLL: 3, FTC: 0, FRC: 0, F1: 0 }, '2022': { FLL: 5, FTC: 0, FRC: 0, F1: 0 }, '2023': { FLL: 8, FTC: 0, FRC: 0, F1: 0 }, '2024': { FLL: 11, FTC: 0, FRC: 0, F1: 0 }, '2025': { FLL: 14, FTC: 0, FRC: 0, F1: 0 } } }
             ];
 
             const anosRobotica = ['2021', '2022', '2023', '2024', '2025'];
@@ -963,7 +1070,7 @@
                     container.innerHTML += `
                         <div class="flex items-center justify-between p-3 ${isDestaque ? 'bg-sesi-green/10 border border-sesi-green/30' : 'bg-gray-50 border border-gray-100'} rounded-lg">
                             <div class="flex items-center gap-3"><span class="font-bold text-lg ${isDestaque ? 'text-sesi-green' : 'text-gray-500'}">#${index + 1}</span><span class="font-semibold text-gray-800">${reg.id} - ${reg.nome}</span></div>
-                            <span class="font-bold text-gray-900">${reg.totalBar} pts</span>
+                            <span class="font-bold text-gray-900">${reg.totalBar} conquistas</span>
                         </div>
                     `;
                 });
@@ -1014,7 +1121,7 @@
                         responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
                         plugins: {
                             legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } },
-                            datalabels: { display: (c) => c.dataset.label === 'GO' || (ufFiltro !== 'ALL' && c.dataset.label === ufFiltro), align: 'top', color: (c) => c.dataset.borderColor, font: { weight: 'bold', size: 11 }, backgroundColor: 'rgba(255,255,255,0.7)', borderRadius: 4 }
+                            datalabels: { display: true, align: 'top', color: (c) => c.dataset.borderColor, font: { weight: 'bold', size: 10 }, backgroundColor: 'rgba(255,255,255,0.7)', borderRadius: 4, formatter: (v) => v > 0 ? v : '' }
                         },
                         scales: { y: { grid: { color: '#e5e7eb' }, beginAtZero: true }, x: { grid: { display: false } } }
                     }
@@ -1025,6 +1132,197 @@
             document.getElementById('roboAnoFilter').addEventListener('change', processRoboticaData);
             document.getElementById('roboUfFilter').addEventListener('change', processRoboticaData);
             processRoboticaData();
+
+            // ==========================================
+            // MOTOR 5: RAIO-X GOIÁS (Premiações Locais Consolidadas)
+            // ==========================================
+            // Dados extraídos da planilha "Resumo Robótica.csv"
+            const goiasAwardsData = [
+                { u: "Rio Verde", t: "ONEE", p: 0, m: [1, 4, 3, 5], tot: 13 },
+                { u: "Rio Verde", t: "Certificação Microsoft", p: 0, m: [0, 0, 0, 8], tot: 8 },
+                { u: "Rio Verde", t: "Grand Prix", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Planalto", t: "OBR", p: 1, m: [23, 10, 11, 46], tot: 91 },
+                { u: "Planalto", t: "OLP", p: 0, m: [0, 1, 1, 3], tot: 5 },
+                { u: "Planalto", t: "OBA", p: 0, m: [45, 29, 35, 0], tot: 109 },
+                { u: "Planalto", t: "MOBFOG", p: 0, m: [354, 75, 3, 0], tot: 432 },
+                { u: "Planalto", t: "CANGURU", p: 0, m: [7, 29, 60, 42], tot: 138 },
+                { u: "Planalto", t: "ONC", p: 0, m: [11, 12, 24, 57], tot: 104 },
+                { u: "Planalto", t: "ONE", p: 0, m: [26, 5, 6, 36], tot: 73 },
+                { u: "Planalto", t: "ONEE", p: 0, m: [27, 19, 19, 30], tot: 95 },
+                { u: "Planalto", t: "OLITEF", p: 0, m: [20, 7, 18, 0], tot: 45 },
+                { u: "Planalto", t: "Jornada de Foguetes", p: 1, m: [0, 0, 0, 1], tot: 2 },
+                { u: "Planalto", t: "Pequeno Cientista", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Planalto", t: "Innovation Camp", p: 3, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Niquelândia", t: "OBA", p: 0, m: [1, 3, 2, 0], tot: 6 },
+                { u: "Niquelândia", t: "Outros", p: 0, m: [36, 0, 0, 0], tot: 36 },
+                { u: "Niquelândia", t: "Grand Prix", p: 0, m: [0, 0, 0, 5], tot: 5 },
+                { u: "Mineiros", t: "Innovation Camp", p: 2, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Luziânia", t: "Grand Prix", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Jundiaí", t: "OBR", p: 0, m: [8, 8, 3, 0], tot: 21 },
+                { u: "Jundiaí", t: "MOBFOG", p: 0, m: [0, 6, 0, 0], tot: 6 },
+                { u: "Jundiaí", t: "CANGURU", p: 0, m: [11, 5, 16, 17], tot: 49 },
+                { u: "Jundiaí", t: "OBG", p: 0, m: [3, 0, 0, 0], tot: 3 },
+                { u: "Jundiaí", t: "OLI", p: 0, m: [0, 0, 0, 1], tot: 1 },
+                { u: "Jundiaí", t: "Onano", p: 0, m: [1, 0, 1, 0], tot: 2 },
+                { u: "Jundiaí", t: "OP", p: 0, m: [25, 50, 57, 1], tot: 133 },
+                { u: "Jundiaí", t: "ONEE", p: 0, m: [1, 1, 0, 3], tot: 5 },
+                { u: "Jundiaí", t: "ONC", p: 0, m: [5, 1, 0, 13], tot: 19 },
+                { u: "Jundiaí", t: "FTC", p: 2, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Jundiaí", t: "Innovation Camp", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Jundiaí", t: "Innovation Camp", p: 3, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Jundiaí", t: "Grand Prix", p: 2, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Jaiara", t: "OP", p: 0, m: [0, 0, 1, 0], tot: 1 },
+                { u: "Jaiara", t: "OBA", p: 0, m: [1, 5, 1, 0], tot: 7 },
+                { u: "Jaiara", t: "OLI", p: 0, m: [2, 2, 5, 0], tot: 9 },
+                { u: "Jaiara", t: "OBG", p: 0, m: [0, 5, 21, 0], tot: 26 },
+                { u: "Jaiara", t: "ONC", p: 0, m: [0, 2, 0, 10], tot: 12 },
+                { u: "Jaiara", t: "ONEE", p: 0, m: [0, 5, 5, 7], tot: 17 },
+                { u: "Jaiara", t: "Geopolítica", p: 0, m: [6, 4, 10, 2], tot: 22 },
+                { u: "Jaiara", t: "Innovation Camp", p: 0, m: [0, 1, 0, 0], tot: 1 },
+                { u: "Itumbiara", t: "OLP", p: 0, m: [0, 0, 0, 3], tot: 3 },
+                { u: "Itumbiara", t: "MOBFOG", p: 0, m: [7, 0, 0, 0], tot: 7 },
+                { u: "Itumbiara", t: "CANGURU", p: 0, m: [2, 2, 0, 5], tot: 9 },
+                { u: "Itumbiara", t: "OLITEF", p: 0, m: [0, 0, 2, 0], tot: 2 },
+                { u: "Itumbiara", t: "BEBRAS", p: 0, m: [0, 1, 0, 1], tot: 2 },
+                { u: "Itumbiara", t: "ONC", p: 0, m: [1, 1, 1, 0], tot: 3 },
+                { u: "Itumbiara", t: "Geopolítica", p: 0, m: [1, 1, 4, 0], tot: 6 },
+                { u: "Itumbiara", t: "OLI", p: 0, m: [1, 0, 0, 0], tot: 1 },
+                { u: "Itumbiara", t: "Torneio Nacional", p: 0, m: [0, 0, 0, 1], tot: 1 },
+                { u: "Universitário", t: "MOBFOG", p: 2, m: [0, 3, 0, 0], tot: 4 },
+                { u: "Universitário", t: "Criativos da Escola", p: 0, m: [0, 0, 0, 8], tot: 8 },
+                { u: "Universitário", t: "CANGURU", p: 1, m: [1, 6, 5, 5], tot: 18 },
+                { u: "Universitário", t: "ONC", p: 0, m: [0, 0, 0, 1], tot: 1 },
+                { u: "Universitário", t: "Torneio Nacional", p: 2, m: [0, 3, 0, 0], tot: 4 },
+                { u: "Universitário", t: "Torneio Nacional", p: 1, m: [3, 0, 3, 0], tot: 7 },
+                { u: "Universitário", t: "Torneio Nacional", p: 3, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Crixás", t: "OLP", p: 0, m: [5, 10, 15, 3], tot: 33 },
+                { u: "Crixás", t: "MOBFOG", p: 0, m: [2, 2, 4, 0], tot: 8 },
+                { u: "Colorado", t: "MOBFOG", p: 1, m: [3, 0, 3, 0], tot: 7 },
+                { u: "Colorado", t: "MOBFOG", p: 3, m: [3, 0, 0, 0], tot: 4 },
+                { u: "Colorado", t: "ONC", p: 1, m: [1, 0, 1, 3], tot: 6 },
+                { u: "Colorado", t: "ONC", p: 3, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Colorado", t: "Innovation Camp", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Colorado", t: "Grand Prix", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Charuri", t: "ONEE", p: 3, m: [0, 0, 2, 7], tot: 10 },
+                { u: "Charuri", t: "ONC", p: 2, m: [0, 1, 0, 0], tot: 2 },
+                { u: "Charuri", t: "Innovation Camp", p: 2, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Catalão", t: "OBG", p: 0, m: [1, 2, 0, 0], tot: 3 },
+                { u: "Catalão", t: "ONEE", p: 0, m: [0, 4, 5, 5], tot: 14 },
+                { u: "Catalão", t: "FLL", p: 2, m: [0, 1, 0, 0], tot: 2 },
+                { u: "Catalão", t: "FTC", p: 1, m: [0, 0, 0, 0], tot: 2 }, 
+                { u: "Catalão", t: "FRC", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Catalão", t: "Innovation Camp", p: 3, m: [0, 0, 1, 0], tot: 2 },
+                { u: "Canaã", t: "OLP", p: 0, m: [0, 0, 0, 2], tot: 2 },
+                { u: "Canaã", t: "OBMEP", p: 0, m: [0, 1, 1, 2], tot: 4 },
+                { u: "Canaã", t: "ONEE", p: 0, m: [0, 15, 17, 52], tot: 84 },
+                { u: "Canaã", t: "CANGURU", p: 0, m: [2, 3, 1, 9], tot: 15 },
+                { u: "Canaã", t: "Mandacaru", p: 0, m: [2, 0, 2, 13], tot: 17 },
+                { u: "Canaã", t: "História", p: 0, m: [0, 0, 0, 18], tot: 18 },
+                { u: "Canaã", t: "Educação Financeira", p: 0, m: [2, 2, 3, 0], tot: 7 },
+                { u: "Canaã", t: "ONC", p: 0, m: [0, 0, 0, 1], tot: 1 },
+                { u: "Canaã", t: "FLL", p: 1, m: [0, 0, 0, 0], tot: 2 },
+                { u: "Canaã", t: "FTC", p: 2, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Canaã", t: "FRC", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Canaã", t: "Innovation Camp", p: 2, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Canaã", t: "Grand Prix", p: 1, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Canaã", t: "Grand Prix", p: 3, m: [0, 0, 0, 0], tot: 1 },
+                { u: "Aparecida", t: "FRC", p: 1, m: [0, 0, 0, 12], tot: 13 },
+                { u: "Aparecida", t: "Innovation Camp", p: 1, m: [0, 0, 0, 0], tot: 1 }
+            ];
+
+            const unidesList = [...new Set(goiasAwardsData.map(d => d.u))].sort();
+            const tourneysList = [...new Set(goiasAwardsData.map(d => d.t))].sort();
+            
+            const goUfSel = document.getElementById('goUfFilter');
+            unidesList.forEach(u => goUfSel.add(new Option(u, u)));
+            const goTourneySel = document.getElementById('goTourneyFilter');
+            tourneysList.forEach(t => goTourneySel.add(new Option(t, t)));
+
+            let goMedalsChartInst = null;
+            let goUnitsChartInst = null;
+
+            function updateGoiasAwards() {
+                const uFilter = goUfSel.value;
+                const tFilter = goTourneySel.value;
+
+                let filtered = goiasAwardsData;
+                if(uFilter !== 'ALL') filtered = filtered.filter(d => d.u === uFilter);
+                if(tFilter !== 'ALL') filtered = filtered.filter(d => d.t === tFilter);
+
+                let tTot = 0, p1 = 0, p2 = 0, p3 = 0, mO = 0, mP = 0, mB = 0, mH = 0;
+                const unitTotals = {};
+
+                filtered.forEach(d => {
+                    tTot += d.tot;
+                    if(d.p === 1) p1++;
+                    if(d.p === 2) p2++;
+                    if(d.p === 3) p3++;
+                    mO += d.m[0];
+                    mP += d.m[1];
+                    mB += d.m[2];
+                    mH += d.m[3];
+
+                    unitTotals[d.u] = (unitTotals[d.u] || 0) + d.tot;
+                });
+
+                document.getElementById('kpiTotal').innerText = tTot;
+                document.getElementById('kpiOuro').innerText = p1 + mO;
+                document.getElementById('kpiPrata').innerText = p2 + mP;
+                document.getElementById('kpiBronze').innerText = p3 + mB;
+
+                const ctxMedals = document.getElementById('goMedalsChart').getContext('2d');
+                if(goMedalsChartInst) goMedalsChartInst.destroy();
+                goMedalsChartInst = new Chart(ctxMedals, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Ouro / 1º Lugar', 'Prata / 2º Lugar', 'Bronze / 3º Lugar', 'Honra ao Mérito'],
+                        datasets: [{
+                            data: [(p1 + mO), (p2 + mP), (p3 + mB), mH],
+                            backgroundColor: ['#eab308', '#9ca3af', '#f97316', '#3b82f6'],
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'right', labels: { boxWidth: 12, font: {size: 11} } },
+                            datalabels: { color: '#fff', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' }
+                        }
+                    }
+                });
+
+                const sortedUnits = Object.entries(unitTotals).sort((a,b) => b[1] - a[1]).slice(0, 10);
+                const ctxUnits = document.getElementById('goUnitsChart').getContext('2d');
+                if(goUnitsChartInst) goUnitsChartInst.destroy();
+                goUnitsChartInst = new Chart(ctxUnits, {
+                    type: 'bar',
+                    data: {
+                        labels: sortedUnits.map(x => x[0]),
+                        datasets: [{
+                            label: 'Premiações',
+                            data: sortedUnits.map(x => x[1]),
+                            backgroundColor: '#52AE32',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            datalabels: { align: 'top', anchor: 'end', color: '#52AE32', font: {weight: 'bold'}, formatter: (v) => v > 0 ? v : '' }
+                        },
+                        scales: {
+                            y: { display: false, suggestedMax: (sortedUnits[0] ? sortedUnits[0][1] : 10) * 1.2 },
+                            x: { grid: {display: false}, ticks: {font: {size: 11, weight: 'bold'}} }
+                        }
+                    }
+                });
+            }
+
+            goUfSel.addEventListener('change', updateGoiasAwards);
+            goTourneySel.addEventListener('change', updateGoiasAwards);
+            updateGoiasAwards();
 
         }); // Fim do único DOMContentLoaded seguro
     </script>
